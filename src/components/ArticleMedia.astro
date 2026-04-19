@@ -1,0 +1,75 @@
+---
+import HeroCover from './HeroCover.astro';
+import { resolveCategory, resolveIcon, resolveCategoryLabel } from '../lib/hero.ts';
+
+interface Props {
+  url: string;
+  title: string;
+  hero?: string;
+  heroAlt?: string;
+  categoryLabel?: string;
+  variant?: 'hero' | 'card';
+  eager?: boolean;
+  aspectRatio?: string;
+}
+
+const {
+  url,
+  title,
+  hero,
+  heroAlt,
+  categoryLabel,
+  variant = 'card',
+  eager = false,
+  aspectRatio,
+} = Astro.props;
+
+const cat = resolveCategory(url);
+const icon = resolveIcon(url, cat);
+const label = categoryLabel ?? resolveCategoryLabel(cat);
+---
+
+<div class="am" data-variant={variant} style={aspectRatio ? `aspect-ratio:${aspectRatio}` : undefined}>
+  {hero ? (
+    <img
+      src={hero}
+      alt={heroAlt ?? title}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      decoding="async"
+      class="am__img"
+    />
+  ) : (
+    <HeroCover
+      category={cat}
+      icon={icon}
+      title={title}
+      eyebrow={label}
+      variant={variant}
+      seed={url}
+    />
+  )}
+</div>
+
+<style>
+  .am {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg-soft);
+    line-height: 0;
+  }
+  .am__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .am :global(svg.hero-cover) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 0;
+    border-radius: 0;
+  }
+</style>
