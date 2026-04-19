@@ -501,7 +501,10 @@ async function writeArticle(item, imageDescription) {
 // --- сохранение MDX ------------------------------------------------------
 
 function toMdx(a, item, heroPath) {
-  const pubDate = new Date().toISOString().slice(0, 10);
+  // Полный ISO-timestamp (а не только дата), чтобы сортировка по pubDate desc
+  // в src/pages/index.astro правильно выводила самую свежую новость первой
+  // в hero-карусели. В MDX yaml безопасный ISO-формат — в кавычках.
+  const pubDate = new Date().toISOString();
   const escape = (s) => String(s).replace(/"/g, '\\"');
   const tldrArray = a.tldrPoints
     .map((p) => `    ${JSON.stringify(String(p))}`)
@@ -512,7 +515,7 @@ layout: ../../layouts/ArticleLayout.astro
 title: "${escape(a.title)}"
 description: "${escape(a.description)}"
 h1: "${escape(a.h1 || a.title)}"
-pubDate: ${pubDate}
+pubDate: "${pubDate}"
 category: "${escape(a.category || item.category || 'Новости')}"
 format: "${format}"
 breadcrumbs:
