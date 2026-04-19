@@ -27,9 +27,11 @@
 /raznoe/rozovyjj-iphone-7/*                         /ios/                                               301
 
 # === Корзина C: ловушки для любых других старых URL
+# Cloudflare Pages _redirects поддерживает только 200, 301, 302, 303, 307, 308.
+# Поэтому «выпиливать» WP-мусор через 410 нельзя — уводим на главную 301.
 /rabota-s-itunes/*   /ios/   301
 /raznoe/*            /       301
-/wp-content/*        /       410
-/wp-admin/*          /       410
-/wp-login.php        /       410
-/xmlrpc.php          /       410
+/wp-content/*        /       301
+/wp-admin/*          /       301
+/wp-login.php        /       301
+/xmlrpc.php          /       301
