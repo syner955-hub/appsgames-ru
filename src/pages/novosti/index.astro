@@ -11,6 +11,7 @@ type NewsFrontmatter = {
   description?: string;
   pubDate: string | Date;
   category?: string;
+  format?: string;
   hero?: string;
   heroAlt?: string;
 };
@@ -20,14 +21,25 @@ const modules = import.meta.glob<{
   url?: string;
 }>('./*.mdx', { eager: true });
 
+const FORMAT_LABELS: Record<string, string> = {
+  news: 'Новость',
+  howto: 'Инструкция',
+  review: 'Обзор',
+  explainer: 'Разбор',
+  roundup: 'Подборка',
+};
+
 const posts = Object.entries(modules)
   .map(([file, m]) => {
     const slug = file.replace(/^\.\//, '').replace(/\.mdx$/, '');
+    const format = m.frontmatter.format ?? 'news';
     return {
       title: m.frontmatter.title,
       description: m.frontmatter.description ?? '',
       pubDate: new Date(m.frontmatter.pubDate),
       category: m.frontmatter.category ?? 'Новости',
+      format,
+      formatLabel: FORMAT_LABELS[format] ?? 'Новость',
       hero: m.frontmatter.hero,
       url: m.url ?? `/novosti/${slug}/`,
     };
@@ -68,6 +80,7 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
               )}
               <div class="news-hub__body">
                 <p class="news-hub__meta">
+                  <span class={`news-hub__badge news-hub__badge--${p.format}`}>{p.formatLabel}</span>
                   <span class="news-hub__cat">{p.category}</span>
                   <span aria-hidden="true"> · </span>
                   <time datetime={p.pubDate.toISOString()}>{fmt.format(p.pubDate)}</time>
@@ -160,7 +173,11 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
   }
   .news-hub__meta {
     margin: 0 0 0.5rem;
-    font-size: 0.78rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
     color: var(--fg-subtle);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -168,6 +185,42 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
   .news-hub__cat {
     color: var(--accent);
     font-weight: 700;
+  }
+  .news-hub__badge {
+    display: inline-block;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--fg-muted);
+  }
+  .news-hub__badge--howto {
+    color: #1d6f3f;
+    background: color-mix(in oklab, #1d6f3f 12%, var(--bg-soft));
+    border-color: color-mix(in oklab, #1d6f3f 30%, var(--border));
+  }
+  .news-hub__badge--review {
+    color: #7a4b00;
+    background: color-mix(in oklab, #b36b00 14%, var(--bg-soft));
+    border-color: color-mix(in oklab, #b36b00 30%, var(--border));
+  }
+  .news-hub__badge--explainer {
+    color: #5b4bbd;
+    background: color-mix(in oklab, #5b4bbd 12%, var(--bg-soft));
+    border-color: color-mix(in oklab, #5b4bbd 30%, var(--border));
+  }
+  .news-hub__badge--roundup {
+    color: #a8336a;
+    background: color-mix(in oklab, #a8336a 12%, var(--bg-soft));
+    border-color: color-mix(in oklab, #a8336a 30%, var(--border));
+  }
+  .news-hub__badge--news {
+    color: var(--accent);
+    background: color-mix(in oklab, var(--accent) 10%, var(--bg-soft));
+    border-color: color-mix(in oklab, var(--accent) 25%, var(--border));
   }
   .news-hub__item h2 {
     margin: 0 0 0.4rem;
