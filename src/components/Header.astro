@@ -274,6 +274,16 @@ const dateFmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long'
     const btn = document.querySelector('[data-mobile-menu-open]');
     if (!root || !btn) return;
 
+    /* КРИТИЧНО: у <header> есть backdrop-filter — это создаёт containing
+       block для position:fixed потомков во всех браузерах (не только Safari).
+       Из-за этого drawer с position:fixed;inset:0 оказывался внутри
+       header'а высотой ~60px и пункты были "за экраном".
+       Лечим переносом drawer'а в конец <body> — там никакой containing
+       block его не ограничивает. */
+    if (root.parentElement !== document.body) {
+      document.body.appendChild(root);
+    }
+
     function setOpen(open) {
       root.setAttribute('data-open', open ? 'true' : 'false');
       root.setAttribute('aria-hidden', open ? 'false' : 'true');
