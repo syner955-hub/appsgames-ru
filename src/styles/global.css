@@ -215,3 +215,226 @@ pre {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ========================================================
+   Mobile drawer — глобально (без Astro scoping).
+
+   Причина: на iOS Safari + scoped [data-astro-cid-...]
+   селекторы иногда не применяются к части дочерних
+   элементов, когда у родителя visibility: hidden.
+   Глобальный CSS + opacity-switching гарантированно рендерит.
+   ======================================================== */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.mobile-menu[data-open='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 24, 0.5);
+}
+
+.mobile-menu__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(86vw, 340px);
+  max-width: 340px;
+  background: var(--bg, #ffffff);
+  color: var(--fg, #0c1220);
+  border-left: 1px solid var(--border, #e7e9ee);
+  box-shadow: -24px 0 40px -20px rgba(10, 14, 24, 0.25);
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  will-change: transform;
+}
+.mobile-menu[data-open='true'] .mobile-menu__panel {
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .mobile-menu__panel {
+    background: #0b0d12;
+    color: #e7ebf2;
+    border-left-color: #232834;
+  }
+}
+:root[data-theme='dark'] .mobile-menu__panel {
+  background: #0b0d12;
+  color: #e7ebf2;
+  border-left-color: #232834;
+}
+
+.mobile-menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--border, #e7e9ee);
+  min-height: 60px;
+}
+.mobile-menu__ttl {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: inherit;
+}
+.mobile-menu__close {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--border, #e7e9ee);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.mobile-menu__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mobile-menu__section-ttl {
+  display: block;
+  padding: 1rem 1.4rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-subtle, #6b7280);
+}
+
+.mobile-menu__nav {
+  display: block;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+.mobile-menu__nav a {
+  display: block;
+  position: relative;
+  padding: 0.95rem 2.2rem 0.95rem 1.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: inherit !important;
+  border-bottom: 1px solid var(--border, #e7e9ee);
+  text-decoration: none !important;
+  background: transparent;
+}
+.mobile-menu__nav a::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--dot, #0a84ff);
+  margin-right: 0.7rem;
+  vertical-align: 2px;
+}
+.mobile-menu__nav a::after {
+  content: '›';
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-subtle, #6b7280);
+  font-size: 1rem;
+  font-weight: 400;
+}
+.mobile-menu__nav a:hover,
+.mobile-menu__nav a:focus-visible {
+  background: var(--bg-soft, #f7f8fa);
+}
+
+.mobile-menu__recent {
+  display: block;
+  padding: 0 1.4rem 0.5rem;
+}
+.mobile-menu__recent a {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.45rem 0;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.mobile-menu__recent a + a {
+  border-top: 1px solid var(--border, #e7e9ee);
+}
+.mobile-menu__recent img,
+.mobile-menu__recent-ph {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  flex-shrink: 0;
+  background: var(--bg-soft, #f7f8fa);
+}
+.mobile-menu__recent .rt-body {
+  display: block;
+  min-width: 0;
+}
+.mobile-menu__recent .rt-meta {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--fg-subtle, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.mobile-menu__recent .rt-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: inherit;
+}
+.mobile-menu__see-all {
+  display: block;
+  margin: 0.5rem 1.4rem 0;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border, #e7e9ee);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: inherit !important;
+  text-decoration: none !important;
+  background: var(--bg-soft, #f7f8fa);
+}
+
+.mobile-menu__foot {
+  padding: 1.25rem 1.4rem 1.6rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--border, #e7e9ee);
+  color: var(--fg-subtle, #6b7280);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* desktop — прячем drawer полностью, чтобы он никогда не мешал */
+@media (min-width: 780px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
