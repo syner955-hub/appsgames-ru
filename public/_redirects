@@ -1,20 +1,20 @@
-# Cloudflare Pages _redirects
-# Формат: <source> <destination> <status>
-# Глобальные правила: сохраняем ссылочный сок со старых URL.
-# Пока целевые страницы ещё не готовы — ведём на главную (это не даст 404).
-# Когда целевая страница появится — заменяем destination на её URL.
+# Cloudflare _redirects
+# Важно про Workers Assets: общие splat-правила (например /rabota-s-itunes/*)
+# перекрывают более специфичные splat-правила, расположенные выше в файле.
+# Поэтому здесь — только точечные правила для URL, на которые реально есть
+# внешние ссылки. Для всего остального старого мусора отдаём обычный 404.
 
-# === Корзина A: URL оставлены прежними, здесь редиректов НЕТ.
-#   /dopolnitelnyjj-soft/ehmulyator-android/        (остаётся)
-#   /dopolnitelnyjj-soft/ehmulyator-ios-ipad/       (остаётся)
-#   /poleznoe-ios/vosstanavlivit-parol-ot-apple-id/ (остаётся)
-#   /poleznoe-dlya-android/udalennoe-upravlenie-ustrojjstvami-na-android/ (остаётся)
-#   /uroki-po-ios/kak-sbrosit-iphone-do-zavodskikh-nastroek/ (остаётся)
-#   /poleznoe-ios/dfu-rejim-iphone-ipad/            (остаётся)
-#   /poleznoe-ios/podklyuchit-ajjfon-k-televizoru/  (остаётся)
-#   /poleznoe-ios/kak-nastroit-iphone/              (остаётся)
+# === Корзина A: URL оставлены прежними, редиректов НЕТ.
+#   /dopolnitelnyjj-soft/ehmulyator-android/
+#   /dopolnitelnyjj-soft/ehmulyator-ios-ipad/
+#   /poleznoe-ios/vosstanavlivit-parol-ot-apple-id/
+#   /poleznoe-dlya-android/udalennoe-upravlenie-ustrojjstvami-na-android/
+#   /uroki-po-ios/kak-sbrosit-iphone-do-zavodskikh-nastroek/
+#   /poleznoe-ios/dfu-rejim-iphone-ipad/
+#   /poleznoe-ios/podklyuchit-ajjfon-k-televizoru/
+#   /poleznoe-ios/kak-nastroit-iphone/
 
-# === Корзина B: точечные 301 на будущие новые URL.
+# === Корзина B: точечные 301 на новые URL (под сохранённые бэклинки)
 /rabota-s-itunes/kak-zakachat-muzyku/*              /ios/kak-sdelat/skachat-muzyku-iphone/              301
 /rabota-s-itunes/sinhronizacia-s-iphone-ipad-ipod/* /ios/kak-sdelat/sinhronizaciya-iphone-pc/           301
 /rabota-s-itunes/alternativa/*                      /obzory/alternativy-itunes/                         301
@@ -26,11 +26,7 @@
 /poleznoe-ios/chem-otlichaetsya-ajjfon-5-ot-5s/*    /ios/                                               301
 /raznoe/rozovyjj-iphone-7/*                         /ios/                                               301
 
-# === Корзина C: ловушки для любых других старых URL
-# Cloudflare Pages _redirects поддерживает только 200, 301, 302, 303, 307, 308.
-# Поэтому «выпиливать» WP-мусор через 410 нельзя — уводим на главную 301.
-/rabota-s-itunes/*   /ios/   301
-/raznoe/*            /       301
+# === WP-мусор: закрываем 301 на главную (боты перестанут долбиться)
 /wp-content/*        /       301
 /wp-admin/*          /       301
 /wp-login.php        /       301
