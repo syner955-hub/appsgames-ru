@@ -5,6 +5,12 @@ import '../styles/prose.css';
 import Breadcrumbs from '../components/article/Breadcrumbs.astro';
 import TableOfContents from '../components/article/TableOfContents.astro';
 import AuthorBox from '../components/article/AuthorBox.astro';
+import HeroCover from '../components/HeroCover.astro';
+import {
+  resolveCategory,
+  resolveIcon,
+  resolveCategoryLabel,
+} from '../lib/hero.ts';
 
 interface FrontmatterShape {
   title: string;
@@ -56,6 +62,22 @@ const authorName = author?.data.name ?? 'Редакция AppsGames';
 const siteUrl = Astro.site ?? new URL('https://appsgames.ru');
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
+// Авто-обложка: если в frontmatter нет явного hero — берём SVG-обложку
+const autoHeroCategory = resolveCategory(Astro.url.pathname);
+const autoHeroIcon = resolveIcon(Astro.url.pathname, autoHeroCategory);
+const autoHeroEyebrow = resolveCategoryLabel(autoHeroCategory);
+
+// Уникальный seed для id градиентов (стабильный между билдами)
+const heroSeed = Astro.url.pathname.replace(/[^a-z0-9]/gi, '').slice(-10) || 'main';
+
+// PNG-версия той же обложки используется как OG-превью
+const ogImage =
+  hero ??
+  (() => {
+    const p = Astro.url.pathname.replace(/\/$/, '');
+    return p === '' ? '/og/index.png' : `/og${p}.png`;
+  })();
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -79,7 +101,7 @@ const articleSchema = {
     },
   },
   mainEntityOfPage: canonicalUrl,
-  ...(hero ? { image: new URL(hero, siteUrl).toString() } : {}),
+  image: new URL(ogImage, siteUrl).toString(),
 };
 
 const fmt = new Intl.DateTimeFormat('ru-RU', {
@@ -89,7 +111,7 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
 });
 ---
 
-<BaseLayout title={title} description={description} ogType="article" image={hero}>
+<BaseLayout title={title} description={description} ogType="article" image={ogImage}>
   <script
     is:inline
     slot="head"
@@ -122,11 +144,20 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
       </p>
     </header>
 
-    {hero && (
-      <figure class="article__hero">
+    <figure class="article__hero">
+      {hero ? (
         <img src={hero} alt={heroAlt ?? heading} loading="eager" />
-      </figure>
-    )}
+      ) : (
+        <HeroCover
+          category={autoHeroCategory}
+          icon={autoHeroIcon}
+          title={heading}
+          eyebrow={autoHeroEyebrow}
+          variant="hero"
+          seed={heroSeed}
+        />
+      )}
+    </figure>
 
     {showToc && <TableOfContents />}
 

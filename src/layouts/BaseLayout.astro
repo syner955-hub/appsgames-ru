@@ -15,7 +15,7 @@ interface Props {
 const {
   title,
   description,
-  image = '/og-default.png',
+  image,
   noindex = false,
   ogType = 'website',
   canonical,
@@ -23,7 +23,15 @@ const {
 
 const siteUrl = Astro.site ?? new URL('https://appsgames.ru');
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl).toString();
-const ogImage = new URL(image, siteUrl).toString();
+
+// Авто-OG: если явная картинка не передана, указываем путь к эндпоинту
+// генерации PNG, совпадающий с маршрутом /og/[...slug].png.
+const autoOgPath = (() => {
+  const p = Astro.url.pathname.replace(/\/$/, '');
+  return p === '' ? '/og/index.png' : `/og${p}.png`;
+})();
+
+const ogImage = new URL(image ?? autoOgPath, siteUrl).toString();
 
 const fullTitle = title.includes('AppsGames') ? title : `${title} — AppsGames.ru`;
 ---

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroCover from '../components/HeroCover.astro';
+import { resolveCategory, resolveIcon } from '../lib/hero.ts';
 
 const title = 'AppsGames.ru — обзоры и инструкции для iPhone и Android';
 const description =
@@ -89,15 +91,31 @@ const clusters = [
   <section class="home-section container">
     <h2 class="home-section__title">Свежие материалы</h2>
     <ul class="feat__list">
-      {featured.map((a) => (
-        <li class="feat__item">
-          <a href={a.href}>
-            <p class="feat__cat">{a.category}</p>
-            <h3>{a.title}</h3>
-            <p class="feat__desc">{a.desc}</p>
-          </a>
-        </li>
-      ))}
+      {featured.map((a) => {
+        const cat = resolveCategory(a.href);
+        const icon = resolveIcon(a.href, cat);
+        return (
+          <li class="feat__item">
+            <a href={a.href}>
+              <div class="feat__cover">
+                <HeroCover
+                  category={cat}
+                  icon={icon}
+                  title={a.title}
+                  eyebrow={a.category}
+                  variant="hero"
+                  seed={a.href}
+                />
+              </div>
+              <div class="feat__body">
+                <p class="feat__cat">{a.category}</p>
+                <h3>{a.title}</h3>
+                <p class="feat__desc">{a.desc}</p>
+              </div>
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </section>
 
@@ -192,8 +210,9 @@ const clusters = [
     }
   }
   .feat__item a {
-    display: block;
-    padding: 1.2rem 1.3rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--bg-card);
@@ -205,6 +224,22 @@ const clusters = [
   .feat__item a:hover {
     border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
     transform: translateY(-2px);
+  }
+  .feat__cover {
+    line-height: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .feat__cover :global(svg.hero-cover) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 0;
+    border-radius: 0;
+  }
+  .feat__body {
+    padding: 1.1rem 1.25rem 1.2rem;
+    display: flex;
+    flex-direction: column;
   }
   .feat__cat {
     margin: 0 0 0.5rem;

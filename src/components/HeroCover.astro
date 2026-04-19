@@ -1,0 +1,425 @@
+---
+/**
+ * HeroCover — inline SVG-обложка статьи/карточки.
+ * Никаких HTTP-запросов, легко кешируется как часть HTML, выглядит премиально.
+ *
+ * Дизайн: градиентный фон → точечный grid → крупная геометрическая иконка
+ * темы справа → мини-бейдж «AppsGames.ru» снизу.
+ */
+
+interface Props {
+  category?:
+    | 'ios'
+    | 'android'
+    | 'obzory'
+    | 'sovety'
+    | 'bezopasnost'
+    | 'default';
+  /** Подсказывает тему иконки независимо от категории */
+  icon?:
+    | 'apple'
+    | 'android'
+    | 'star'
+    | 'bulb'
+    | 'shield'
+    | 'bolt'
+    | 'download'
+    | 'cloud'
+    | 'lock'
+    | 'trash'
+    | 'refresh'
+    | 'battery'
+    | 'key'
+    | 'eye'
+    | 'messages';
+  title?: string;
+  eyebrow?: string;
+  variant?: 'hero' | 'card';
+  /** Уникальный ключ для id градиентов (нужен, если на странице несколько обложек) */
+  seed?: string;
+}
+
+const {
+  category = 'default',
+  icon,
+  title = '',
+  eyebrow,
+  variant = 'hero',
+  seed,
+} = Astro.props;
+
+type Theme = {
+  a: string; // основной цвет
+  b: string; // тёмный градиент
+  accent: string; // цвет иконки/акцентов
+  label: string;
+  defaultIcon: Props['icon'];
+};
+
+const themes: Record<string, Theme> = {
+  ios: {
+    a: '#0a84ff',
+    b: '#0038a8',
+    accent: '#eaf3ff',
+    label: 'iOS',
+    defaultIcon: 'apple',
+  },
+  android: {
+    a: '#3ddc84',
+    b: '#0f6b3a',
+    accent: '#e7fbef',
+    label: 'Android',
+    defaultIcon: 'android',
+  },
+  obzory: {
+    a: '#a855f7',
+    b: '#581c87',
+    accent: '#f5ecff',
+    label: 'Обзоры',
+    defaultIcon: 'star',
+  },
+  sovety: {
+    a: '#f97316',
+    b: '#9a3412',
+    accent: '#fff0e3',
+    label: 'Советы',
+    defaultIcon: 'bulb',
+  },
+  bezopasnost: {
+    a: '#ef4444',
+    b: '#7f1d1d',
+    accent: '#ffe8e8',
+    label: 'Безопасность',
+    defaultIcon: 'shield',
+  },
+  default: {
+    a: '#334155',
+    b: '#0f172a',
+    accent: '#e2e8f0',
+    label: 'AppsGames',
+    defaultIcon: 'bolt',
+  },
+};
+
+const t = themes[category] ?? themes.default;
+const ic = icon ?? t.defaultIcon;
+const labelEyebrow = eyebrow ?? t.label;
+
+// Уникальный id, чтобы градиенты не конфликтовали при нескольких обложках
+const uid = (seed ?? Math.random().toString(36).slice(2, 8)).replace(
+  /[^a-z0-9]/gi,
+  '',
+);
+const idGrad = `hc-grad-${uid}`;
+const idDots = `hc-dots-${uid}`;
+const idShine = `hc-shine-${uid}`;
+
+// viewBox для hero — 1200×630 (под OG), для card — 800×600
+const vbW = variant === 'hero' ? 1200 : 800;
+const vbH = variant === 'hero' ? 630 : 600;
+
+// Укоротить длинные заголовки (чтоб не вылезали за обложку)
+function wrapTitle(src: string, maxChars = 28): string[] {
+  if (!src) return [];
+  const words = src.split(/\s+/);
+  const lines: string[] = [];
+  let current = '';
+  for (const w of words) {
+    if ((current + ' ' + w).trim().length > maxChars && current) {
+      lines.push(current);
+      current = w;
+    } else {
+      current = (current ? current + ' ' : '') + w;
+    }
+  }
+  if (current) lines.push(current);
+  return lines.slice(0, 3); // максимум 3 строки
+}
+const titleLines = wrapTitle(title, variant === 'hero' ? 24 : 18);
+---
+
+<svg
+  class={`hero-cover hero-cover--${variant}`}
+  viewBox={`0 0 ${vbW} ${vbH}`}
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={title || labelEyebrow}
+  preserveAspectRatio="xMidYMid slice"
+>
+  <defs>
+    <linearGradient id={idGrad} x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color={t.a} />
+      <stop offset="100%" stop-color={t.b} />
+    </linearGradient>
+
+    <radialGradient id={idShine} cx="80%" cy="15%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+
+    <pattern
+      id={idDots}
+      x="0"
+      y="0"
+      width="32"
+      height="32"
+      patternUnits="userSpaceOnUse"
+    >
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" fill-opacity="0.08" />
+    </pattern>
+  </defs>
+
+  {/* фон */}
+  <rect width={vbW} height={vbH} fill={`url(#${idGrad})`} />
+  <rect width={vbW} height={vbH} fill={`url(#${idDots})`} />
+  <rect width={vbW} height={vbH} fill={`url(#${idShine})`} />
+
+  {/* крупная иконка справа */}
+  <g
+    transform={`translate(${vbW - (variant === 'hero' ? 360 : 240)}, ${vbH / 2 - (variant === 'hero' ? 180 : 130)})`}
+    opacity="0.22"
+    fill={t.accent}
+    stroke={t.accent}
+    stroke-width="8"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  >
+    {ic === 'apple' && (
+      <path
+        d="M180 60c10-18 28-28 46-30 2 18-6 34-16 44-10 12-26 20-40 18-2-14 4-22 10-32zM220 98c-28-8-52 8-62 8s-34-16-56-6c-26 12-34 52-16 92 8 18 24 40 44 40 14 0 20-10 38-10s22 10 38 10c18 0 32-20 42-38 10-20 14-36 14-36s-26-10-24-40c2-26 22-36 22-36s-10-14-40-16z"
+        transform="scale(1.4)"
+      />
+    )}
+    {ic === 'android' && (
+      <g transform="scale(1.2) translate(20 20)">
+        <path
+          d="M60 140c0-4 4-8 8-8h104c4 0 8 4 8 8v80c0 11-9 20-20 20h-8v32c0 10-8 18-18 18s-18-8-18-18v-32h-20v32c0 10-8 18-18 18s-18-8-18-18v-32h-8c-11 0-20-9-20-20v-80z"
+          fill={t.accent}
+        />
+        <rect x="10" y="140" width="32" height="90" rx="16" fill={t.accent} />
+        <rect x="198" y="140" width="32" height="90" rx="16" fill={t.accent} />
+        <path
+          d="M60 120c0-36 28-66 60-68 32 2 60 32 60 68h-120z"
+          fill={t.accent}
+        />
+        <circle cx="90" cy="85" r="6" fill={t.b} />
+        <circle cx="150" cy="85" r="6" fill={t.b} />
+        <path
+          d="M75 50l-12-20M165 50l12-20"
+          stroke={t.accent}
+          fill="none"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+      </g>
+    )}
+    {ic === 'star' && (
+      <path d="M200 20 l52 108 l116 14 l-86 78 l24 116 l-106-58 l-106 58 l24-116 l-86-78 l116-14z" />
+    )}
+    {ic === 'bulb' && (
+      <g>
+        <path
+          d="M200 60c-52 0-92 40-92 90 0 36 20 60 38 78 10 10 16 22 16 36v14h76v-14c0-14 6-26 16-36 18-18 38-42 38-78 0-50-40-90-92-90z"
+          fill={t.accent}
+        />
+        <rect
+          x="160"
+          y="290"
+          width="80"
+          height="20"
+          rx="6"
+          fill={t.accent}
+        />
+        <rect
+          x="170"
+          y="320"
+          width="60"
+          height="14"
+          rx="6"
+          fill={t.accent}
+        />
+      </g>
+    )}
+    {ic === 'shield' && (
+      <path d="M200 20 l140 50 v110 c0 100-70 170-140 200-70-30-140-100-140-200v-110z" />
+    )}
+    {ic === 'bolt' && <path d="M210 20 l-110 200 h80 l-40 160 l160-220 h-80 l30-140z" />}
+    {ic === 'download' && (
+      <g>
+        <rect x="170" y="40" width="60" height="180" rx="10" fill={t.accent} />
+        <path d="M100 200 l100 120 l100-120 h-60 v-80 h-80 v80z" fill={t.accent} />
+        <rect x="60" y="340" width="280" height="30" rx="12" fill={t.accent} />
+      </g>
+    )}
+    {ic === 'cloud' && (
+      <path d="M310 220c26-4 50 18 50 44s-22 48-48 48h-224c-36 0-66-30-66-66 0-34 26-62 58-66 8-46 48-80 96-80 52 0 94 40 96 92 14 2 28 10 38 28z" />
+    )}
+    {ic === 'lock' && (
+      <g>
+        <rect x="80" y="170" width="240" height="200" rx="20" fill={t.accent} />
+        <path
+          d="M130 170v-40c0-40 32-70 70-70s70 30 70 70v40"
+          fill="none"
+          stroke={t.accent}
+          stroke-width="22"
+        />
+        <circle cx="200" cy="260" r="22" fill={t.b} />
+        <rect x="190" y="270" width="20" height="50" rx="8" fill={t.b} />
+      </g>
+    )}
+    {ic === 'trash' && (
+      <g>
+        <rect x="80" y="120" width="240" height="40" rx="8" fill={t.accent} />
+        <rect x="160" y="80" width="80" height="40" rx="8" fill={t.accent} />
+        <path d="M100 160 h200 l-20 220 c-2 12-12 20-24 20h-112c-12 0-22-8-24-20z" fill={t.accent} />
+      </g>
+    )}
+    {ic === 'refresh' && (
+      <path d="M200 40c-88 0-160 72-160 160 0 44 18 84 48 112l-28 28h88v-88l-30 30c-22-20-36-50-36-82 0-64 52-116 118-116 40 0 76 20 96 50l32-26c-28-40-76-68-128-68zm120 52v88l-30-30c-22 20-36 50-36 82 0 64 52 116 118 116 40 0 76-20 96-50" fill="none" stroke-width="24" />
+    )}
+    {ic === 'battery' && (
+      <g>
+        <rect
+          x="40"
+          y="130"
+          width="300"
+          height="140"
+          rx="20"
+          fill="none"
+          stroke={t.accent}
+          stroke-width="20"
+        />
+        <rect x="70" y="160" width="150" height="80" rx="6" fill={t.accent} />
+        <rect x="360" y="170" width="30" height="60" rx="8" fill={t.accent} />
+      </g>
+    )}
+    {ic === 'key' && (
+      <g>
+        <circle
+          cx="110"
+          cy="200"
+          r="70"
+          fill="none"
+          stroke={t.accent}
+          stroke-width="22"
+        />
+        <rect x="180" y="188" width="190" height="24" fill={t.accent} />
+        <rect x="290" y="212" width="24" height="50" fill={t.accent} />
+        <rect x="340" y="212" width="24" height="40" fill={t.accent} />
+      </g>
+    )}
+    {ic === 'eye' && (
+      <g>
+        <path d="M20 200 c40-80 120-120 180-120s140 40 180 120c-40 80-120 120-180 120s-140-40-180-120z" fill={t.accent} />
+        <circle cx="200" cy="200" r="56" fill={t.b} />
+        <circle cx="220" cy="180" r="16" fill={t.accent} />
+      </g>
+    )}
+    {ic === 'messages' && (
+      <g>
+        <path
+          d="M80 100h180c22 0 40 18 40 40v130c0 22-18 40-40 40h-50l-50 50v-50h-80c-22 0-40-18-40-40v-130c0-22 18-40 40-40z"
+          fill={t.accent}
+        />
+        <path
+          d="M180 200h180c22 0 40 18 40 40v100c0 22-18 40-40 40h-40l-40 40v-40h-100c-22 0-40-18-40-40v-100c0-22 18-40 40-40z"
+          fill={t.a}
+          fill-opacity="0.55"
+        />
+      </g>
+    )}
+  </g>
+
+  {/* eyebrow сверху слева */}
+  {variant === 'hero' && labelEyebrow && (
+    <text
+      x="60"
+      y="90"
+      font-family="Inter, system-ui, sans-serif"
+      font-size="22"
+      font-weight="700"
+      letter-spacing="3"
+      fill="#ffffff"
+      opacity="0.85"
+    >
+      {labelEyebrow.toUpperCase()}
+    </text>
+  )}
+
+  {/* заголовок */}
+  {variant === 'hero' && titleLines.length > 0 && (
+    <g>
+      {titleLines.map((line, i) => (
+        <text
+          x="60"
+          y={250 + i * 72}
+          font-family="'Source Serif 4', Georgia, serif"
+          font-size="64"
+          font-weight="700"
+          fill="#ffffff"
+          style="letter-spacing: -0.015em;"
+        >
+          {line}
+        </text>
+      ))}
+    </g>
+  )}
+
+  {/* подпись сайта снизу */}
+  {variant === 'hero' && (
+    <g>
+      <rect
+        x="60"
+        y={vbH - 70}
+        width="12"
+        height="28"
+        rx="3"
+        fill="#ffffff"
+        opacity="0.9"
+      />
+      <text
+        x="84"
+        y={vbH - 48}
+        font-family="Inter, system-ui, sans-serif"
+        font-size="20"
+        font-weight="600"
+        fill="#ffffff"
+        opacity="0.9"
+      >
+        AppsGames.ru
+      </text>
+    </g>
+  )}
+
+  {/* упрощённая версия для card-варианта: только иконка + подпись */}
+  {variant === 'card' && (
+    <g>
+      <text
+        x="50"
+        y="80"
+        font-family="Inter, system-ui, sans-serif"
+        font-size="24"
+        font-weight="700"
+        letter-spacing="3"
+        fill="#ffffff"
+        opacity="0.85"
+      >
+        {labelEyebrow.toUpperCase()}
+      </text>
+    </g>
+  )}
+</svg>
+
+<style>
+  .hero-cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero-cover--card {
+    border-radius: var(--radius);
+  }
+</style>
