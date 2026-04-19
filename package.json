@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "og": "node scripts/generate-og.mjs"
+    "og": "node scripts/generate-og.mjs",
+    "og:ai": "node scripts/generate-ai-hero.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
-    "satori": "^0.26.0"
+    "satori": "^0.26.0",
+    "sharp": "^0.34.5"
   }
 }
