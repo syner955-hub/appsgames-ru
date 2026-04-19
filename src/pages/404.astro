@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Страница не найдена"
+  description="Такой страницы нет. Вернитесь на главную AppsGames.ru."
+  noindex
+>
+  <section class="container" style="padding: clamp(3rem, 8vw, 6rem) 0; max-width: 720px;">
+    <p style="color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .78rem;">
+      Ошибка 404
+    </p>
+    <h1>Страница не найдена</h1>
+    <p style="color: var(--fg-muted); font-size: var(--fs-lg);">
+      Похоже, вы перешли по устаревшей ссылке. Этот раздел сейчас перестраивается.
+    </p>
+    <p>
+      <a href="/">← Вернуться на главную</a>
+    </p>
+  </section>
+</BaseLayout>

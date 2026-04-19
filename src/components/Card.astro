@@ -1,0 +1,73 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  category?: string;
+  date?: Date;
+}
+
+const { href, title, description, category, date } = Astro.props;
+const dateStr = date
+  ? new Intl.DateTimeFormat('ru-RU', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    }).format(date)
+  : null;
+---
+
+<a class="card" href={href}>
+  {category && <span class="card__cat">{category}</span>}
+  <h3 class="card__title">{title}</h3>
+  {description && <p class="card__desc">{description}</p>}
+  {dateStr && <time class="card__date" datetime={date!.toISOString()}>{dateStr}</time>}
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 1.25rem 1.35rem 1.35rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--fg);
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+  }
+  .card__cat {
+    display: inline-block;
+    width: max-content;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--accent) 15%, transparent);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .card__title {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-serif);
+    font-size: 1.18rem;
+    line-height: 1.25;
+  }
+  .card__desc {
+    margin: 0;
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+  }
+  .card__date {
+    margin-top: auto;
+    color: var(--fg-subtle);
+    font-size: 0.82rem;
+  }
+</style>

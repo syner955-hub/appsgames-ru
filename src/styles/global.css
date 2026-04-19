@@ -1,0 +1,217 @@
+/* ===========================
+   AppsGames — глобальная тема
+   =========================== */
+
+:root {
+  color-scheme: light dark;
+
+  --font-sans: 'Inter', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Source Serif 4', 'Georgia', 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas,
+    monospace;
+
+  --fs-xs: clamp(0.78rem, 0.77rem + 0.05vw, 0.82rem);
+  --fs-sm: clamp(0.88rem, 0.86rem + 0.08vw, 0.95rem);
+  --fs-base: clamp(1rem, 0.97rem + 0.15vw, 1.09rem);
+  --fs-lg: clamp(1.18rem, 1.13rem + 0.25vw, 1.32rem);
+  --fs-xl: clamp(1.45rem, 1.35rem + 0.5vw, 1.75rem);
+  --fs-2xl: clamp(1.9rem, 1.7rem + 1vw, 2.4rem);
+  --fs-3xl: clamp(2.4rem, 2rem + 2vw, 3.3rem);
+
+  --container: 1200px;
+  --container-narrow: 760px;
+
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 2px rgba(10, 15, 25, 0.06);
+  --shadow: 0 6px 24px rgba(10, 15, 25, 0.08);
+
+  --accent: #0a84ff;
+  --accent-hover: #066fe0;
+
+  /* light theme defaults */
+  --bg: #ffffff;
+  --bg-soft: #f7f8fa;
+  --bg-card: #ffffff;
+  --border: #e7e9ee;
+  --border-strong: #d2d6de;
+  --fg: #0c1220;
+  --fg-muted: #4b5565;
+  --fg-subtle: #6b7280;
+  --link: var(--accent);
+  --kbd-bg: #eef1f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0b0d12;
+    --bg-soft: #12151c;
+    --bg-card: #151924;
+    --border: #232834;
+    --border-strong: #333a4a;
+    --fg: #e7ebf2;
+    --fg-muted: #a8b0bd;
+    --fg-subtle: #7b8391;
+    --accent: #4ea1ff;
+    --accent-hover: #72b5ff;
+    --kbd-bg: #1a1f2b;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0b0d12;
+  --bg-soft: #12151c;
+  --bg-card: #151924;
+  --border: #232834;
+  --border-strong: #333a4a;
+  --fg: #e7ebf2;
+  --fg-muted: #a8b0bd;
+  --fg-subtle: #7b8391;
+  --accent: #4ea1ff;
+  --accent-hover: #72b5ff;
+  --kbd-bg: #1a1f2b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--accent-hover);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 1.4em 0 0.5em;
+}
+
+h1 {
+  font-size: var(--fs-3xl);
+  letter-spacing: -0.02em;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: var(--fs-2xl);
+}
+
+h3 {
+  font-size: var(--fs-xl);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--kbd-bg);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+pre,
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+}
+
+/* layout helpers */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

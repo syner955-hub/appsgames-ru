@@ -1,0 +1,35 @@
+# Cloudflare Pages _redirects
+# Формат: <source> <destination> <status>
+# Глобальные правила: сохраняем ссылочный сок со старых URL.
+# Пока целевые страницы ещё не готовы — ведём на главную (это не даст 404).
+# Когда целевая страница появится — заменяем destination на её URL.
+
+# === Корзина A: URL оставлены прежними, здесь редиректов НЕТ.
+#   /dopolnitelnyjj-soft/ehmulyator-android/        (остаётся)
+#   /dopolnitelnyjj-soft/ehmulyator-ios-ipad/       (остаётся)
+#   /poleznoe-ios/vosstanavlivit-parol-ot-apple-id/ (остаётся)
+#   /poleznoe-dlya-android/udalennoe-upravlenie-ustrojjstvami-na-android/ (остаётся)
+#   /uroki-po-ios/kak-sbrosit-iphone-do-zavodskikh-nastroek/ (остаётся)
+#   /poleznoe-ios/dfu-rejim-iphone-ipad/            (остаётся)
+#   /poleznoe-ios/podklyuchit-ajjfon-k-televizoru/  (остаётся)
+#   /poleznoe-ios/kak-nastroit-iphone/              (остаётся)
+
+# === Корзина B: точечные 301 на будущие новые URL.
+/rabota-s-itunes/kak-zakachat-muzyku/*              /ios/kak-sdelat/skachat-muzyku-iphone/              301
+/rabota-s-itunes/sinhronizacia-s-iphone-ipad-ipod/* /ios/kak-sdelat/sinhronizaciya-iphone-pc/           301
+/rabota-s-itunes/alternativa/*                      /obzory/alternativy-itunes/                         301
+/rabota-s-itunes/kak-skinut-film-na-ipad-iphone/*   /ios/kak-sdelat/zakachat-film-na-iphone/            301
+/poleznoe-ios/kak-zakachat-film-na-ipad-iphone/*    /ios/kak-sdelat/zakachat-film-na-iphone/            301
+/poleznoe-dlya-android/sinhronizacia-s-pk/*         /android/kak-sdelat/sinhronizaciya-android-pc/      301
+/raznoe/ne-vklyuchaetsya-ipad/*                     /ios/kak-sdelat/ipad-ne-vklyuchaetsya/              301
+/raznoe/skolko-stoit-zamena-ehkrana/*               /android/kak-sdelat/zamena-ehkrana-smartfona/       301
+/poleznoe-ios/chem-otlichaetsya-ajjfon-5-ot-5s/*    /ios/                                               301
+/raznoe/rozovyjj-iphone-7/*                         /ios/                                               301
+
+# === Корзина C: ловушки для любых других старых URL
+/rabota-s-itunes/*   /ios/   301
+/raznoe/*            /       301
+/wp-content/*        /       410
+/wp-admin/*          /       410
+/wp-login.php        /       410
+/xmlrpc.php          /       410

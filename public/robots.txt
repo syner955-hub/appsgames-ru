@@ -1,0 +1,8 @@
+# временная заглушка: сайт в разработке, индексация запрещена
+User-agent: *
+Disallow: /
+
+# Когда пойдёт релиз — заменить на:
+# User-agent: *
+# Allow: /
+# Sitemap: https://appsgames.ru/sitemap-index.xml

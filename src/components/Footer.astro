@@ -1,0 +1,79 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <strong>AppsGames.ru</strong>
+      <p>Обзоры и советы по мобильным приложениям для iOS и Android.</p>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Разделы">
+      <a href="/ios/">iOS</a>
+      <a href="/android/">Android</a>
+      <a href="/obzory/">Обзоры</a>
+      <a href="/sovety/">Советы</a>
+      <a href="/bezopasnost/">Безопасность</a>
+    </nav>
+
+    <nav class="site-footer__nav" aria-label="О проекте">
+      <a href="/o-proekte/">О проекте</a>
+      <a href="/redakciya/">Редакция</a>
+      <a href="/kontakty/">Контакты</a>
+      <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a>
+    </nav>
+
+    <p class="site-footer__copy">© {year} AppsGames.ru</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 5rem;
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+  }
+  .site-footer__inner {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 780px) {
+    .site-footer__inner {
+      grid-template-columns: 2fr 1fr 1fr;
+      align-items: start;
+    }
+  }
+  .site-footer__brand strong {
+    color: var(--fg);
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+  }
+  .site-footer__brand p {
+    margin: 0.35rem 0 0;
+    max-width: 40ch;
+  }
+  .site-footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .site-footer__nav a {
+    color: var(--fg-muted);
+  }
+  .site-footer__nav a:hover {
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .site-footer__copy {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--fg-subtle);
+  }
+</style>

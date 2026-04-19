@@ -1,0 +1,85 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__logo" aria-label="AppsGames — главная">
+      <span class="site-header__mark" aria-hidden="true">AG</span>
+      <span class="site-header__wordmark">AppsGames</span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="Основная навигация">
+      <a href="/ios/">iOS</a>
+      <a href="/android/">Android</a>
+      <a href="/obzory/">Обзоры</a>
+      <a href="/sovety/">Советы</a>
+      <a href="/bezopasnost/">Безопасность</a>
+    </nav>
+
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 60px;
+  }
+  .site-header__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--fg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .site-header__logo:hover {
+    text-decoration: none;
+  }
+  .site-header__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+  .site-header__wordmark {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+  }
+  .site-header__nav {
+    display: none;
+    gap: 1.25rem;
+    margin-left: auto;
+    font-size: var(--fs-sm);
+  }
+  .site-header__nav a {
+    color: var(--fg-muted);
+  }
+  .site-header__nav a:hover {
+    color: var(--fg);
+    text-decoration: none;
+  }
+  @media (min-width: 780px) {
+    .site-header__nav {
+      display: flex;
+    }
+  }
+</style>
