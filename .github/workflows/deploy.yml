@@ -52,13 +52,9 @@ jobs:
             ./dist/ \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
 
-      - name: Upload nginx redirects include
-        # Кладём в /var/www/appsgames_ru_usr/data/nginx-redirects.conf
-        # (DEPLOY_PATH = /var/www/appsgames_ru_usr/data/www/appsgames.ru)
-        run: |
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
-            deploy/nginx-redirects.conf \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/../../nginx-redirects.conf
+      # 301-редиректы теперь живут в public/.htaccess и попадают в dist
+      # через обычный rsync выше. Apache-backend (FastPanel) их применяет
+      # автоматически — никаких правок nginx/FastPanel UI не требуется.
 
       - name: Cleanup SSH key
         if: always()

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleMedia from '../components/ArticleMedia.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
 import { resolveCategory, resolveCategoryLabel } from '../lib/hero.ts';
 
 const FORMAT_LABELS: Record<string, string> = {
@@ -69,21 +70,32 @@ const all: Article[] = Object.entries(modules)
     return (b.fileKey ?? '').localeCompare(a.fileKey ?? '');
   });
 
-// Hero — самая свежая новость (формат news); если новостей нет — любая свежая.
-const news = all.filter((a) => a.format === 'news' || a.categorySlug === ('novosti' as unknown));
+// Hero-слайдер — до 6 свежих материалов. Приоритет:
+//   1) статьи из /novosti/ (автоматически добавляются cron'ом auto-publish)
+//   2) любые другие свежие статьи, если новостей мало
+// Новые публикации автоматически замещают старые в hero: сортировка идёт по
+// pubDate (desc) → как только auto-publish добавляет свежий MDX в /novosti/,
+// он попадает первым слайдом на следующей сборке (deploy.yml триггерится
+// workflow_run после auto-publish.yml).
+const HERO_LIMIT = 6;
 const newsByUrl = all.filter((a) => a.url.startsWith('/novosti/'));
-const heroCandidate = newsByUrl[0] ?? all[0];
-const hero = heroCandidate;
-const heroUrls = new Set([hero?.url]);
-const subHero = newsByUrl.filter((a) => !heroUrls.has(a.url)).slice(0, 3);
-subHero.forEach((a) => heroUrls.add(a.url));
-// Если новостей не хватает — добиваем свежими обзорами/советами.
-while (subHero.length < 3) {
-  const next = all.find((a) => !heroUrls.has(a.url));
-  if (!next) break;
-  subHero.push(next);
-  heroUrls.add(next.url);
+const heroPool: Article[] = [];
+const heroUrls = new Set<string>();
+for (const a of newsByUrl) {
+  if (heroPool.length >= HERO_LIMIT) break;
+  heroPool.push(a);
+  heroUrls.add(a.url);
 }
+// Добиваем любыми свежими статьями, если новостей <6 (на старте сайта)
+if (heroPool.length < HERO_LIMIT) {
+  for (const a of all) {
+    if (heroPool.length >= HERO_LIMIT) break;
+    if (heroUrls.has(a.url)) continue;
+    heroPool.push(a);
+    heroUrls.add(a.url);
+  }
+}
+const heroSlides = heroPool;
 // Round-robin по категориям + приоритет статьям с реальным hero-фото —
 // так на главной нет длинных одноцветных блоков и нет пустых SVG-обложек,
 // когда рядом есть статья с AI-картинкой.
@@ -175,58 +187,21 @@ const fmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' });
 ---
 
 <BaseLayout title={title} description={description}>
-  {hero && (
+  {heroSlides.length > 0 && (
     <section class="home-hero container">
-      <div class="hh-grid">
-        <a class="hh-main" href={hero.url}>
-          <div class="hh-main__media">
-            <ArticleMedia
-              url={hero.url}
-              title={hero.title}
-              hero={hero.hero}
-              heroAlt={hero.heroAlt}
-              categoryLabel={hero.categoryLabel}
-              variant="hero"
-              eager
-              aspectRatio="16/9"
-            />
-            <span class={`chip chip--${hero.categorySlug}`}>{hero.categoryLabel}</span>
-          </div>
-          <div class="hh-main__body">
-            <h1 class="hh-main__title">{hero.title}</h1>
-            {hero.description && <p class="hh-main__desc">{hero.description}</p>}
-            <p class="hh-main__meta">
-              <time datetime={hero.pubDate.toISOString()}>{fmt.format(hero.pubDate)}</time>
-              {hero.readingTime && <span> · {hero.readingTime} мин чтения</span>}
-            </p>
-          </div>
-        </a>
-
-        <ul class="hh-side">
-          {subHero.map((a) => (
-            <li>
-              <a href={a.url} class="hh-side__item">
-                <div class="hh-side__media">
-                  <ArticleMedia
-                    url={a.url}
-                    title={a.title}
-                    hero={a.hero}
-                    heroAlt={a.heroAlt}
-                    categoryLabel={a.categoryLabel}
-                    variant="card"
-                    aspectRatio="16/9"
-                  />
-                </div>
-                <div class="hh-side__body">
-                  <span class={`chip chip--${a.categorySlug} chip--sm`}>{a.categoryLabel}</span>
-                  <h3>{a.title}</h3>
-                  <time datetime={a.pubDate.toISOString()}>{fmt.format(a.pubDate)}</time>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <HeroCarousel
+        slides={heroSlides.map((a) => ({
+          url: a.url,
+          title: a.title,
+          description: a.description,
+          hero: a.hero,
+          heroAlt: a.heroAlt,
+          categorySlug: String(a.categorySlug),
+          categoryLabel: a.categoryLabel,
+          pubDate: a.pubDate,
+          readingTime: a.readingTime,
+        }))}
+      />
     </section>
   )}
 
@@ -470,136 +445,8 @@ const fmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' });
 
   /* ---------- hero section ---------- */
   .home-hero {
-    padding-top: clamp(1.5rem, 3vw, 2.5rem);
-    padding-bottom: clamp(1.5rem, 2.5vw, 2rem);
-  }
-  .hh-grid {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 960px) {
-    .hh-grid {
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-      gap: 1.5rem;
-    }
-  }
-
-  .hh-main {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--bg-card);
-    color: inherit;
-    text-decoration: none;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .hh-main:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
-    box-shadow: var(--shadow);
-  }
-  .hh-main__media {
-    position: relative;
-  }
-  .hh-main__media .chip {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    backdrop-filter: blur(6px);
-    background: rgba(255, 255, 255, 0.86);
-    border-color: transparent;
-  }
-  :root[data-theme='dark'] .hh-main__media .chip,
-  :root:not([data-theme='light']) .hh-main__media .chip {
-    background: rgba(20, 24, 34, 0.75);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  .hh-main__body {
-    padding: clamp(1.2rem, 2vw, 1.8rem);
-  }
-  .hh-main__title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.4rem);
-    line-height: 1.12;
-    letter-spacing: -0.015em;
-    margin: 0 0 0.75rem;
-  }
-  .hh-main__desc {
-    margin: 0 0 0.75rem;
-    color: var(--fg-muted);
-    font-size: var(--fs-lg);
-    max-width: 62ch;
-  }
-  .hh-main__meta {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--fg-subtle);
-  }
-
-  .hh-side {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.9rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 480px) and (max-width: 959.9px) {
-    .hh-side {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  .hh-side__item {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 0.85rem;
-    align-items: stretch;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--bg-card);
-    color: inherit;
-    text-decoration: none;
-    height: 100%;
-    transition: transform 0.15s ease, border-color 0.2s ease;
-  }
-  @media (min-width: 480px) and (max-width: 959.9px) {
-    .hh-side__item {
-      grid-template-columns: 1fr;
-    }
-  }
-  .hh-side__item:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
-  }
-  .hh-side__media {
-    line-height: 0;
-  }
-  .hh-side__body {
-    padding: 0.75rem 0.9rem 0.75rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  @media (min-width: 480px) and (max-width: 959.9px) {
-    .hh-side__body {
-      padding: 0.75rem 0.9rem 0.9rem;
-    }
-  }
-  .hh-side__body h3 {
-    margin: 0;
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    line-height: 1.25;
-  }
-  .hh-side__body time {
-    font-size: 0.75rem;
-    color: var(--fg-subtle);
-    margin-top: auto;
+    padding-top: clamp(1.2rem, 2.5vw, 2rem);
+    padding-bottom: clamp(1.2rem, 2vw, 1.8rem);
   }
 
   /* ---------- category strip ---------- */

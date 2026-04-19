@@ -1,0 +1,75 @@
+# ===========================================================================
+# 301-редиректы со старых WordPress-URL на новые адреса Astro-сайта.
+#
+# Почему .htaccess, а не nginx:
+#   На сервере (FastPanel) стоит связка nginx (frontend) + Apache (backend).
+#   Nginx сам отдаёт существующие статические файлы из dist (index.html,
+#   картинки, css/js), а всё, чего нет на диске, проксирует в Apache-backend.
+#   Именно там и срабатывают правила ниже — ровно для тех URL, которые были
+#   в старом WP и больше не существуют как файлы.
+#
+# Apache читает .htaccess автоматически при AllowOverride All (дефолт FastPanel).
+# Файл попадает в корень сайта через `public/.htaccess` — Astro копирует
+# содержимое public/ в dist/ как есть.
+# ===========================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- WP rabota-s-itunes ----------------------------------------------------
+  RewriteRule ^rabota-s-itunes/kak-zakachat-muzyku/?$              /ios/kak-sdelat/skachat-muzyku-iphone/       [R=301,L]
+  RewriteRule ^rabota-s-itunes/sinhronizacia-s-iphone-ipad-ipod/?$ /ios/kak-sdelat/sinhronizaciya-iphone-pc/    [R=301,L]
+  RewriteRule ^rabota-s-itunes/alternativa/?$                      /obzory/alternativy-itunes/                  [R=301,L]
+  RewriteRule ^rabota-s-itunes/kak-skinut-film-na-ipad-iphone/?$   /ios/kak-sdelat/zakachat-film-na-iphone/     [R=301,L]
+  RewriteRule ^rabota-s-itunes/itunes-ne-vidit-iphone/?$           /ios/kak-sdelat/sinhronizaciya-iphone-pc/    [R=301,L]
+  RewriteRule ^rabota-s-itunes(/.*)?$                              /obzory/alternativy-itunes/                  [R=301,L]
+
+  # --- poleznoe-ios ----------------------------------------------------------
+  RewriteRule ^poleznoe-ios/kak-zakachat-film-na-ipad-iphone/?$    /ios/kak-sdelat/zakachat-film-na-iphone/     [R=301,L]
+  RewriteRule ^poleznoe-ios/chem-otlichaetsya-ajjfon-5-ot-5s/?$    /ios/                                        [R=301,L]
+  RewriteRule ^poleznoe-ios(/.*)?$                                 /ios/                                        [R=301,L]
+
+  # --- poleznoe-dlya-android -------------------------------------------------
+  RewriteRule ^poleznoe-dlya-android/sinhronizacia-s-pk/?$         /android/kak-sdelat/sinhronizaciya-android-pc/ [R=301,L]
+  RewriteRule ^poleznoe-dlya-android(/.*)?$                        /android/                                    [R=301,L]
+
+  # --- raznoe ----------------------------------------------------------------
+  RewriteRule ^raznoe/ne-vklyuchaetsya-ipad/?$                     /ios/kak-sdelat/ipad-ne-vklyuchaetsya/       [R=301,L]
+  RewriteRule ^raznoe/skolko-stoit-zamena-ehkrana/?$               /android/kak-sdelat/zamena-ehkrana-smartfona/ [R=301,L]
+  RewriteRule ^raznoe/rozovyjj-iphone-7/?$                         /ios/                                        [R=301,L]
+  RewriteRule ^raznoe(/.*)?$                                       /                                            [R=301,L]
+
+  # --- WP архивы по годам ----------------------------------------------------
+  RewriteRule ^(201[3-9]|202[0-5])(/.*)?$                          /                                            [R=301,L]
+
+  # --- WP категории → новые хабы ---------------------------------------------
+  RewriteRule ^category/obzory(/.*)?$                              /obzory/                                     [R=301,L]
+  RewriteRule ^category/sovety(/.*)?$                              /sovety/                                     [R=301,L]
+  RewriteRule ^category/ios(/.*)?$                                 /ios/                                        [R=301,L]
+  RewriteRule ^category/android(/.*)?$                             /android/                                    [R=301,L]
+  RewriteRule ^category(/.*)?$                                     /                                            [R=301,L]
+
+  RewriteRule ^tag(/.*)?$                                          /                                            [R=301,L]
+  RewriteRule ^author(/.*)?$                                       /                                            [R=301,L]
+  RewriteRule ^page(/.*)?$                                         /                                            [R=301,L]
+
+  # --- WP-фиды ---------------------------------------------------------------
+  RewriteRule ^feed/?$                                             /                                            [R=301,L]
+  RewriteRule ^comments/feed/?$                                    /                                            [R=301,L]
+  RewriteRule ^[^/]+/feed/?$                                       /                                            [R=301,L]
+
+  # --- Старые WP sitemap → новые ---------------------------------------------
+  RewriteRule ^sitemap_index\.xml$                                 /sitemap-index.xml                           [R=301,L]
+  RewriteRule ^(post|page|category)-sitemap\.xml$                  /sitemap-0.xml                               [R=301,L]
+
+  # --- WP мусор — 301 на главную, чтобы боты перестали долбиться -------------
+  RewriteRule ^wp-content(/.*)?$                                   /                                            [R=301,L]
+  RewriteRule ^wp-includes(/.*)?$                                  /                                            [R=301,L]
+  RewriteRule ^wp-admin(/.*)?$                                     /                                            [R=301,L]
+  RewriteRule ^wp-json(/.*)?$                                      /                                            [R=301,L]
+  RewriteRule ^wp-login\.php$                                      /                                            [R=301,L]
+  RewriteRule ^wp-cron\.php$                                       /                                            [R=301,L]
+  RewriteRule ^xmlrpc\.php$                                        /                                            [R=301,L]
+  RewriteRule ^readme\.html$                                       /                                            [R=301,L]
+  RewriteRule ^license\.txt$                                       /                                            [R=301,L]
+</IfModule>

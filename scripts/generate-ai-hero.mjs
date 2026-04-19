@@ -27,174 +27,148 @@ if (!TOKEN) {
 }
 
 // --- промпты -----------------------------------------------------------
+//
+// Вместо одного «abstract 3D magazine cover» стиля — 4 фотореалистичных
+// пресета, которые детерминированно ротируются по slug. Это даёт:
+//   - разнообразие (соседние карточки на главной не сливаются в одну «AI-шную» стену)
+//   - ощущение реального тех-издания (Android Authority / 9to5Mac) вместо абстракта
+//
+// Каждый промпт в TARGETS теперь описывает СЮЖЕТ сцены (что происходит, какие
+// объекты в кадре, какая палитра), а техническая часть — пресет — добавляется
+// ниже функцией buildPrompt().
 
-const STYLE =
-  'editorial magazine cover illustration, minimalist abstract 3D composition, ' +
-  'soft volumetric lighting, clean studio background, depth of field, ' +
-  'professional high-end photography, cinematic color grading, no text, no logo, no letters, ' +
-  'octane render, 8k, photorealistic';
-
-const TARGETS = [
-  // === OBZORY (10) ==================================================
+const STYLE_PRESETS = [
   {
-    file: 'src/pages/obzory/luchshie-messenzhery-2026.mdx',
-    slug: 'luchshie-messenzhery-2026',
-    prompt: `Abstract 3D illustration of floating translucent chat bubbles in purple violet gradient, connected by soft light trails, glass morphism style, ${STYLE}`,
+    id: 'product',
+    style:
+      'professional product photography, modern smartphone on a clean desk, ' +
+      'soft diffused studio lighting, subtle reflections, shallow depth of field, ' +
+      '35mm lens look, natural color grading, minimal props, bokeh background, ' +
+      'no visible text, no brand logos, no letters, no watermark, high detail, realistic',
   },
   {
-    file: 'src/pages/obzory/whatsapp-vs-telegram.mdx',
-    slug: 'whatsapp-vs-telegram',
-    prompt: `Two abstract 3D chat bubbles facing each other, one green and one cyan-blue, glass morphism, neutral light background, balanced composition, ${STYLE}`,
+    id: 'hands',
+    style:
+      'close-up lifestyle photo of a person holding a smartphone, focus on the device, ' +
+      'natural indoor window light, warm ambient colors, slightly blurred background, ' +
+      '50mm lens, editorial tech magazine feel, candid and believable, ' +
+      'no visible text on screen, no logos, no letters, no watermark, photorealistic',
   },
   {
-    file: 'src/pages/obzory/luchshie-vpn-iphone.mdx',
-    slug: 'luchshie-vpn-iphone',
-    prompt: `Abstract 3D composition of a glowing translucent shield over network nodes, cold blue and cyan gradient, encrypted connections, ${STYLE}`,
+    id: 'workspace',
+    style:
+      'overhead flat-lay photograph of a tidy modern workspace with a smartphone, ' +
+      'coffee cup, notebook and plant, soft daylight from the side, clean wooden or ' +
+      'concrete surface, muted palette with one accent color, editorial lifestyle photography, ' +
+      'no readable text, no logos, no letters, no watermark, photorealistic',
   },
   {
-    file: 'src/pages/obzory/luchshie-vpn-android.mdx',
-    slug: 'luchshie-vpn-android',
-    prompt: `Abstract 3D illustration of a glass shield protecting flowing data streams, emerald green and teal gradient, glowing particles, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/obzory/luchshie-antivirusy-android.mdx',
-    slug: 'luchshie-antivirusy-android',
-    prompt: `Abstract 3D emerald green hexagonal shield blocking red virus-like particles, glossy materials, dynamic composition, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/obzory/luchshie-brauzery-iphone.mdx',
-    slug: 'luchshie-brauzery-iphone',
-    prompt: `Abstract 3D illustration of multiple glass browser window frames floating in space, blue purple gradient, soft reflections, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/obzory/luchshie-prilozheniya-dlya-chteniya.mdx',
-    slug: 'luchshie-prilozheniya-dlya-chteniya',
-    prompt: `Abstract 3D illustration of floating translucent book pages curving gracefully, warm paper beige and soft purple tones, gentle lighting, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/obzory/luchshie-prilozheniya-dlya-zametok.mdx',
-    slug: 'luchshie-prilozheniya-dlya-zametok',
-    prompt: `Abstract 3D floating sticky notes and paper sheets layered in space, soft pastel yellow and cream palette, gentle shadows, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/obzory/menedzhery-parolei.mdx',
-    slug: 'menedzhery-parolei',
-    prompt: `Abstract 3D illustration of a glowing golden key floating above connected glass lock icons, deep blue gradient, premium security, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/obzory/alternativy-itunes.mdx',
-    slug: 'alternativy-itunes',
-    prompt: `Abstract 3D illustration of floating music notes and waveforms in space, gradient from magenta to violet, glossy glass materials, ${STYLE}`,
-  },
-
-  // === SOVETY (5) ==================================================
-  {
-    file: 'src/pages/sovety/kak-sehkonomit-batareyu-iphone.mdx',
-    slug: 'kak-sehkonomit-batareyu-iphone',
-    prompt: `Abstract 3D illustration of a translucent glass battery charging, warm amber to emerald green gradient, energy particles flowing upward, elegant studio composition, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/sovety/kak-umenshit-trafik-na-telefone.mdx',
-    slug: 'kak-umenshit-trafik-na-telefone',
-    prompt: `Abstract 3D illustration of flowing data streams being compressed through a narrow glass funnel, cool teal and deep navy gradient, bandwidth optimization concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/sovety/kak-uskorit-android.mdx',
-    slug: 'kak-uskorit-android',
-    prompt: `Abstract 3D illustration of a translucent glass smartphone with speed lines and motion trails streaming past, emerald green and lime gradient, dynamic acceleration, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/sovety/osvobodit-mesto-na-iphone.mdx',
-    slug: 'osvobodit-mesto-na-iphone',
-    prompt: `Abstract 3D illustration of a translucent glass smartphone with files and folders dissolving into light particles, soft sky blue gradient, decluttering concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/sovety/upravlyat-podpiskami-app-store.mdx',
-    slug: 'upravlyat-podpiskami-app-store',
-    prompt: `Abstract 3D illustration of stacked translucent subscription cards with circular renewal arrows, coral orange to soft pink gradient, financial management concept, ${STYLE}`,
-  },
-
-  // === BEZOPASNOST (4) =============================================
-  {
-    file: 'src/pages/bezopasnost/bezopasno-skachat-apk-android.mdx',
-    slug: 'bezopasno-skachat-apk-android',
-    prompt: `Abstract 3D illustration of a glass package box with a translucent green shield overlay and download arrow, teal and emerald gradient, secure installation concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/bezopasnost/chto-delat-esli-dannye-uteklii.mdx',
-    slug: 'chto-delat-esli-dannye-uteklii',
-    prompt: `Abstract 3D illustration of a cracked translucent glass shield with red warning light leaking through fractures, dramatic crimson and deep charcoal gradient, data breach concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/bezopasnost/kak-nastroit-dvuhfaktornuyu-autentifikaciyu.mdx',
-    slug: 'kak-nastroit-dvuhfaktornuyu-autentifikaciyu',
-    prompt: `Abstract 3D illustration of two glowing golden keys interlocking above a glass lock icon, deep navy blue and gold gradient, authentication security concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/bezopasnost/kak-proverit-prilozhenie-na-virus.mdx',
-    slug: 'kak-proverit-prilozhenie-na-virus',
-    prompt: `Abstract 3D illustration of a glowing magnifying glass scanning floating app icons, red virus-like particles being neutralized by blue light, cool blue to crimson gradient, ${STYLE}`,
-  },
-
-  // === ANDROID / kak-sdelat (8) ====================================
-  {
-    file: 'src/pages/android/kak-sdelat/obnovit-android.mdx',
-    slug: 'android-obnovit-android',
-    prompt: `Abstract 3D illustration of an upward progress arrow emerging from a translucent smartphone silhouette, Android emerald green gradient, software update concept, minimalist composition, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/ochistit-kesh-android.mdx',
-    slug: 'android-ochistit-kesh-android',
-    prompt: `Abstract 3D illustration of a translucent glass trash can with digital data particles dissolving inside, emerald green gradient, storage clearing concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/perenos-dannyh-android.mdx',
-    slug: 'android-perenos-dannyh-android',
-    prompt: `Abstract 3D illustration of two translucent glass smartphones exchanging floating data packets between them, emerald green and teal gradient, smooth data transfer, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/sbros-nastroek-android.mdx',
-    slug: 'android-sbros-nastroek-android',
-    prompt: `Abstract 3D illustration of a circular refresh arrow wrapping around a translucent smartphone, emerald green gradient, fresh start factory reset concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/sinhronizaciya-android-pc.mdx',
-    slug: 'android-sinhronizaciya-android-pc',
-    prompt: `Abstract 3D illustration of a glass smartphone and laptop linked by synchronizing circular arrow loops, soft emerald green and blue gradient, cross-device sync concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/skachat-prilozhenie-ne-iz-google-play.mdx',
-    slug: 'android-skachat-prilozhenie-ne-iz-google-play',
-    prompt: `Abstract 3D illustration of a glass app icon floating beside multiple alternative sources, download arrows, teal and amber gradient, alternative app stores concept, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/ustanovit-apk-android.mdx',
-    slug: 'android-ustanovit-apk-android',
-    prompt: `Abstract 3D illustration of a glass package box dissolving into emerald green light particles, installation progress concept, clean gradient background, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/android/kak-sdelat/zamena-ehkrana-smartfona.mdx',
-    slug: 'android-zamena-ehkrana-smartfona',
-    prompt: `Abstract 3D illustration of a translucent smartphone with a pristine glass panel replacing a cracked one, soft silver and cool blue gradient, repair concept, ${STYLE}`,
-  },
-
-  // === IOS / kak-sdelat (3 популярных) =============================
-  {
-    file: 'src/pages/ios/kak-sdelat/perenesti-dannyie-na-novyi-iphone.mdx',
-    slug: 'ios-perenesti-dannyie-na-novyi-iphone',
-    prompt: `Abstract 3D illustration of two floating translucent iPhone shapes connected by a flowing light bridge, data packets traveling between them, soft silver and Apple blue gradient, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/ios/kak-sdelat/obnovit-ios.mdx',
-    slug: 'ios-obnovit-ios',
-    prompt: `Abstract 3D illustration of an upward progress arrow emerging from a translucent iPhone silhouette, Apple blue gradient, iOS software update concept, premium minimalist composition, ${STYLE}`,
-  },
-  {
-    file: 'src/pages/ios/kak-sdelat/ochistit-kesh-iphone.mdx',
-    slug: 'ios-ochistit-kesh-iphone',
-    prompt: `Abstract 3D illustration of a translucent glass trash can with digital data particles dissolving into light, soft sky blue gradient, iPhone cache clearing concept, ${STYLE}`,
+    id: 'macro',
+    style:
+      'macro photograph of a smartphone detail (screen edge, camera ring, or side button), ' +
+      'studio softbox lighting, extreme clarity, glossy and matte material contrast, ' +
+      'ultra-shallow depth of field, cinematic color grading, dark moody background, ' +
+      'no text, no logos, no letters, no watermark, hyperrealistic',
   },
 ];
+
+// Простой стабильный хэш по строке — одна и та же slug всегда даёт один пресет,
+// но по всему набору slug'ов пресеты распределяются равномерно.
+function stylePresetFor(slug) {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = ((h << 5) - h + slug.charCodeAt(i)) | 0;
+  const idx = Math.abs(h) % STYLE_PRESETS.length;
+  return STYLE_PRESETS[idx];
+}
+
+function buildPrompt(slug, scene) {
+  const preset = stylePresetFor(slug);
+  return `${scene}. Style: ${preset.style}`;
+}
+
+// Вспомогательный шорткат для описания сцены — вытаскивает только семантическую
+// часть старых промптов (без «Abstract 3D illustration of» / ${STYLE}).
+const s = (scene) => scene;
+
+// В каждом таргете `scene` — это сюжет кадра (что снимаем). Стиль (освещение,
+// оптика, палитра, композиция) добавляется автоматически через stylePresetFor(slug).
+const RAW_TARGETS = [
+  // === OBZORY =======================================================
+  { file: 'src/pages/obzory/luchshie-messenzhery-2026.mdx', slug: 'luchshie-messenzhery-2026',
+    scene: s('close-up of a smartphone screen showing multiple colorful chat bubbles in a messenger interface, modern phone in someone hands, purple and violet ambient light, soft bokeh') },
+  { file: 'src/pages/obzory/whatsapp-vs-telegram.mdx', slug: 'whatsapp-vs-telegram',
+    scene: s('two identical modern smartphones side by side on a desk, each screen glowing with a different accent color (one green, one cyan-blue), clean neutral background, symmetrical composition') },
+  { file: 'src/pages/obzory/luchshie-vpn-iphone.mdx', slug: 'luchshie-vpn-iphone',
+    scene: s('a smartphone lying on a dark wooden desk showing a padlock icon on screen, soft blue ambient light, a pair of simple headphones nearby, privacy and security mood') },
+  { file: 'src/pages/obzory/luchshie-vpn-android.mdx', slug: 'luchshie-vpn-android',
+    scene: s('a modern android-style smartphone on a concrete surface, green-tinted reflections on the glass back, tiny network points of light around it, calm atmospheric mood') },
+  { file: 'src/pages/obzory/luchshie-antivirusy-android.mdx', slug: 'luchshie-antivirusy-android',
+    scene: s('smartphone on a dark desk with a subtle warning glow around the screen, security scan visualized as faint green scan line, moody dramatic lighting') },
+  { file: 'src/pages/obzory/luchshie-brauzery-iphone.mdx', slug: 'luchshie-brauzery-iphone',
+    scene: s('smartphone on a tidy desk showing a generic browser-like window on screen, small notebook and a pen nearby, calm workspace, soft window light') },
+  { file: 'src/pages/obzory/luchshie-prilozheniya-dlya-chteniya.mdx', slug: 'luchshie-prilozheniya-dlya-chteniya',
+    scene: s('smartphone resting on an open paperback book, warm reading lamp light, a cup of tea nearby, cozy evening mood, beige and brown palette') },
+  { file: 'src/pages/obzory/luchshie-prilozheniya-dlya-zametok.mdx', slug: 'luchshie-prilozheniya-dlya-zametok',
+    scene: s('smartphone on a light wooden desk surrounded by a few pastel sticky notes and a pen, tidy top-down flat-lay composition, soft morning daylight') },
+  { file: 'src/pages/obzory/menedzhery-parolei.mdx', slug: 'menedzhery-parolei',
+    scene: s('smartphone on a dark desk with a small brass key placed next to it, single warm spotlight on the key, minimal composition, security and trust mood') },
+  { file: 'src/pages/obzory/alternativy-itunes.mdx', slug: 'alternativy-itunes',
+    scene: s('smartphone on a desk next to a pair of premium over-ear headphones and a small record vinyl, warm magenta and violet ambient lighting, music editorial mood') },
+
+  // === SOVETY =======================================================
+  { file: 'src/pages/sovety/kak-sehkonomit-batareyu-iphone.mdx', slug: 'kak-sehkonomit-batareyu-iphone',
+    scene: s('smartphone plugged into a minimalist charging cable on a wooden desk, warm orange sunset light through a window, calm lifestyle mood') },
+  { file: 'src/pages/sovety/kak-umenshit-trafik-na-telefone.mdx', slug: 'kak-umenshit-trafik-na-telefone',
+    scene: s('smartphone held in a hand in a cafe, slight motion blur in the background suggesting mobile usage, cool teal and navy ambient tones') },
+  { file: 'src/pages/sovety/kak-uskorit-android.mdx', slug: 'kak-uskorit-android',
+    scene: s('modern smartphone floating slightly above a concrete surface with a soft motion-blur streak behind it, dynamic composition, cool green and lime rim light') },
+  { file: 'src/pages/sovety/osvobodit-mesto-na-iphone.mdx', slug: 'osvobodit-mesto-na-iphone',
+    scene: s('smartphone on a clean light desk surrounded by a few neatly organized small objects (keys, notebook, mug), tidy minimalist flat-lay, airy mood') },
+  { file: 'src/pages/sovety/upravlyat-podpiskami-app-store.mdx', slug: 'upravlyat-podpiskami-app-store',
+    scene: s('smartphone on a desk next to a stack of neatly arranged blank credit-card-sized cards and a small plant, warm coral and pink ambient tones, personal finance mood') },
+
+  // === BEZOPASNOST ==================================================
+  { file: 'src/pages/bezopasnost/bezopasno-skachat-apk-android.mdx', slug: 'bezopasno-skachat-apk-android',
+    scene: s('smartphone on a dark desk with a small closed cardboard parcel next to it, single soft green rim light, trust and delivery mood') },
+  { file: 'src/pages/bezopasnost/chto-delat-esli-dannye-uteklii.mdx', slug: 'chto-delat-esli-dannye-uteklii',
+    scene: s('smartphone on a very dark surface with a single red warning light glowing faintly on the screen, moody dramatic low-key lighting, tension mood, no text') },
+  { file: 'src/pages/bezopasnost/kak-nastroit-dvuhfaktornuyu-autentifikaciyu.mdx', slug: 'kak-nastroit-dvuhfaktornuyu-autentifikaciyu',
+    scene: s('smartphone on a dark desk with two small brass keys lying next to it in a symmetrical pair, single focused warm light, premium security mood') },
+  { file: 'src/pages/bezopasnost/kak-proverit-prilozhenie-na-virus.mdx', slug: 'kak-proverit-prilozhenie-na-virus',
+    scene: s('smartphone under a magnifying glass on a wooden desk, small scan line of light across the screen, editorial detective mood, neutral palette with a cool blue accent') },
+
+  // === ANDROID / kak-sdelat =========================================
+  { file: 'src/pages/android/kak-sdelat/obnovit-android.mdx', slug: 'android-obnovit-android',
+    scene: s('modern android-style smartphone on a clean desk, a subtle upward light streak rising from the screen, fresh and optimistic mood, green rim light accent') },
+  { file: 'src/pages/android/kak-sdelat/ochistit-kesh-android.mdx', slug: 'android-ochistit-kesh-android',
+    scene: s('smartphone on a tidy workspace with a small empty glass jar nearby, crumbs of paper swept aside, symbolic clean-up mood, bright and airy') },
+  { file: 'src/pages/android/kak-sdelat/perenos-dannyh-android.mdx', slug: 'android-perenos-dannyh-android',
+    scene: s('two smartphones side by side on a light desk connected by a short cable, symmetrical top-down composition, clean and practical mood') },
+  { file: 'src/pages/android/kak-sdelat/sbros-nastroek-android.mdx', slug: 'android-sbros-nastroek-android',
+    scene: s('smartphone resting on a fresh white sheet of paper on a desk, tidy minimal flat-lay, soft daylight, blank-slate new-start mood') },
+  { file: 'src/pages/android/kak-sdelat/sinhronizaciya-android-pc.mdx', slug: 'android-sinhronizaciya-android-pc',
+    scene: s('smartphone lying next to a modern laptop on a clean desk, a short USB-C cable between them, soft cool daylight, practical workspace mood') },
+  { file: 'src/pages/android/kak-sdelat/skachat-prilozhenie-ne-iz-google-play.mdx', slug: 'android-skachat-prilozhenie-ne-iz-google-play',
+    scene: s('smartphone held in a hand over a wooden desk with a few generic app-icon-shaped paper cards laid out, editorial choice mood, warm side light') },
+  { file: 'src/pages/android/kak-sdelat/ustanovit-apk-android.mdx', slug: 'android-ustanovit-apk-android',
+    scene: s('smartphone on a desk next to a small opened cardboard box with soft light spilling out of it, tidy composition, symbolic installation mood') },
+  { file: 'src/pages/android/kak-sdelat/zamena-ehkrana-smartfona.mdx', slug: 'android-zamena-ehkrana-smartfona',
+    scene: s('close-up of a pristine new smartphone on a repair mat with a small screwdriver next to it, clean workshop vibe, soft even lighting, precise and professional mood') },
+
+  // === IOS / kak-sdelat =============================================
+  { file: 'src/pages/ios/kak-sdelat/perenesti-dannyie-na-novyi-iphone.mdx', slug: 'ios-perenesti-dannyie-na-novyi-iphone',
+    scene: s('two modern iphones on a clean desk placed close to each other, their screens facing up, cool blue and silver ambient tones, fresh upgrade mood') },
+  { file: 'src/pages/ios/kak-sdelat/obnovit-ios.mdx', slug: 'ios-obnovit-ios',
+    scene: s('modern iphone on a light desk with a subtle upward light streak rising above the screen, cool blue rim light accent, fresh and optimistic mood') },
+  { file: 'src/pages/ios/kak-sdelat/ochistit-kesh-iphone.mdx', slug: 'ios-ochistit-kesh-iphone',
+    scene: s('iphone on a bright clean desk with a small empty glass jar and a folded microfiber cloth nearby, airy minimal flat-lay, clean-up mood') },
+];
+
+const TARGETS = RAW_TARGETS.map((t) => ({
+  file: t.file,
+  slug: t.slug,
+  prompt: buildPrompt(t.slug, t.scene),
+}));
 
 // --- Nano-GPT helpers --------------------------------------------------
 

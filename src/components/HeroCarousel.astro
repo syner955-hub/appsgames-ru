@@ -1,0 +1,375 @@
+---
+import ArticleMedia from './ArticleMedia.astro';
+
+type Slide = {
+  url: string;
+  title: string;
+  description?: string;
+  hero?: string;
+  heroAlt?: string;
+  categorySlug: string;
+  categoryLabel: string;
+  pubDate: Date;
+  readingTime?: number;
+};
+
+interface Props {
+  slides: Slide[];
+}
+
+const { slides } = Astro.props;
+const fmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' });
+---
+
+{slides.length > 0 && (
+  <section class="hero-carousel" data-hero-carousel aria-label="Главные материалы">
+    <div class="hc-track" data-hc-track>
+      {slides.map((s, i) => (
+        <article
+          class="hc-slide"
+          data-hc-slide
+          data-index={i}
+          aria-hidden={i === 0 ? 'false' : 'true'}
+        >
+          <a href={s.url} class="hc-slide__link">
+            <div class="hc-slide__media">
+              <ArticleMedia
+                url={s.url}
+                title={s.title}
+                hero={s.hero}
+                heroAlt={s.heroAlt}
+                categoryLabel={s.categoryLabel}
+                variant="hero"
+                eager={i === 0}
+                aspectRatio="16/9"
+              />
+              <div class="hc-slide__gradient" aria-hidden="true"></div>
+              <div class="hc-slide__overlay">
+                <span class={`chip chip--${s.categorySlug}`}>{s.categoryLabel}</span>
+                <h2 class="hc-slide__title">{s.title}</h2>
+                {s.description && <p class="hc-slide__desc">{s.description}</p>}
+                <p class="hc-slide__meta">
+                  <time datetime={s.pubDate.toISOString()}>{fmt.format(s.pubDate)}</time>
+                  {s.readingTime && <span> · {s.readingTime} мин чтения</span>}
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <button
+      type="button"
+      class="hc-nav hc-nav--prev"
+      data-hc-prev
+      aria-label="Предыдущий слайд"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="hc-nav hc-nav--next"
+      data-hc-next
+      aria-label="Следующий слайд"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6l6 6-6 6" />
+      </svg>
+    </button>
+
+    <div class="hc-dots" data-hc-dots role="tablist" aria-label="Слайды">
+      {slides.map((s, i) => (
+        <button
+          type="button"
+          class="hc-dot"
+          data-hc-dot
+          data-index={i}
+          role="tab"
+          aria-label={`Слайд ${i + 1}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        ></button>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .hero-carousel {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .hc-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .hc-track::-webkit-scrollbar {
+    display: none;
+  }
+  .hc-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-width: 0;
+  }
+  .hc-slide__link {
+    display: block;
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+  }
+  .hc-slide__link:hover {
+    text-decoration: none;
+  }
+  .hc-slide__media {
+    position: relative;
+    line-height: 0;
+  }
+  .hc-slide__media :global(.am) {
+    aspect-ratio: 16 / 9;
+  }
+  .hc-slide__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.35) 68%,
+      rgba(0, 0, 0, 0.78) 100%
+    );
+    pointer-events: none;
+  }
+  .hc-slide__overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: clamp(1.1rem, 3vw, 2.2rem) clamp(1.1rem, 3vw, 2.4rem) clamp(1.4rem, 3vw, 2.4rem);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    line-height: 1.3;
+  }
+  .hc-slide__overlay .chip {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1a1d24;
+    border-color: transparent;
+    backdrop-filter: blur(6px);
+  }
+  .hc-slide__title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 1rem + 1.8vw, 2.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: #fff;
+    max-width: 26ch;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  }
+  .hc-slide__desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(0.92rem, 0.82rem + 0.25vw, 1.1rem);
+    max-width: 60ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  }
+  .hc-slide__meta {
+    margin: 0;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  @media (max-width: 520px) {
+    .hc-slide__desc {
+      display: none;
+    }
+  }
+
+  /* ---------- nav arrows ---------- */
+  .hc-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1a1d24;
+    cursor: pointer;
+    display: none;
+    place-items: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transition: transform 0.15s ease, background 0.15s ease;
+    z-index: 2;
+  }
+  .hc-nav:hover {
+    transform: translateY(-50%) scale(1.05);
+    background: #fff;
+  }
+  .hc-nav svg {
+    width: 22px;
+    height: 22px;
+  }
+  .hc-nav--prev {
+    left: 14px;
+  }
+  .hc-nav--next {
+    right: 14px;
+  }
+  @media (min-width: 640px) {
+    .hc-nav {
+      display: grid;
+    }
+  }
+
+  /* ---------- dots ---------- */
+  .hc-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0 1rem;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .hc-dot {
+    pointer-events: auto;
+    width: 26px;
+    height: 4px;
+    border-radius: 2px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease, width 0.2s ease;
+  }
+  .hc-dot[aria-selected='true'] {
+    background: #fff;
+    width: 40px;
+  }
+  @media (max-width: 520px) {
+    .hc-dots {
+      bottom: 6px;
+    }
+    .hc-dot {
+      width: 18px;
+    }
+    .hc-dot[aria-selected='true'] {
+      width: 28px;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const root = document.querySelector('[data-hero-carousel]');
+    if (!root) return;
+    const track = root.querySelector('[data-hc-track]');
+    const slides = Array.from(root.querySelectorAll('[data-hc-slide]'));
+    const dots = Array.from(root.querySelectorAll('[data-hc-dot]'));
+    const prev = root.querySelector('[data-hc-prev]');
+    const next = root.querySelector('[data-hc-next]');
+    if (!track || slides.length <= 1) {
+      if (prev) prev.style.display = 'none';
+      if (next) next.style.display = 'none';
+      return;
+    }
+
+    let idx = 0;
+    let timer = null;
+    const INTERVAL = 6500;
+
+    function scrollTo(i, smooth = true) {
+      idx = (i + slides.length) % slides.length;
+      const slide = slides[idx];
+      if (!slide) return;
+      track.scrollTo({
+        left: slide.offsetLeft,
+        behavior: smooth ? 'smooth' : 'auto',
+      });
+      slides.forEach((s, k) =>
+        s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'),
+      );
+      dots.forEach((d, k) =>
+        d.setAttribute('aria-selected', k === idx ? 'true' : 'false'),
+      );
+    }
+
+    function start() {
+      stop();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      timer = window.setInterval(() => scrollTo(idx + 1), INTERVAL);
+    }
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    if (prev) prev.addEventListener('click', () => { scrollTo(idx - 1); start(); });
+    if (next) next.addEventListener('click', () => { scrollTo(idx + 1); start(); });
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        const i = Number(d.getAttribute('data-index') || '0');
+        scrollTo(i);
+        start();
+      }),
+    );
+
+    // Когда пользователь сам листает свайпом — синхронизируем idx/dots
+    let scrollT = null;
+    track.addEventListener('scroll', () => {
+      if (scrollT) clearTimeout(scrollT);
+      scrollT = setTimeout(() => {
+        const i = Math.round(track.scrollLeft / track.clientWidth);
+        if (i !== idx && i >= 0 && i < slides.length) {
+          idx = i;
+          slides.forEach((s, k) =>
+            s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'),
+          );
+          dots.forEach((d, k) =>
+            d.setAttribute('aria-selected', k === idx ? 'true' : 'false'),
+          );
+        }
+      }, 120);
+    });
+
+    // Пауза на hover / фокусе
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+
+    // Пауза, когда вкладка не видна
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    // Инициализируем позицию без анимации на случай возврата из истории
+    requestAnimationFrame(() => scrollTo(0, false));
+    start();
+  })();
+</script>
