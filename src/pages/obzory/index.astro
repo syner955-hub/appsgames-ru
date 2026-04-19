@@ -1,23 +1,91 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import HubStub from '../../components/HubStub.astro';
 
-const title = 'Обзоры приложений и сервисов — AppsGames.ru';
+const title = 'Обзоры приложений и подборки лучших сервисов';
 const description =
-  'Честные обзоры мобильных приложений и онлайн-сервисов: что умеют, где тупят и кому не подойдут.';
+  'Честные обзоры приложений для iOS и Android, сравнения и подборки: альтернативы iTunes, эмуляторы, программы для работы с техникой.';
+
+const articles = [
+  {
+    href: '/obzory/alternativy-itunes/',
+    title: 'Альтернативы iTunes в 2026 году',
+    desc: 'iMazing, 3uTools, CopyTrans, Apple Devices, Finder, AltStore, iExplorer — чем заменить iTunes и для каких задач.',
+  },
+  {
+    href: '/dopolnitelnyjj-soft/ehmulyator-ios-ipad/',
+    title: 'Эмулятор iOS: что работает, а что обман',
+    desc: 'Разбираем Xcode Simulator, облачные Appetize.io и BrowserStack, и почему «iPadian» — развод.',
+  },
+  {
+    href: '/dopolnitelnyjj-soft/ehmulyator-android/',
+    title: 'Эмулятор Android для PC и Mac: топ-6',
+    desc: 'BlueStacks, LDPlayer, NoxPlayer, MEmu, Google Play Games, Android Studio Emulator. Плюсы и минусы.',
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} noindex>
-  <HubStub
-    eyebrow="Раздел"
-    title="Обзоры"
-    lead="Готовим обзоры и сравнения приложений в 2026 году: VPN, мессенджеры, читалки, менеджеры паролей, альтернативы привычных сервисов."
-    planned={[
-      'Альтернативы iTunes в 2026',
-      'Топ-5 VPN для iOS, которые ещё работают в России',
-      'Telegram vs WhatsApp vs Signal: что выбрать в 2026',
-      'Лучшие менеджеры паролей для iPhone и Android',
-      'Сравнение читалок для длинных текстов',
-    ]}
-  />
+<BaseLayout title={title} description={description}>
+  <section class="hub container">
+    <header class="hub__head">
+      <p class="hub__eyebrow">Раздел</p>
+      <h1>Обзоры и подборки</h1>
+      <p class="hub__lead">
+        Честно сравниваем приложения и сервисы: функциональность, цена,
+        подводные камни. Без влияния рекламодателей.
+      </p>
+    </header>
+
+    <section class="hub__group">
+      <h2>Сравнения и подборки</h2>
+      <ul class="hub__list">
+        {articles.map((a) => (
+          <li class="hub__item">
+            <a href={a.href}>
+              <h3>{a.title}</h3>
+              <p class="hub__desc">{a.desc}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </section>
 </BaseLayout>
+
+<style>
+  .hub {
+    max-width: 860px;
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .hub__head { margin-bottom: 2.5rem; }
+  .hub__eyebrow {
+    margin: 0 0 0.4rem; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  }
+  .hub__head h1 {
+    margin: 0 0 0.7rem; font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    letter-spacing: -0.02em;
+  }
+  .hub__lead { margin: 0; font-size: 1.1rem; color: var(--fg-muted); max-width: 60ch; }
+  .hub__group { margin-top: 2.5rem; }
+  .hub__group > h2 {
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--fg-subtle); font-weight: 700; margin: 0 0 1.1rem;
+  }
+  .hub__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .hub__item a {
+    display: block; padding: 1.1rem 1.25rem 1.2rem;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-card); text-decoration: none; color: var(--fg);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .hub__item a:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    transform: translateY(-1px);
+  }
+  .hub__item h3 {
+    margin: 0 0 0.4rem; font-family: var(--font-serif);
+    font-size: 1.2rem; line-height: 1.3;
+  }
+  .hub__desc { margin: 0; color: var(--fg-muted); font-size: 0.95rem; }
+</style>

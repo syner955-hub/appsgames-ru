@@ -1,56 +1,118 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = 'AppsGames.ru — обзоры и советы по приложениям для iOS и Android';
+const title = 'AppsGames.ru — обзоры и инструкции для iPhone и Android';
 const description =
-  'Обновляем сайт: делаем современные обзоры приложений для iPhone и Android, инструкции и разборы частых проблем. Скоро запустим новые разделы.';
+  'Обзоры приложений и подробные инструкции для iOS и Android: синхронизация, бэкапы, безопасность, эмуляторы и альтернативы магазинов. Проверено на актуальных версиях.';
+
+const featured = [
+  {
+    href: '/ios/kak-sdelat/skachat-muzyku-iphone/',
+    category: 'iOS',
+    title: 'Как скачать музыку на iPhone в 2026',
+    desc: 'Все рабочие способы: Apple Music, Apple Devices на Windows, Finder на Mac, облако и плеер.',
+  },
+  {
+    href: '/ios/kak-sdelat/sinhronizaciya-iphone-pc/',
+    category: 'iOS',
+    title: 'Синхронизация iPhone с компьютером',
+    desc: 'Windows, Mac, Wi-Fi и iCloud — разбираем, какой способ подходит для какой задачи.',
+  },
+  {
+    href: '/android/kak-sdelat/ustanovit-apk-android/',
+    category: 'Android',
+    title: 'Как безопасно установить APK',
+    desc: 'Доверенные источники, VirusTotal, проверка разрешений и Play Protect — чек-лист.',
+  },
+  {
+    href: '/obzory/alternativy-itunes/',
+    category: 'Обзоры',
+    title: 'Альтернативы iTunes в 2026',
+    desc: 'iMazing, Apple Devices, 3uTools, CopyTrans, AltStore — сравниваем 7 программ.',
+  },
+  {
+    href: '/poleznoe-ios/kak-nastroit-iphone/',
+    category: 'iOS',
+    title: 'Как настроить iPhone после покупки',
+    desc: 'Чек-лист первого часа: Apple ID, Face ID, iCloud, приватность, батарея.',
+  },
+  {
+    href: '/android/kak-sdelat/sinhronizaciya-android-pc/',
+    category: 'Android',
+    title: 'Синхронизация Android с ПК',
+    desc: 'Phone Link, MTP, Android File Transfer, KDE Connect — каждый способ под свою задачу.',
+  },
+];
+
+const clusters = [
+  {
+    href: '/ios/',
+    title: 'iOS',
+    desc: 'iPhone и iPad: инструкции, обзоры, решение проблем.',
+  },
+  {
+    href: '/android/',
+    title: 'Android',
+    desc: 'Настройка, установка приложений, сервис, эмуляторы.',
+  },
+  {
+    href: '/obzory/',
+    title: 'Обзоры',
+    desc: 'Сравнения и подборки приложений под конкретные задачи.',
+  },
+  {
+    href: '/bezopasnost/',
+    title: 'Безопасность',
+    desc: 'Защита аккаунтов, проверка APK, восстановление доступа.',
+  },
+  {
+    href: '/sovety/',
+    title: 'Советы',
+    desc: 'Практические материалы, которые экономят время.',
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} noindex>
+<BaseLayout title={title} description={description}>
   <section class="hero container">
-    <p class="hero__eyebrow">AppsGames.ru · обновление</p>
+    <p class="hero__eyebrow">AppsGames.ru</p>
     <h1 class="hero__title">
-      Делаем новый сайт про&nbsp;приложения для&nbsp;iOS и&nbsp;Android
+      Обзоры и инструкции для&nbsp;iPhone и&nbsp;Android
     </h1>
     <p class="hero__lead">
-      Мы перезапускаем AppsGames.ru: новый дизайн, свежие обзоры и понятные
-      инструкции. В ближайшие недели здесь появятся разборы приложений, советы
-      по iPhone и Android, гайды по безопасности и сравнения сервисов.
+      Пишем понятные гайды: как починить, настроить и заставить работать всё,
+      что связано со смартфонами. Проверяем на актуальных версиях iOS и Android
+      и указываем дату обновления каждого материала.
     </p>
+  </section>
 
-    <div class="hero__cards">
-      <article class="hero-card">
-        <h2>Что готовим</h2>
-        <ul>
-          <li>Обзоры приложений для iOS и Android</li>
-          <li>Практические инструкции без воды</li>
-          <li>Сравнения аналогов и подборки</li>
-          <li>Советы по безопасности и настройкам</li>
-        </ul>
-      </article>
+  <section class="home-section container">
+    <h2 class="home-section__title">Свежие материалы</h2>
+    <ul class="feat__list">
+      {featured.map((a) => (
+        <li class="feat__item">
+          <a href={a.href}>
+            <p class="feat__cat">{a.category}</p>
+            <h3>{a.title}</h3>
+            <p class="feat__desc">{a.desc}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 
-      <article class="hero-card">
-        <h2>Для кого</h2>
-        <p>
-          Для тех, кто хочет быстро понять — нужно ему приложение или нет, как
-          починить проблему с телефоном и какой софт выбрать под задачу.
-        </p>
-      </article>
-
-      <article class="hero-card">
-        <h2>Подписаться</h2>
-        <p>
-          Пока готовим первые материалы, напишите нам, если хотите стать автором
-          или предложить тему:
-          <a href="mailto:hello@appsgames.ru">hello@appsgames.ru</a>.
-        </p>
-      </article>
-    </div>
-
-    <p class="hero__note">
-      Сайт временно закрыт от индексации — запустим публично, когда будут готовы
-      первые разделы.
-    </p>
+  <section class="home-section container">
+    <h2 class="home-section__title">Разделы</h2>
+    <ul class="clusters__list">
+      {clusters.map((c) => (
+        <li class="clusters__item">
+          <a href={c.href}>
+            <h3>{c.title}</h3>
+            <p>{c.desc}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <script
@@ -74,66 +136,135 @@ const description =
 
 <style>
   .hero {
-    padding: clamp(3rem, 7vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
-    max-width: 960px;
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+    max-width: 860px;
   }
   .hero__eyebrow {
     color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     font-size: 0.78rem;
     margin: 0 0 1rem;
   }
   .hero__title {
     margin: 0 0 1.25rem;
-    font-size: clamp(2.1rem, 1.6rem + 2.8vw, 3.6rem);
+    font-size: clamp(2.1rem, 1.6rem + 2.8vw, 3.4rem);
     letter-spacing: -0.025em;
+    line-height: 1.1;
   }
   .hero__lead {
     font-size: var(--fs-lg);
     color: var(--fg-muted);
     max-width: 60ch;
   }
-  .hero__cards {
-    margin: 2.5rem 0 2rem;
+
+  .home-section {
+    max-width: 960px;
+    padding-top: clamp(2rem, 3vw, 3rem);
+    padding-bottom: clamp(1.5rem, 2vw, 2rem);
+  }
+  .home-section__title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-subtle);
+    font-weight: 700;
+    margin: 0 0 1.2rem;
+  }
+
+  .feat__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr;
   }
-  @media (min-width: 780px) {
-    .hero__cards {
+  @media (min-width: 720px) {
+    .feat__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1060px) {
+    .feat__list {
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  .hero-card {
-    padding: 1.25rem 1.4rem;
-    background: var(--bg-card);
+  .feat__item a {
+    display: block;
+    padding: 1.2rem 1.3rem 1.3rem;
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    background: var(--bg-card);
+    text-decoration: none;
+    color: var(--fg);
+    height: 100%;
+    transition: border-color 0.15s, transform 0.15s;
   }
-  .hero-card h2 {
-    font-size: 1.05rem;
-    margin: 0 0 0.6rem;
+  .feat__item a:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    transform: translateY(-2px);
   }
-  .hero-card ul {
-    margin: 0;
-    padding-left: 1.1rem;
+  .feat__cat {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
   }
-  .hero-card ul li {
-    margin-bottom: 0.25rem;
+  .feat__item h3 {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    line-height: 1.3;
   }
-  .hero-card p {
+  .feat__desc {
     margin: 0;
     color: var(--fg-muted);
+    font-size: 0.95rem;
   }
-  .hero__note {
-    margin-top: 2rem;
-    padding: 0.9rem 1.1rem;
-    background: var(--bg-soft);
-    border: 1px dashed var(--border-strong);
+
+  .clusters__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .clusters__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .clusters__list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  .clusters__item a {
+    display: block;
+    padding: 1.1rem 1.2rem 1.2rem;
+    border: 1px solid var(--border);
     border-radius: var(--radius);
-    color: var(--fg-subtle);
-    font-size: var(--fs-sm);
+    background: var(--bg-card);
+    text-decoration: none;
+    color: var(--fg);
+    height: 100%;
+    transition: border-color 0.15s;
+  }
+  .clusters__item a:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+  }
+  .clusters__item h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+  }
+  .clusters__item p {
+    margin: 0;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
   }
 </style>

@@ -1,61 +1,110 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = 'iOS — обзоры и инструкции для iPhone и iPad';
+const title = 'iOS: гайды, советы и обзоры приложений для iPhone и iPad';
 const description =
-  'Раздел про iOS на AppsGames.ru: пошаговые инструкции для iPhone и iPad, обзоры приложений, советы по настройке и решение типичных проблем.';
+  'Собрали главные инструкции и обзоры приложений для iPhone и iPad: настройки, синхронизация, восстановление, эмуляторы, подключение к технике. Проверено на актуальной версии iOS.';
 
-const articles = [
+const sections = [
   {
-    href: '/ios/kak-sdelat/skachat-muzyku-iphone/',
-    title: 'Как скачать музыку на iPhone в 2026',
-    description:
-      'Все рабочие способы: Apple Music, синхронизация с Mac и Windows через Apple Devices, облако + плеер.',
-    tag: 'Как сделать',
+    title: 'Как сделать',
+    items: [
+      {
+        href: '/ios/kak-sdelat/skachat-muzyku-iphone/',
+        title: 'Как скачать музыку на iPhone',
+        desc: 'Все рабочие способы: Apple Music, синхронизация через Apple Devices и Finder, облако + плеер.',
+      },
+      {
+        href: '/ios/kak-sdelat/sinhronizaciya-iphone-pc/',
+        title: 'Как синхронизировать iPhone с компьютером',
+        desc: 'Windows через Apple Devices, Mac через Finder, Wi-Fi-синхронизация и облако — без iTunes.',
+      },
+      {
+        href: '/ios/kak-sdelat/zakachat-film-na-iphone/',
+        title: 'Как закачать фильм на iPhone или iPad',
+        desc: 'Через VLC, Infuse, «Файлы», AirDrop и Wi-Fi. Какие форматы поддерживаются, где споткнётесь.',
+      },
+      {
+        href: '/poleznoe-ios/kak-nastroit-iphone/',
+        title: 'Как настроить iPhone после покупки',
+        desc: 'Apple ID, перенос данных, Face ID, двухфакторка, экономия батареи — чек-лист «первого часа».',
+      },
+      {
+        href: '/uroki-po-ios/kak-sbrosit-iphone-do-zavodskikh-nastroek/',
+        title: 'Как сбросить iPhone до заводских настроек',
+        desc: 'Полный и мягкий сброс, бэкап перед сбросом, восстановление и подготовка к продаже.',
+      },
+      {
+        href: '/poleznoe-ios/podklyuchit-ajjfon-k-televizoru/',
+        title: 'Как подключить iPhone к телевизору',
+        desc: 'AirPlay, HDMI-адаптер и DLNA. Что выбрать для Samsung, LG, Xiaomi, Apple TV.',
+      },
+    ],
   },
-];
-
-const planned = [
-  'Как сбросить iPhone до заводских настроек',
-  'DFU-режим iPhone и iPad: как войти и зачем',
-  'Как восстановить пароль от Apple ID',
-  'Как настроить iPhone после покупки',
-  'Альтернативы iTunes в 2026',
+  {
+    title: 'Решение проблем',
+    items: [
+      {
+        href: '/ios/kak-sdelat/ipad-ne-vklyuchaetsya/',
+        title: 'iPad не включается: что делать',
+        desc: 'Проверка зарядки, hard reset, режим восстановления и DFU — по шагам, от простого к сложному.',
+      },
+      {
+        href: '/poleznoe-ios/dfu-rejim-iphone-ipad/',
+        title: 'DFU-режим на iPhone и iPad',
+        desc: 'Отличие от Recovery Mode, пошаговый вход для всех моделей, типичные ошибки и как выйти.',
+      },
+      {
+        href: '/poleznoe-ios/vosstanavlivit-parol-ot-apple-id/',
+        title: 'Как восстановить пароль от Apple ID',
+        desc: 'Три официальных способа: с доверенного устройства, через iforgot.apple.com и службу поддержки.',
+      },
+    ],
+  },
+  {
+    title: 'Программы',
+    items: [
+      {
+        href: '/dopolnitelnyjj-soft/ehmulyator-ios-ipad/',
+        title: 'Эмулятор iOS для Windows и Mac',
+        desc: 'Что реально работает вместо эмулятора iPhone: Xcode Simulator, Appetize.io, BrowserStack.',
+      },
+      {
+        href: '/obzory/alternativy-itunes/',
+        title: 'Альтернативы iTunes в 2026',
+        desc: 'iMazing, 3uTools, CopyTrans, AltStore: чем заменить iTunes для бэкапов и синхронизации.',
+      },
+    ],
+  },
 ];
 ---
 
-<BaseLayout title={title} description={description} noindex>
+<BaseLayout title={title} description={description}>
   <section class="hub container">
     <header class="hub__head">
       <p class="hub__eyebrow">Раздел</p>
       <h1>iOS</h1>
       <p class="hub__lead">
-        Инструкции и обзоры для iPhone и iPad. Каждую инструкцию мы проверяем
-        на актуальной версии iOS и указываем дату последнего обновления.
+        Инструкции и обзоры для iPhone и iPad. Каждую проверяем на актуальной
+        версии iOS и обновляем, когда выходит новая.
       </p>
     </header>
 
-    <section class="hub__group">
-      <h2>Свежие материалы</h2>
-      <ul class="hub__list">
-        {articles.map((a) => (
-          <li class="hub__item">
-            <a href={a.href}>
-              <p class="hub__tag">{a.tag}</p>
-              <h3>{a.title}</h3>
-              <p class="hub__desc">{a.description}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <section class="hub__group">
-      <h2>Скоро</h2>
-      <ul class="hub__planned">
-        {planned.map((p) => <li>{p}</li>)}
-      </ul>
-    </section>
+    {sections.map((sec) => (
+      <section class="hub__group">
+        <h2>{sec.title}</h2>
+        <ul class="hub__list">
+          {sec.items.map((a) => (
+            <li class="hub__item">
+              <a href={a.href}>
+                <h3>{a.title}</h3>
+                <p class="hub__desc">{a.desc}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 </BaseLayout>
 
@@ -88,7 +137,7 @@ const planned = [
     max-width: 60ch;
   }
   .hub__group {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
   }
   .hub__group > h2 {
     font-size: 0.78rem;
@@ -119,14 +168,6 @@ const planned = [
     border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
     transform: translateY(-1px);
   }
-  .hub__tag {
-    margin: 0 0 0.4rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
   .hub__item h3 {
     margin: 0 0 0.4rem;
     font-family: var(--font-serif);
@@ -137,13 +178,5 @@ const planned = [
     margin: 0;
     color: var(--fg-muted);
     font-size: 0.95rem;
-  }
-  .hub__planned {
-    margin: 0;
-    padding-left: 1.2rem;
-    color: var(--fg-muted);
-  }
-  .hub__planned li {
-    margin-bottom: 0.3rem;
   }
 </style>
