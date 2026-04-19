@@ -1,0 +1,71 @@
+---
+interface Props {
+  type?: 'info' | 'warn' | 'tip' | 'danger';
+  title?: string;
+}
+const { type = 'info', title } = Astro.props;
+
+const labels: Record<string, string> = {
+  info: 'Важно',
+  warn: 'Осторожно',
+  tip: 'Совет',
+  danger: 'Не делайте этого',
+};
+const label = title ?? labels[type];
+---
+
+<aside class={`callout callout--${type}`} role="note">
+  <div class="callout__label">{label}</div>
+  <div class="callout__body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .callout {
+    margin: 1.5rem 0;
+    padding: 0.9rem 1.1rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    background: var(--bg-soft);
+  }
+  .callout__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .callout__body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .callout--info {
+    border-left-color: var(--accent);
+  }
+  .callout--info .callout__label {
+    color: var(--accent);
+  }
+  .callout--warn {
+    border-left-color: #e0a024;
+    background: color-mix(in oklab, #e0a024 10%, var(--bg-soft));
+  }
+  .callout--warn .callout__label {
+    color: #c98a10;
+  }
+  .callout--tip {
+    border-left-color: #35c46a;
+    background: color-mix(in oklab, #35c46a 9%, var(--bg-soft));
+  }
+  .callout--tip .callout__label {
+    color: #2aa955;
+  }
+  .callout--danger {
+    border-left-color: #e05260;
+    background: color-mix(in oklab, #e05260 10%, var(--bg-soft));
+  }
+  .callout--danger .callout__label {
+    color: #c93b4a;
+  }
+</style>

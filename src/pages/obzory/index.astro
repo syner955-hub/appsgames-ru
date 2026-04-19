@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HubStub from '../../components/HubStub.astro';
+
+const title = 'Обзоры приложений и сервисов — AppsGames.ru';
+const description =
+  'Честные обзоры мобильных приложений и онлайн-сервисов: что умеют, где тупят и кому не подойдут.';
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <HubStub
+    eyebrow="Раздел"
+    title="Обзоры"
+    lead="Готовим обзоры и сравнения приложений в 2026 году: VPN, мессенджеры, читалки, менеджеры паролей, альтернативы привычных сервисов."
+    planned={[
+      'Альтернативы iTunes в 2026',
+      'Топ-5 VPN для iOS, которые ещё работают в России',
+      'Telegram vs WhatsApp vs Signal: что выбрать в 2026',
+      'Лучшие менеджеры паролей для iPhone и Android',
+      'Сравнение читалок для длинных текстов',
+    ]}
+  />
+</BaseLayout>

@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  author: CollectionEntry<'authors'>;
+  pubDate: Date;
+  updatedDate?: Date;
+}
+
+const { author, pubDate, updatedDate } = Astro.props;
+
+const fmt = new Intl.DateTimeFormat('ru-RU', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<section
+  class="author-box"
+  itemscope
+  itemtype="https://schema.org/Person"
+  aria-label="Об авторе"
+>
+  <div class="author-box__meta">
+    <p class="author-box__name" itemprop="name">
+      {author.data.url ? (
+        <a href={author.data.url} itemprop="url">{author.data.name}</a>
+      ) : (
+        author.data.name
+      )}
+    </p>
+    <p class="author-box__role" itemprop="jobTitle">{author.data.role}</p>
+    <p class="author-box__bio" itemprop="description">{author.data.bio}</p>
+    <p class="author-box__dates">
+      <time datetime={pubDate.toISOString()} itemprop="datePublished">
+        Опубликовано: {fmt.format(pubDate)}
+      </time>
+      {updatedDate && (
+        <>
+          <span aria-hidden="true"> · </span>
+          <time datetime={updatedDate.toISOString()} itemprop="dateModified">
+            Обновлено: {fmt.format(updatedDate)}
+          </time>
+        </>
+      )}
+    </p>
+  </div>
+</section>
+
+<style>
+  .author-box {
+    margin: 3rem 0 1rem;
+    padding: 1.2rem 1.35rem 1.35rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .author-box__name {
+    margin: 0 0 0.15rem;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .author-box__name a {
+    color: var(--fg);
+  }
+  .author-box__role {
+    margin: 0 0 0.6rem;
+    font-size: 0.82rem;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .author-box__bio {
+    margin: 0 0 0.7rem;
+    color: var(--fg-muted);
+  }
+  .author-box__dates {
+    margin: 0;
+    color: var(--fg-subtle);
+    font-size: 0.85rem;
+  }
+</style>

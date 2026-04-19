@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/prose.css';
+
+const title = 'Контакты AppsGames.ru — связь с редакцией';
+const description =
+  'Как связаться с редакцией AppsGames.ru: почта для читателей, авторов, рекламы и юридических вопросов.';
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <section class="container" style="max-width: 720px; padding-top: 3rem; padding-bottom: 5rem;">
+    <h1>Контакты</h1>
+
+    <div class="prose" data-article-body>
+      <p>
+        Самый быстрый способ связи — почта. Мы читаем каждое письмо, но иногда
+        отвечаем не в день обращения.
+      </p>
+
+      <h2>Редакция и читатели</h2>
+      <p>
+        <a href="mailto:hello@appsgames.ru">hello@appsgames.ru</a> — опечатки,
+        устаревшие инструкции, идеи тем, обратная связь по статьям.
+      </p>
+
+      <h2>Авторам</h2>
+      <p>
+        <a href="mailto:hello@appsgames.ru">hello@appsgames.ru</a> с темой
+        «Автор: тема статьи». Приложите 1–2 примера ваших публикаций, желательно
+        со ссылками. Гонорары обсуждаем после короткого тестового материала.
+      </p>
+
+      <h2>Реклама и партнёрства</h2>
+      <p>
+        <a href="mailto:hello@appsgames.ru">hello@appsgames.ru</a> с темой
+        «Реклама». Мы не размещаем закрытые гостевые посты «без пометки» и не
+        продаём ссылки в существующих материалах. Все рекламные публикации
+        маркируются согласно ст. 18.1 ФЗ «О рекламе».
+      </p>
+
+      <h2>Юридические вопросы</h2>
+      <p>
+        Запросы на удаление информации, претензии по правам — на тот же адрес
+        с темой «Правовой запрос». Просьба указать конкретную ссылку (URL) и
+        суть претензии.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

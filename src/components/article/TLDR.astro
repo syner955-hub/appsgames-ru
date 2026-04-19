@@ -1,0 +1,40 @@
+---
+interface Props {
+  items: string[];
+}
+const { items } = Astro.props;
+---
+
+<aside class="tldr" aria-label="Коротко о главном">
+  <div class="tldr__label">Коротко</div>
+  <ul>
+    {items.map((it) => <li>{it}</li>)}
+  </ul>
+</aside>
+
+<style>
+  .tldr {
+    margin: 1.5rem 0 2rem;
+    padding: 1.1rem 1.25rem 1.2rem;
+    background: color-mix(in oklab, var(--accent) 8%, var(--bg-soft));
+    border: 1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+    border-radius: var(--radius);
+  }
+  .tldr__label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .tldr ul {
+    margin: 0;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: 0.3rem;
+  }
+  .tldr li {
+    color: var(--fg);
+  }
+</style>

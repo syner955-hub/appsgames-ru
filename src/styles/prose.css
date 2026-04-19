@@ -1,0 +1,95 @@
+/* Типографика длинного текста внутри статей */
+.prose {
+  max-width: 68ch;
+  margin: 0 auto;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2 {
+  margin-top: 2.3rem;
+  scroll-margin-top: 80px;
+}
+.prose h3 {
+  margin-top: 1.8rem;
+  scroll-margin-top: 80px;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  font-size: 1.06rem;
+  line-height: 1.72;
+  color: var(--fg);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3rem;
+  margin: 0.9rem 0 1.3rem;
+}
+.prose li {
+  margin-bottom: 0.35rem;
+}
+.prose li p {
+  margin-bottom: 0.3rem;
+}
+
+.prose blockquote {
+  margin: 1.7rem 0;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+  color: var(--fg-muted);
+}
+
+.prose a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+.prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+.prose img {
+  border-radius: var(--radius);
+  margin: 1.3rem 0;
+}
+
+.prose figure {
+  margin: 1.5rem 0;
+}
+.prose figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.86rem;
+  color: var(--fg-subtle);
+  text-align: center;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.3rem 0;
+  font-size: 0.96rem;
+}
+.prose table th,
+.prose table td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+.prose table th {
+  font-weight: 600;
+  background: var(--bg-soft);
+}
+
+.prose hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}

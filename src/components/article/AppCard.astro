@@ -1,0 +1,151 @@
+---
+interface Platform {
+  name: 'iOS' | 'Android' | 'Web' | 'Windows' | 'macOS';
+  url?: string;
+}
+interface Props {
+  name: string;
+  vendor?: string;
+  description: string;
+  price?: string;
+  rating?: number;
+  platforms?: Platform[];
+  verdict?: string;
+}
+
+const {
+  name,
+  vendor,
+  description,
+  price,
+  rating,
+  platforms = [],
+  verdict,
+} = Astro.props;
+---
+
+<article class="app-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+  <header class="app-card__head">
+    <div>
+      <h3 class="app-card__name" itemprop="name">{name}</h3>
+      {vendor && <p class="app-card__vendor" itemprop="author">{vendor}</p>}
+    </div>
+    {rating !== undefined && (
+      <div
+        class="app-card__rating"
+        aria-label={`Оценка ${rating} из 5`}
+        itemprop="aggregateRating"
+        itemscope
+        itemtype="https://schema.org/AggregateRating"
+      >
+        <meta itemprop="ratingValue" content={rating.toString()} />
+        <meta itemprop="bestRating" content="5" />
+        <span class="app-card__rating-num">{rating.toFixed(1)}</span>
+        <span class="app-card__rating-max">/5</span>
+      </div>
+    )}
+  </header>
+
+  <p class="app-card__desc" itemprop="description">{description}</p>
+
+  <div class="app-card__meta">
+    {price && (
+      <span class="app-card__price">
+        <meta itemprop="offers" itemscope itemtype="https://schema.org/Offer" content="" />
+        <strong>Цена:</strong> {price}
+      </span>
+    )}
+    {platforms.length > 0 && (
+      <span class="app-card__platforms">
+        <strong>Платформы:</strong>{' '}
+        {platforms.map((p, i) => (
+          <>
+            {p.url ? (
+              <a href={p.url} rel="nofollow noopener" target="_blank">
+                {p.name}
+              </a>
+            ) : (
+              <span>{p.name}</span>
+            )}
+            {i < platforms.length - 1 && ', '}
+          </>
+        ))}
+      </span>
+    )}
+  </div>
+
+  {verdict && (
+    <div class="app-card__verdict">
+      <span class="app-card__verdict-label">Вердикт:</span> {verdict}
+    </div>
+  )}
+</article>
+
+<style>
+  .app-card {
+    margin: 1.5rem 0;
+    padding: 1.15rem 1.3rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .app-card__head {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .app-card__name {
+    margin: 0;
+    font-size: 1.15rem;
+    font-family: var(--font-serif);
+  }
+  .app-card__vendor {
+    margin: 0.15rem 0 0;
+    color: var(--fg-subtle);
+    font-size: 0.85rem;
+  }
+  .app-card__rating {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    background: color-mix(in oklab, var(--accent) 15%, transparent);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .app-card__rating-max {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 500;
+  }
+  .app-card__desc {
+    margin: 0.4rem 0 0.8rem;
+    color: var(--fg-muted);
+  }
+  .app-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    font-size: 0.88rem;
+    color: var(--fg-muted);
+  }
+  .app-card__meta strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .app-card__verdict {
+    margin-top: 0.7rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed var(--border);
+    font-size: 0.92rem;
+  }
+  .app-card__verdict-label {
+    color: var(--fg-subtle);
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+</style>

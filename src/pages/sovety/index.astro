@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HubStub from '../../components/HubStub.astro';
+
+const title = 'Советы по смартфонам и приложениям — AppsGames.ru';
+const description =
+  'Советы по работе с iOS и Android: как продлить срок жизни батареи, ускорить смартфон, освободить место и не потерять данные.';
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <HubStub
+    eyebrow="Раздел"
+    title="Советы"
+    lead="Универсальные советы, которые работают и на iOS, и на Android: как навести порядок в смартфоне, не потерять данные и продлить срок жизни батареи."
+    planned={[
+      'Как продлить срок жизни батареи смартфона',
+      'Как освободить место на iPhone и Android',
+      'Резервные копии: что делать минимум раз в месяц',
+      'Как защитить ребёнка в смартфоне без шпионских приложений',
+      'Что проверить в смартфоне перед продажей',
+    ]}
+  />
+</BaseLayout>

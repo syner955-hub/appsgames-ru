@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HubStub from '../../components/HubStub.astro';
+
+const title = 'Android — обзоры и инструкции для смартфонов';
+const description =
+  'Раздел про Android на AppsGames.ru: пошаговые инструкции, обзоры приложений, советы по настройке и решение типичных проблем.';
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <HubStub
+    eyebrow="Раздел"
+    title="Android"
+    lead="Готовим инструкции и обзоры для Android-смартфонов: настройка после покупки, восстановление, кастомизация, проверка APK на безопасность."
+    planned={[
+      'Как сбросить Android-смартфон до заводских настроек',
+      'Как проверить APK на вирусы перед установкой',
+      'Альтернативы Google Play в 2026',
+      'Как удалённо найти потерянный смартфон',
+      'Перенос данных со старого телефона на новый',
+    ]}
+  />
+</BaseLayout>

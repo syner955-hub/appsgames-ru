@@ -1,0 +1,109 @@
+---
+
+---
+
+<nav class="toc" aria-label="Оглавление" data-toc>
+  <div class="toc__label">Содержание</div>
+  <ol class="toc__list"></ol>
+</nav>
+
+<style>
+  .toc {
+    margin: 1.2rem 0 2rem;
+    padding: 0.95rem 1.15rem 1.1rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .toc__label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-bottom: 0.55rem;
+  }
+  .toc__list {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.28rem;
+    font-size: 0.95rem;
+  }
+  .toc__list a {
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc__list a:hover {
+    color: var(--accent);
+    border-bottom-color: currentColor;
+  }
+  .toc__list .toc__h3 {
+    margin-left: 1.1rem;
+    list-style: none;
+    color: var(--fg-subtle);
+    position: relative;
+  }
+  .toc__list .toc__h3::before {
+    content: '—';
+    position: absolute;
+    left: -1rem;
+    color: var(--fg-subtle);
+  }
+  .toc:empty,
+  .toc[hidden] {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function slugify(text) {
+      const ru = 'абвгдезийклмнопрстуфхъыьэА-Яа-яё';
+      const cyr = {
+        а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh',
+        з: 'z', и: 'i', й: 'j', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o',
+        п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'c',
+        ч: 'ch', ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu',
+        я: 'ya',
+      };
+      return (text || '')
+        .toLowerCase()
+        .split('')
+        .map((c) => (cyr[c] !== undefined ? cyr[c] : c))
+        .join('')
+        .replace(/[^a-z0-9\-]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .replace(/-{2,}/g, '-');
+    }
+
+    const toc = document.querySelector('[data-toc]');
+    if (!toc) return;
+    const list = toc.querySelector('.toc__list');
+    const article = document.querySelector('[data-article-body]') || document.querySelector('article');
+    if (!article) { toc.hidden = true; return; }
+
+    const heads = article.querySelectorAll('h2, h3');
+    if (heads.length < 3) { toc.hidden = true; return; }
+
+    const used = new Set();
+    heads.forEach((h) => {
+      const base = h.id || slugify(h.textContent);
+      let slug = base || 'section';
+      let i = 2;
+      while (used.has(slug)) { slug = `${base}-${i++}`; }
+      used.add(slug);
+      h.id = slug;
+
+      const li = document.createElement('li');
+      if (h.tagName === 'H3') li.classList.add('toc__h3');
+      const a = document.createElement('a');
+      a.href = `#${slug}`;
+      a.textContent = h.textContent || '';
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  })();
+</script>

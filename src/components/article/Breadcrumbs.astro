@@ -1,0 +1,65 @@
+---
+interface Crumb {
+  name: string;
+  url?: string;
+}
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://appsgames.ru';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.name,
+    ...(c.url ? { item: new URL(c.url, siteUrl).toString() } : {}),
+  })),
+};
+---
+
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+  <ol>
+    {items.map((c, i) => (
+      <li>
+        {c.url ? <a href={c.url}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
+        {i < items.length - 1 && <span class="breadcrumbs__sep" aria-hidden="true">/</span>}
+      </li>
+    ))}
+  </ol>
+
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+</nav>
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 1rem;
+    font-size: 0.87rem;
+    color: var(--fg-subtle);
+  }
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.35rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .breadcrumbs a {
+    color: var(--fg-subtle);
+  }
+  .breadcrumbs a:hover {
+    color: var(--accent);
+  }
+  .breadcrumbs__sep {
+    color: var(--fg-subtle);
+    opacity: 0.55;
+  }
+</style>

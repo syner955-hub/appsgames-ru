@@ -1,0 +1,95 @@
+---
+interface FaqItem {
+  q: string;
+  a: string;
+}
+interface Props {
+  items: FaqItem[];
+}
+const { items } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: i.a,
+    },
+  })),
+};
+---
+
+<section class="faq" aria-label="Часто задаваемые вопросы">
+  <h2>Частые вопросы</h2>
+  {items.map((item, idx) => (
+    <details class="faq__item" open={idx === 0}>
+      <summary>{item.q}</summary>
+      <div class="faq__answer">
+        <p>{item.a}</p>
+      </div>
+    </details>
+  ))}
+
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+</section>
+
+<style>
+  .faq {
+    margin: 2.5rem 0;
+  }
+  .faq h2 {
+    margin-bottom: 1rem;
+  }
+  .faq__item {
+    border-top: 1px solid var(--border);
+    padding: 0.85rem 0;
+  }
+  .faq__item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq__item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--fg);
+    padding: 0.1rem 0;
+    transition: color 0.15s ease;
+  }
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq__item summary::after {
+    content: '＋';
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--fg-subtle);
+    transition: transform 0.2s ease;
+  }
+  .faq__item[open] summary::after {
+    content: '－';
+  }
+  .faq__item summary:hover {
+    color: var(--accent);
+  }
+  .faq__answer {
+    margin-top: 0.5rem;
+    color: var(--fg-muted);
+  }
+  .faq__answer p {
+    margin: 0.5rem 0 0;
+  }
+</style>
