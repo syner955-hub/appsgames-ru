@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://appsgames.ru/sitemap-index.xml
+
+# RSS (для подписки в feed-reader'ы: Feedly, Inoreader, @FeedsBot в Telegram)
+# https://appsgames.ru/rss.xml

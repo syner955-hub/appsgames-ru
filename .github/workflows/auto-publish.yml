@@ -55,14 +55,40 @@ jobs:
         run: node scripts/generate-og.mjs
 
       - name: Commit and push if new articles
+        id: commit
         if: github.event.inputs.dry_run != 'true'
         run: |
           git config user.name "appsgames-bot"
           git config user.email "bot@appsgames.ru"
           if [[ -n "$(git status --porcelain)" ]]; then
+            # Собираем список новых MDX до коммита (для Actions Summary и IndexNow)
+            NEW_MDX=$(git status --porcelain | awk '$1=="A" || $1=="??" {print $2}' | grep -E '^src/pages/.*\.mdx$' || true)
             git add -A
             git commit -m "chore(news): auto-published $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
+            # Превращаем src/pages/foo/bar.mdx → https://appsgames.ru/foo/bar/
+            NEW_URLS=$(echo "$NEW_MDX" | sed -E 's#^src/pages/##; s#/index\.mdx$#/#; s#\.mdx$#/#' | awk 'NF{print "https://appsgames.ru/"$0}')
+            echo "urls<<EOF" >> "$GITHUB_OUTPUT"
+            echo "$NEW_URLS" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+            # Красивый Summary с кликабельными ссылками
+            {
+              echo "## Новые публикации"
+              echo ""
+              if [[ -n "$NEW_URLS" ]]; then
+                echo "$NEW_URLS" | awk 'NF{print "- ["$0"]("$0")"}'
+              else
+                echo "_Новых MDX не обнаружено (вероятно, только обновлённые файлы)._"
+              fi
+            } >> "$GITHUB_STEP_SUMMARY"
           else
             echo "No changes to commit."
           fi
+
+      - name: Ping IndexNow (Яндекс / Bing / Seznam / Yep)
+        if: >
+          github.event.inputs.dry_run != 'true' &&
+          steps.commit.outputs.urls != ''
+        run: |
+          echo "${{ steps.commit.outputs.urls }}" | node scripts/indexnow-ping.mjs
+        continue-on-error: true
