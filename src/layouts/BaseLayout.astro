@@ -24,8 +24,8 @@ const {
 const siteUrl = Astro.site ?? new URL('https://appsgames.ru');
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl).toString();
 
-// Авто-OG: если явная картинка не передана, указываем путь к эндпоинту
-// генерации PNG, совпадающий с маршрутом /og/[...slug].png.
+// Авто-OG: если явная картинка не передана, указываем путь к статическому
+// PNG из public/og/**.png, сгенерированному скриптом `npm run og`.
 const autoOgPath = (() => {
   const p = Astro.url.pathname.replace(/\/$/, '');
   return p === '' ? '/og/index.png' : `/og${p}.png`;
