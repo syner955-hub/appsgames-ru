@@ -90,5 +90,5 @@ jobs:
           github.event.inputs.dry_run != 'true' &&
           steps.commit.outputs.urls != ''
         run: |
-          echo "${{ steps.commit.outputs.urls }}" | node scripts/indexnow-ping.mjs
+          echo "${{ steps.commit.outputs.urls }}" | node scripts/indexnow-ping.mjs --stdin
         continue-on-error: true

@@ -28,7 +28,9 @@ const KEY = '073486bff205e7d7614825745b083300';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 async function readStdinUrls() {
-  if (process.stdin.isTTY) return [];
+  // Читаем stdin только если явно передан --stdin (в non-TTY без pipe
+  // stdin может висеть бесконечно, ожидая EOF которого не будет).
+  if (!process.argv.includes('--stdin')) return [];
   const chunks = [];
   for await (const c of process.stdin) chunks.push(c);
   return Buffer.concat(chunks)
