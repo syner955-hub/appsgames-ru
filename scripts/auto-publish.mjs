@@ -38,6 +38,7 @@ const STATE_FILE = path.join(ROOT, 'data/published.json');
 const TOKEN = process.env.NANO_GPT_API_KEY;
 const MAX_PER_RUN = Number(process.env.MAX_PER_RUN ?? 3);
 const LLM_MODEL = process.env.LLM_MODEL || 'gpt-5';
+const VISION_MODEL = process.env.VISION_MODEL || 'gpt-5'; // gpt-5 поддерживает image_url
 const IMAGE_MODEL = process.env.IMAGE_MODEL || 'flux-2-pro';
 const DRY_RUN = process.env.DRY_RUN === '1';
 
@@ -62,7 +63,6 @@ const FEEDS = [
   { url: 'https://appleinsider.ru/feed', lang: 'ru', cat: 'iOS' },
   { url: 'https://www.iphones.ru/rss', lang: 'ru', cat: 'iOS' },
   { url: 'https://4pda.to/feed/', lang: 'ru', cat: 'Приложения' },
-  { url: 'https://www.ixbt.com/export/mobile.rss', lang: 'ru', cat: 'Приложения' },
 ];
 
 // Ключевые слова, после которых кандидата отбрасываем (не наша тематика).
@@ -143,7 +143,37 @@ async function saveState(state) {
 
 // --- RSS ------------------------------------------------------------------
 
-const parser = new Parser({ timeout: 20000 });
+const parser = new Parser({
+  timeout: 20000,
+  customFields: {
+    item: [
+      ['media:content', 'mediaContent', { keepArray: true }],
+      ['media:thumbnail', 'mediaThumbnail', { keepArray: true }],
+    ],
+  },
+});
+
+function extractImageUrl(item) {
+  // 1. enclosure (MacRumors, Habr и пр.)
+  const enc = item.enclosure;
+  if (enc?.url && /^image\//i.test(enc.type || '')) return enc.url;
+  if (enc?.url && /\.(jpe?g|png|webp|gif)(\?|$)/i.test(enc.url)) return enc.url;
+
+  // 2. media:content (9to5Mac, Android Authority)
+  const mc = item.mediaContent?.[0]?.$ || item['media:content']?.$;
+  if (mc?.url) return mc.url;
+
+  // 3. media:thumbnail
+  const mt = item.mediaThumbnail?.[0]?.$ || item['media:thumbnail']?.$;
+  if (mt?.url) return mt.url;
+
+  // 4. первый <img src="..."> в контенте
+  const html = item['content:encoded'] || item.content || item.summary || '';
+  const m = String(html).match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (m) return m[1];
+
+  return null;
+}
 
 async function fetchAllFeeds() {
   const results = [];
@@ -160,6 +190,7 @@ async function fetchAllFeeds() {
           link: item.link,
           isoDate: item.isoDate || item.pubDate || new Date().toISOString(),
           summary: stripHtml(item.contentSnippet || item.content || item.summary || '').slice(0, 1200),
+          imageUrl: extractImageUrl(item),
         });
       }
       console.log(`  [RSS] ${f.url} — ${feed.items?.length ?? 0} items`);
@@ -221,9 +252,9 @@ function pickFresh(items, state, limit) {
 
 // --- Nano-GPT API --------------------------------------------------------
 
-async function callLLM(messages, { responseFormat } = {}) {
+async function callLLM(messages, { responseFormat, model } = {}) {
   const body = {
-    model: LLM_MODEL,
+    model: model || LLM_MODEL,
     messages,
   };
   if (responseFormat === 'json') body.response_format = { type: 'json_object' };
@@ -242,6 +273,52 @@ async function callLLM(messages, { responseFormat } = {}) {
   }
   const data = await res.json();
   return data.choices?.[0]?.message?.content || '';
+}
+
+/**
+ * Описываем картинку из RSS через vision-модель: что изображено,
+ * палитра, стиль. Результат используем как контекст для FLUX-prompt.
+ * В случае любой ошибки (модель не vision, картинка недоступна, таймаут)
+ * возвращаем null — пайплайн продолжит работать без vision-контекста.
+ */
+async function describeOriginalImage(imageUrl) {
+  if (!imageUrl) return null;
+  try {
+    // Предварительная загрузка → base64 (многие vision-API так надёжнее работают)
+    const r = await fetch(imageUrl);
+    if (!r.ok) return null;
+    const ct = r.headers.get('content-type') || 'image/jpeg';
+    if (!/^image\//i.test(ct)) return null;
+    const buf = Buffer.from(await r.arrayBuffer());
+    if (buf.length > 4 * 1024 * 1024) return null; // >4MB пропускаем
+    const b64 = buf.toString('base64');
+    const dataUrl = `data:${ct};base64,${b64}`;
+
+    const content = await callLLM(
+      [
+        {
+          role: 'system',
+          content:
+            'Ты аналитик визуального контента. Кратко опиши изображение по пунктам: ' +
+            '(1) главные объекты, (2) цветовая палитра (2-4 ключевых цвета), ' +
+            '(3) стиль (фото/3D-рендер/иллюстрация/UI-скриншот), (4) настроение/свет. ' +
+            'Формат: 2-4 короткие строки на английском. Без воды.',
+        },
+        {
+          role: 'user',
+          content: [
+            { type: 'text', text: 'Describe this image shortly:' },
+            { type: 'image_url', image_url: { url: dataUrl } },
+          ],
+        },
+      ],
+      { model: VISION_MODEL }
+    );
+    return content?.trim().slice(0, 600) || null;
+  } catch (e) {
+    console.warn(`  vision: ${e.message}`);
+    return null;
+  }
 }
 
 async function genImage(prompt) {
@@ -286,7 +363,15 @@ const WRITER_SYSTEM = `Ты редактор русскоязычного бло
 
 ФОРМАТ ОТВЕТА: только валидный JSON, без markdown обёртки.`;
 
-function buildWriterPrompt(item) {
+function buildWriterPrompt(item, imageDescription) {
+  const imageSection = imageDescription
+    ? `\nОРИГИНАЛЬНАЯ КАРТИНКА ИЗ ИСТОЧНИКА (краткое описание):\n${imageDescription}\n`
+    : '';
+
+  const imagePromptRule = imageDescription
+    ? `"imagePrompt": "Английский prompt для FLUX 2 Pro. ВАЖНО: используй тему, основные объекты и цветовую палитру из описания оригинальной картинки выше — чтобы наша обложка была семантически близкой к исходной статье. НО: это должна быть НАША оригинальная иллюстрация — editorial magazine style, чистая композиция, soft lighting, photorealistic, без текста, логотипов и узнаваемых лиц. 25-40 слов."`
+    : `"imagePrompt": "Английский prompt для FLUX 2 Pro: editorial magazine cover иллюстрация по теме новости, минималистичная 3D-композиция, мягкий свет, без текста и логотипов. 20-35 слов. Укажи 2-3 ключевых объекта и палитру."`;
+
   return `Напиши новость на основе этого источника.
 
 ИСТОЧНИК:
@@ -296,7 +381,7 @@ function buildWriterPrompt(item) {
 - Издание: ${item.source}
 - Язык источника: ${item.lang === 'ru' ? 'русский' : 'английский (нужно переводить и адаптировать)'}
 - Тематика: ${item.category}
-
+${imageSection}
 ТРЕБОВАНИЯ К JSON:
 {
   "title": "Короткий заголовок на русском (60-90 символов, без кавычек и emoji)",
@@ -306,7 +391,7 @@ function buildWriterPrompt(item) {
   "tldrPoints": ["Пункт 1 TL;DR (1 предложение)", "Пункт 2", "Пункт 3"],
   "body": "Основной текст в markdown (1500-2500 символов). Можно использовать ## подзаголовки, **жирный**, списки. Не вставляй заголовок h1 внутрь body — он уже в frontmatter. В конце отдельным абзацем: 'Источник: [название издания](${item.link})'.",
   "category": "Одно из: 'iOS', 'Android', 'Приложения', 'Безопасность'",
-  "imagePrompt": "Английский prompt для FLUX: абстрактная 3D-композиция по теме новости, editorial style, без текста. 15-30 слов."
+  ${imagePromptRule}
 }
 
 tldrPoints — обязательно массив из 2-4 коротких пунктов (каждый 60-120 символов). Не один абзац, а именно массив.`;
@@ -323,12 +408,12 @@ function validateArticle(a, item) {
   return errors;
 }
 
-async function writeArticle(item) {
-  console.log(`  → GPT-5 пишет статью...`);
+async function writeArticle(item, imageDescription) {
+  console.log(`  → GPT-5 пишет статью${imageDescription ? ' (с учётом оригинальной картинки)' : ''}...`);
   const content = await callLLM(
     [
       { role: 'system', content: WRITER_SYSTEM },
-      { role: 'user', content: buildWriterPrompt(item) },
+      { role: 'user', content: buildWriterPrompt(item, imageDescription) },
     ],
     { responseFormat: 'json' }
   );
@@ -389,7 +474,20 @@ async function generateOne(item, state) {
   console.log(`\n[${item.category}] ${item.title.slice(0, 80)}`);
   console.log(`  src: ${item.source}`);
 
-  const article = await writeArticle(item);
+  let imageDescription = null;
+  if (item.imageUrl) {
+    console.log(`  → vision: читаю оригинальную картинку (${item.imageUrl.slice(0, 60)}…)`);
+    imageDescription = await describeOriginalImage(item.imageUrl);
+    if (imageDescription) {
+      console.log(`    ✓ ${imageDescription.replace(/\n/g, ' | ').slice(0, 140)}…`);
+    } else {
+      console.log(`    ⟲ vision не смог разобрать, fallback на generic prompt`);
+    }
+  } else {
+    console.log(`  (в RSS нет картинки — генерим по заголовку)`);
+  }
+
+  const article = await writeArticle(item, imageDescription);
 
   const fullSlug = `${todayStamp()}-${article.slug}`.slice(0, 90);
   const mdxPath = path.join(NEWS_DIR, `${fullSlug}.mdx`);
@@ -399,10 +497,13 @@ async function generateOne(item, state) {
   }
 
   console.log(`  → FLUX 2 Pro генерит обложку...`);
-  const imgBuf = await genImage(
-    `${article.imagePrompt}, editorial magazine cover, minimalist 3D composition, ` +
-      `soft volumetric lighting, clean studio background, photorealistic, 8k, no text, no logo`
-  );
+  // Базовый стилевой суффикс — чтобы все обложки сайта смотрелись в одной эстетике,
+  // даже если GPT-5 не добавил эти хвосты сам.
+  const styleSuffix =
+    ', editorial magazine cover style, clean composition, soft lighting, ' +
+    'photorealistic, high detail, 8k, no text, no letters, no logos, no watermarks';
+  console.log(`    prompt: ${article.imagePrompt.slice(0, 120)}…`);
+  const imgBuf = await genImage(article.imagePrompt + styleSuffix);
 
   const heroFile = `${fullSlug}.webp`;
   const heroAbs = path.join(HERO_DIR, heroFile);
