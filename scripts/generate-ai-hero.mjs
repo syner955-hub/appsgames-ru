@@ -152,7 +152,7 @@ const RAW_TARGETS = [
     scene: s('smartphone held in a hand over a wooden desk with a few generic app-icon-shaped paper cards laid out, editorial choice mood, warm side light') },
   { file: 'src/pages/android/kak-sdelat/ustanovit-apk-android.mdx', slug: 'android-ustanovit-apk-android',
     scene: s('smartphone on a desk next to a small opened cardboard box with soft light spilling out of it, tidy composition, symbolic installation mood') },
-  { file: 'src/pages/android/kak-sdelat/zamena-ehkrana-smartfona.mdx', slug: 'android-zamena-ehkrana-smartfona',
+  { file: 'src/pages/android/kak-sdelat/zamena-ehkrana-smartfona.mdx', slug: 'zamena-ehkrana-smartfona',
     scene: s('close-up of a pristine new smartphone on a repair mat with a small screwdriver next to it, clean workshop vibe, soft even lighting, precise and professional mood') },
 
   // === IOS / kak-sdelat =============================================
