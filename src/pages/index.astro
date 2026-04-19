@@ -84,7 +84,59 @@ while (subHero.length < 3) {
   subHero.push(next);
   heroUrls.add(next.url);
 }
-const feed = all.filter((a) => !heroUrls.has(a.url)).slice(0, 10);
+// Round-robin по категориям + приоритет статьям с реальным hero-фото —
+// так на главной нет длинных одноцветных блоков и нет пустых SVG-обложек,
+// когда рядом есть статья с AI-картинкой.
+const FEED_LIMIT = 10;
+const feedPool = all.filter((a) => !heroUrls.has(a.url));
+const feedCatOrder: Array<Article['categorySlug'] | 'novosti'> = [
+  'ios',
+  'android',
+  'obzory',
+  'sovety',
+  'bezopasnost',
+] as unknown as Array<Article['categorySlug']>;
+const byCat = new Map<string, Article[]>();
+for (const a of feedPool) {
+  const key = String(a.categorySlug);
+  if (!byCat.has(key)) byCat.set(key, []);
+  byCat.get(key)!.push(a);
+}
+for (const list of byCat.values()) {
+  list.sort((a, b) => {
+    // в каждой категории — сначала с реальным hero, потом по имени файла desc
+    const ha = a.hero ? 0 : 1;
+    const hb = b.hero ? 0 : 1;
+    if (ha !== hb) return ha - hb;
+    return (b.fileKey ?? '').localeCompare(a.fileKey ?? '');
+  });
+}
+const feed: Article[] = [];
+const seen = new Set<string>();
+let safety = 0;
+while (feed.length < FEED_LIMIT && safety++ < 200) {
+  let progressed = false;
+  for (const cat of feedCatOrder) {
+    if (feed.length >= FEED_LIMIT) break;
+    const list = byCat.get(String(cat));
+    if (!list || list.length === 0) continue;
+    const next = list.shift()!;
+    if (seen.has(next.url)) continue;
+    seen.add(next.url);
+    feed.push(next);
+    progressed = true;
+  }
+  if (!progressed) break;
+}
+// Если категорий не хватило — добираем остальные
+if (feed.length < FEED_LIMIT) {
+  for (const a of feedPool) {
+    if (feed.length >= FEED_LIMIT) break;
+    if (seen.has(a.url)) continue;
+    seen.add(a.url);
+    feed.push(a);
+  }
+}
 
 // "Популярное" — ручной отбор cornerstone-контента (не завязан на pubDate)
 const popularHrefs = [

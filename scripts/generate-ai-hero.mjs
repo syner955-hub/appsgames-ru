@@ -11,7 +11,7 @@
  * `hero: /images/hero/<slug>.webp`.
  */
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -35,6 +35,7 @@ const STYLE =
   'octane render, 8k, photorealistic';
 
 const TARGETS = [
+  // === OBZORY (10) ==================================================
   {
     file: 'src/pages/obzory/luchshie-messenzhery-2026.mdx',
     slug: 'luchshie-messenzhery-2026',
@@ -84,6 +85,114 @@ const TARGETS = [
     file: 'src/pages/obzory/alternativy-itunes.mdx',
     slug: 'alternativy-itunes',
     prompt: `Abstract 3D illustration of floating music notes and waveforms in space, gradient from magenta to violet, glossy glass materials, ${STYLE}`,
+  },
+
+  // === SOVETY (5) ==================================================
+  {
+    file: 'src/pages/sovety/kak-sehkonomit-batareyu-iphone.mdx',
+    slug: 'kak-sehkonomit-batareyu-iphone',
+    prompt: `Abstract 3D illustration of a translucent glass battery charging, warm amber to emerald green gradient, energy particles flowing upward, elegant studio composition, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/sovety/kak-umenshit-trafik-na-telefone.mdx',
+    slug: 'kak-umenshit-trafik-na-telefone',
+    prompt: `Abstract 3D illustration of flowing data streams being compressed through a narrow glass funnel, cool teal and deep navy gradient, bandwidth optimization concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/sovety/kak-uskorit-android.mdx',
+    slug: 'kak-uskorit-android',
+    prompt: `Abstract 3D illustration of a translucent glass smartphone with speed lines and motion trails streaming past, emerald green and lime gradient, dynamic acceleration, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/sovety/osvobodit-mesto-na-iphone.mdx',
+    slug: 'osvobodit-mesto-na-iphone',
+    prompt: `Abstract 3D illustration of a translucent glass smartphone with files and folders dissolving into light particles, soft sky blue gradient, decluttering concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/sovety/upravlyat-podpiskami-app-store.mdx',
+    slug: 'upravlyat-podpiskami-app-store',
+    prompt: `Abstract 3D illustration of stacked translucent subscription cards with circular renewal arrows, coral orange to soft pink gradient, financial management concept, ${STYLE}`,
+  },
+
+  // === BEZOPASNOST (4) =============================================
+  {
+    file: 'src/pages/bezopasnost/bezopasno-skachat-apk-android.mdx',
+    slug: 'bezopasno-skachat-apk-android',
+    prompt: `Abstract 3D illustration of a glass package box with a translucent green shield overlay and download arrow, teal and emerald gradient, secure installation concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/bezopasnost/chto-delat-esli-dannye-uteklii.mdx',
+    slug: 'chto-delat-esli-dannye-uteklii',
+    prompt: `Abstract 3D illustration of a cracked translucent glass shield with red warning light leaking through fractures, dramatic crimson and deep charcoal gradient, data breach concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/bezopasnost/kak-nastroit-dvuhfaktornuyu-autentifikaciyu.mdx',
+    slug: 'kak-nastroit-dvuhfaktornuyu-autentifikaciyu',
+    prompt: `Abstract 3D illustration of two glowing golden keys interlocking above a glass lock icon, deep navy blue and gold gradient, authentication security concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/bezopasnost/kak-proverit-prilozhenie-na-virus.mdx',
+    slug: 'kak-proverit-prilozhenie-na-virus',
+    prompt: `Abstract 3D illustration of a glowing magnifying glass scanning floating app icons, red virus-like particles being neutralized by blue light, cool blue to crimson gradient, ${STYLE}`,
+  },
+
+  // === ANDROID / kak-sdelat (8) ====================================
+  {
+    file: 'src/pages/android/kak-sdelat/obnovit-android.mdx',
+    slug: 'android-obnovit-android',
+    prompt: `Abstract 3D illustration of an upward progress arrow emerging from a translucent smartphone silhouette, Android emerald green gradient, software update concept, minimalist composition, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/ochistit-kesh-android.mdx',
+    slug: 'android-ochistit-kesh-android',
+    prompt: `Abstract 3D illustration of a translucent glass trash can with digital data particles dissolving inside, emerald green gradient, storage clearing concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/perenos-dannyh-android.mdx',
+    slug: 'android-perenos-dannyh-android',
+    prompt: `Abstract 3D illustration of two translucent glass smartphones exchanging floating data packets between them, emerald green and teal gradient, smooth data transfer, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/sbros-nastroek-android.mdx',
+    slug: 'android-sbros-nastroek-android',
+    prompt: `Abstract 3D illustration of a circular refresh arrow wrapping around a translucent smartphone, emerald green gradient, fresh start factory reset concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/sinhronizaciya-android-pc.mdx',
+    slug: 'android-sinhronizaciya-android-pc',
+    prompt: `Abstract 3D illustration of a glass smartphone and laptop linked by synchronizing circular arrow loops, soft emerald green and blue gradient, cross-device sync concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/skachat-prilozhenie-ne-iz-google-play.mdx',
+    slug: 'android-skachat-prilozhenie-ne-iz-google-play',
+    prompt: `Abstract 3D illustration of a glass app icon floating beside multiple alternative sources, download arrows, teal and amber gradient, alternative app stores concept, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/ustanovit-apk-android.mdx',
+    slug: 'android-ustanovit-apk-android',
+    prompt: `Abstract 3D illustration of a glass package box dissolving into emerald green light particles, installation progress concept, clean gradient background, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/android/kak-sdelat/zamena-ehkrana-smartfona.mdx',
+    slug: 'android-zamena-ehkrana-smartfona',
+    prompt: `Abstract 3D illustration of a translucent smartphone with a pristine glass panel replacing a cracked one, soft silver and cool blue gradient, repair concept, ${STYLE}`,
+  },
+
+  // === IOS / kak-sdelat (3 популярных) =============================
+  {
+    file: 'src/pages/ios/kak-sdelat/perenesti-dannyie-na-novyi-iphone.mdx',
+    slug: 'ios-perenesti-dannyie-na-novyi-iphone',
+    prompt: `Abstract 3D illustration of two floating translucent iPhone shapes connected by a flowing light bridge, data packets traveling between them, soft silver and Apple blue gradient, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/ios/kak-sdelat/obnovit-ios.mdx',
+    slug: 'ios-obnovit-ios',
+    prompt: `Abstract 3D illustration of an upward progress arrow emerging from a translucent iPhone silhouette, Apple blue gradient, iOS software update concept, premium minimalist composition, ${STYLE}`,
+  },
+  {
+    file: 'src/pages/ios/kak-sdelat/ochistit-kesh-iphone.mdx',
+    slug: 'ios-ochistit-kesh-iphone',
+    prompt: `Abstract 3D illustration of a translucent glass trash can with digital data particles dissolving into light, soft sky blue gradient, iPhone cache clearing concept, ${STYLE}`,
   },
 ];
 
@@ -171,11 +280,19 @@ async function main() {
   let totalCost = 0;
   let lastBalance = null;
 
+  const force = process.argv.includes('--force');
+
   for (const t of TARGETS) {
     const filePath = path.join(ROOT, t.file);
     const outFile = path.join(HERO_DIR, `${t.slug}.webp`);
+    i++;
+    const exists = await access(outFile).then(() => true).catch(() => false);
+    if (exists && !force) {
+      console.log(`[${i}/${TARGETS.length}] skip (exists): ${t.slug}`);
+      continue;
+    }
     try {
-      console.log(`\n[${++i}/${TARGETS.length}] ${t.slug}`);
+      console.log(`\n[${i}/${TARGETS.length}] ${t.slug}`);
       const res = await runNano(t.prompt);
       if (typeof res.cost === 'number') totalCost += res.cost;
       if (typeof res.remaining === 'number') lastBalance = res.remaining;
