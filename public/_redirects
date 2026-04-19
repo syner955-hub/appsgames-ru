@@ -4,6 +4,9 @@
 # Поэтому здесь — только точечные правила для URL, на которые реально есть
 # внешние ссылки. Для всего остального старого мусора отдаём обычный 404.
 
+# === WWW → apex (избавляемся от дублей для индексации)
+https://www.appsgames.ru/*   https://appsgames.ru/:splat   301!
+
 # === Корзина A: URL оставлены прежними, редиректов НЕТ.
 #   /dopolnitelnyjj-soft/ehmulyator-android/
 #   /dopolnitelnyjj-soft/ehmulyator-ios-ipad/
@@ -19,6 +22,7 @@
 /rabota-s-itunes/sinhronizacia-s-iphone-ipad-ipod/* /ios/kak-sdelat/sinhronizaciya-iphone-pc/           301
 /rabota-s-itunes/alternativa/*                      /obzory/alternativy-itunes/                         301
 /rabota-s-itunes/kak-skinut-film-na-ipad-iphone/*   /ios/kak-sdelat/zakachat-film-na-iphone/            301
+/rabota-s-itunes/itunes-ne-vidit-iphone/*           /ios/kak-sdelat/sinhronizaciya-iphone-pc/           301
 /poleznoe-ios/kak-zakachat-film-na-ipad-iphone/*    /ios/kak-sdelat/zakachat-film-na-iphone/            301
 /poleznoe-dlya-android/sinhronizacia-s-pk/*         /android/kak-sdelat/sinhronizaciya-android-pc/      301
 /raznoe/ne-vklyuchaetsya-ipad/*                     /ios/kak-sdelat/ipad-ne-vklyuchaetsya/              301
@@ -26,8 +30,49 @@
 /poleznoe-ios/chem-otlichaetsya-ajjfon-5-ot-5s/*    /ios/                                               301
 /raznoe/rozovyjj-iphone-7/*                         /ios/                                               301
 
+# === Старые WP-архивы по датам → главная
+/2013/*              /       301
+/2014/*              /       301
+/2015/*              /       301
+/2016/*              /       301
+/2017/*              /       301
+/2018/*              /       301
+/2019/*              /       301
+/2020/*              /       301
+/2021/*              /       301
+/2022/*              /       301
+/2023/*              /       301
+/2024/*              /       301
+/2025/*              /       301
+
+# === Старые WP-категории → ближайший хаб
+/category/obzory/*               /obzory/        301
+/category/sovety/*               /sovety/        301
+/category/ios/*                  /ios/           301
+/category/android/*              /android/       301
+/category/*                      /               301
+/tag/*                           /               301
+/author/*                        /               301
+/page/*                          /               301
+
+# === Старые WP-фиды → главная
+/feed/*                          /               301
+/comments/feed/*                 /               301
+/*/feed/*                        /               301
+
+# === Старый WP sitemap → новый
+/sitemap_index.xml               /sitemap-index.xml   301
+/post-sitemap.xml                /sitemap-0.xml       301
+/page-sitemap.xml                /sitemap-0.xml       301
+/category-sitemap.xml            /sitemap-0.xml       301
+
 # === WP-мусор: закрываем 301 на главную (боты перестанут долбиться)
 /wp-content/*        /       301
+/wp-includes/*       /       301
 /wp-admin/*          /       301
+/wp-json/*           /       301
 /wp-login.php        /       301
+/wp-cron.php         /       301
 /xmlrpc.php          /       301
+/readme.html         /       301
+/license.txt         /       301
