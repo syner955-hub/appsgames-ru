@@ -4,8 +4,9 @@
 # Поэтому здесь — только точечные правила для URL, на которые реально есть
 # внешние ссылки. Для всего остального старого мусора отдаём обычный 404.
 
-# === WWW → apex (избавляемся от дублей для индексации)
-https://www.appsgames.ru/*   https://appsgames.ru/:splat   301!
+# NOTE: WWW→apex редирект настраивается отдельно через
+#   Cloudflare Dashboard → Rules → Redirect Rules
+#   (cross-domain правила в _redirects конфликтуют с Pages)
 
 # === Корзина A: URL оставлены прежними, редиректов НЕТ.
 #   /dopolnitelnyjj-soft/ehmulyator-android/
