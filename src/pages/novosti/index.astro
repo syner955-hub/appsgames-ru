@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Новости мобильного мира: iPhone, Android, приложения';
+const description =
+  'Свежие новости про iOS, Android, App Store, Google Play, мессенджеры, VPN и приложения. Что работает в России, что меняется, и как это настроить.';
+
+// Читаем все MDX-файлы в текущей папке (/src/pages/novosti/*.mdx)
+type NewsFrontmatter = {
+  title: string;
+  description?: string;
+  pubDate: string | Date;
+  category?: string;
+  hero?: string;
+  heroAlt?: string;
+};
+
+const modules = import.meta.glob<{
+  frontmatter: NewsFrontmatter;
+  url?: string;
+}>('./*.mdx', { eager: true });
+
+const posts = Object.entries(modules)
+  .map(([file, m]) => {
+    const slug = file.replace(/^\.\//, '').replace(/\.mdx$/, '');
+    return {
+      title: m.frontmatter.title,
+      description: m.frontmatter.description ?? '',
+      pubDate: new Date(m.frontmatter.pubDate),
+      category: m.frontmatter.category ?? 'Новости',
+      hero: m.frontmatter.hero,
+      url: m.url ?? `/novosti/${slug}/`,
+    };
+  })
+  .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+
+const fmt = new Intl.DateTimeFormat('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="news-hub container">
+    <header class="news-hub__head">
+      <p class="news-hub__eyebrow">Раздел</p>
+      <h1>Новости</h1>
+      <p class="news-hub__lead">
+        Ежедневные подборки — что происходит в мире iOS, Android и приложений.
+        Кратко, по делу, с разбором: как это касается тебя в России.
+      </p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="news-hub__empty">
+        Пока нет публикаций. Первые новости появятся в ближайшее время.
+      </p>
+    ) : (
+      <ul class="news-hub__list">
+        {posts.map((p) => (
+          <li class="news-hub__item">
+            <a href={p.url}>
+              {p.hero && (
+                <div class="news-hub__cover">
+                  <img src={p.hero} alt="" loading="lazy" />
+                </div>
+              )}
+              <div class="news-hub__body">
+                <p class="news-hub__meta">
+                  <span class="news-hub__cat">{p.category}</span>
+                  <span aria-hidden="true"> · </span>
+                  <time datetime={p.pubDate.toISOString()}>{fmt.format(p.pubDate)}</time>
+                </p>
+                <h2>{p.title}</h2>
+                {p.description && <p class="news-hub__desc">{p.description}</p>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .news-hub {
+    max-width: 860px;
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .news-hub__head {
+    margin-bottom: 2.5rem;
+  }
+  .news-hub__eyebrow {
+    margin: 0 0 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .news-hub__head h1 {
+    margin: 0 0 0.7rem;
+    font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    letter-spacing: -0.02em;
+  }
+  .news-hub__lead {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--fg-muted);
+    max-width: 60ch;
+  }
+  .news-hub__empty {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    color: var(--fg-muted);
+  }
+  .news-hub__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .news-hub__item a {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.2rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    text-decoration: none;
+    color: var(--fg);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .news-hub__item a:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    transform: translateY(-1px);
+  }
+  .news-hub__cover {
+    line-height: 0;
+  }
+  .news-hub__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 4px);
+    aspect-ratio: 16 / 10;
+    display: block;
+  }
+  .news-hub__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .news-hub__meta {
+    margin: 0 0 0.5rem;
+    font-size: 0.78rem;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .news-hub__cat {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .news-hub__item h2 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+  .news-hub__desc {
+    margin: 0;
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  @media (max-width: 600px) {
+    .news-hub__item a {
+      grid-template-columns: 1fr;
+    }
+    .news-hub__cover img {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>

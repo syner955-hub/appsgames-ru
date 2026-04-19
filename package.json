@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "og": "node scripts/generate-og.mjs",
-    "og:ai": "node scripts/generate-ai-hero.mjs"
+    "og:ai": "node scripts/generate-ai-hero.mjs",
+    "publish": "node scripts/auto-publish.mjs",
+    "publish:dry": "DRY_RUN=1 node scripts/auto-publish.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "rss-parser": "^3.13.0",
     "satori": "^0.26.0",
     "sharp": "^0.34.5"
   }

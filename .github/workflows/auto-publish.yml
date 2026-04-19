@@ -1,0 +1,68 @@
+name: Auto-publish news
+
+on:
+  schedule:
+    # 3 запуска в день в разное время (UTC). МСК = UTC+3.
+    # 07:00 UTC = 10:00 МСК (утро)
+    # 12:00 UTC = 15:00 МСК (день)
+    # 17:00 UTC = 20:00 МСК (вечер)
+    - cron: '0 7,12,17 * * *'
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "Сколько статей сгенерить (по умолчанию 1)"
+        required: false
+        default: "1"
+      dry_run:
+        description: "DRY_RUN (не коммитить, только лог)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Generate articles
+        env:
+          NANO_GPT_API_KEY: ${{ secrets.NANO_GPT_API_KEY }}
+          MAX_PER_RUN: ${{ github.event.inputs.count || '1' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+        run: node scripts/auto-publish.mjs
+
+      - name: Regenerate OG previews
+        if: github.event.inputs.dry_run != 'true'
+        run: node scripts/generate-og.mjs
+
+      - name: Commit and push if new articles
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "appsgames-bot"
+          git config user.email "bot@appsgames.ru"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add -A
+            git commit -m "chore(news): auto-published $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          else
+            echo "No changes to commit."
+          fi
