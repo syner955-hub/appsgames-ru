@@ -5,21 +5,61 @@ const title = 'Безопасность и приватность на смар�
 const description =
   'Как защитить телефон от взлома, утечек и слежки: проверка APK, восстановление доступа, надёжные источники приложений, безопасные настройки iOS и Android.';
 
-const articles = [
+const sections = [
   {
-    href: '/bezopasnost/bezopasno-skachat-apk-android/',
-    title: 'Как безопасно скачать APK на Android',
-    desc: 'Где брать APK, как проверить через VirusTotal, на какие разрешения смотреть и что делать, если уже ткнули.',
+    title: 'Аутентификация и пароли',
+    items: [
+      {
+        href: '/bezopasnost/kak-nastroit-dvuhfaktornuyu-autentifikaciyu/',
+        title: 'Как настроить двухфакторную аутентификацию',
+        desc: '2FA для Apple ID, Google, банков, мессенджеров. Что выбрать и как делать бэкап кодов.',
+      },
+      {
+        href: '/poleznoe-ios/vosstanavlivit-parol-ot-apple-id/',
+        title: 'Как восстановить пароль от Apple ID',
+        desc: 'Три официальных способа, что делать, если забыли и почту, и включён ключ восстановления.',
+      },
+      {
+        href: '/obzory/menedzhery-parolei/',
+        title: 'Лучшие менеджеры паролей',
+        desc: '1Password, Bitwarden, iCloud Keychain, Proton Pass. Что выбрать и как перейти.',
+      },
+    ],
   },
   {
-    href: '/poleznoe-ios/vosstanavlivit-parol-ot-apple-id/',
-    title: 'Как восстановить пароль от Apple ID',
-    desc: 'Три официальных способа, что делать, если забыли и почту, и включён ключ восстановления.',
+    title: 'Вирусы и утечки',
+    items: [
+      {
+        href: '/bezopasnost/kak-proverit-prilozhenie-na-virus/',
+        title: 'Как проверить приложение на вирус',
+        desc: 'VirusTotal, Play Protect, Bitdefender. Признаки заражения и что делать, если поймали.',
+      },
+      {
+        href: '/bezopasnost/chto-delat-esli-dannye-uteklii/',
+        title: 'Что делать, если данные утекли',
+        desc: 'Проверяем на haveibeenpwned, меняем пароли, включаем 2FA, защищаем карты и паспорт.',
+      },
+      {
+        href: '/bezopasnost/bezopasno-skachat-apk-android/',
+        title: 'Как безопасно скачать APK на Android',
+        desc: 'Где брать APK, как проверить через VirusTotal, на какие разрешения смотреть.',
+      },
+    ],
   },
   {
-    href: '/poleznoe-dlya-android/udalennoe-upravlenie-ustrojjstvami-na-android/',
-    title: 'Удалённое управление Android',
-    desc: 'Google Find My Device, Samsung, Xiaomi, Huawei: как найти, заблокировать и стереть потерянный смартфон.',
+    title: 'Защита устройства',
+    items: [
+      {
+        href: '/poleznoe-dlya-android/udalennoe-upravlenie-ustrojjstvami-na-android/',
+        title: 'Удалённое управление Android',
+        desc: 'Google Find My Device, Samsung, Xiaomi, Huawei: как найти, заблокировать и стереть смартфон.',
+      },
+      {
+        href: '/ios/kak-sdelat/skryt-foto-iphone/',
+        title: 'Как скрыть фото на iPhone',
+        desc: '«Скрытые» с Face ID, заметки под паролем, сторонние хранилища. Где действительно надёжно.',
+      },
+    ],
   },
 ];
 ---
@@ -35,19 +75,21 @@ const articles = [
       </p>
     </header>
 
-    <section class="hub__group">
-      <h2>Актуальные материалы</h2>
-      <ul class="hub__list">
-        {articles.map((a) => (
-          <li class="hub__item">
-            <a href={a.href}>
-              <h3>{a.title}</h3>
-              <p class="hub__desc">{a.desc}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    {sections.map((sec) => (
+      <section class="hub__group">
+        <h2>{sec.title}</h2>
+        <ul class="hub__list">
+          {sec.items.map((a) => (
+            <li class="hub__item">
+              <a href={a.href}>
+                <h3>{a.title}</h3>
+                <p class="hub__desc">{a.desc}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 </BaseLayout>
 

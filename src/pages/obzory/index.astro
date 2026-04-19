@@ -5,21 +5,86 @@ const title = 'Обзоры приложений и подборки лучши�
 const description =
   'Честные обзоры приложений для iOS и Android, сравнения и подборки: альтернативы iTunes, эмуляторы, программы для работы с техникой.';
 
-const articles = [
+const sections = [
   {
-    href: '/obzory/alternativy-itunes/',
-    title: 'Альтернативы iTunes в 2026 году',
-    desc: 'iMazing, 3uTools, CopyTrans, Apple Devices, Finder, AltStore, iExplorer — чем заменить iTunes и для каких задач.',
+    title: 'Мессенджеры и коммуникации',
+    items: [
+      {
+        href: '/obzory/luchshie-messenzhery-2026/',
+        title: 'Лучшие мессенджеры 2026',
+        desc: 'Telegram, WhatsApp, Max, Signal, Viber, Discord. Под какие сценарии что подходит.',
+      },
+      {
+        href: '/obzory/whatsapp-vs-telegram/',
+        title: 'WhatsApp vs Telegram',
+        desc: 'Сравниваем по шифрованию, скорости, каналам, работе с файлами и удобству.',
+      },
+    ],
   },
   {
-    href: '/dopolnitelnyjj-soft/ehmulyator-ios-ipad/',
-    title: 'Эмулятор iOS: что работает, а что обман',
-    desc: 'Разбираем Xcode Simulator, облачные Appetize.io и BrowserStack, и почему «iPadian» — развод.',
+    title: 'Безопасность и приватность',
+    items: [
+      {
+        href: '/obzory/luchshie-vpn-iphone/',
+        title: 'Лучшие VPN для iPhone',
+        desc: 'Proton, NordVPN, Mullvad, 1.1.1.1, Outline. Что работает в РФ и сколько стоит.',
+      },
+      {
+        href: '/obzory/luchshie-vpn-android/',
+        title: 'Лучшие VPN для Android',
+        desc: 'Платные и бесплатные. Где скачать, если нет в Google Play.',
+      },
+      {
+        href: '/obzory/luchshie-antivirusy-android/',
+        title: 'Лучшие антивирусы для Android',
+        desc: 'Bitdefender, Kaspersky, Malwarebytes, Dr.Web. Нужен ли антивирус вообще.',
+      },
+      {
+        href: '/obzory/menedzhery-parolei/',
+        title: 'Лучшие менеджеры паролей',
+        desc: '1Password, Bitwarden, iCloud Keychain, Proton Pass. Что выбрать и как перейти.',
+      },
+    ],
   },
   {
-    href: '/dopolnitelnyjj-soft/ehmulyator-android/',
-    title: 'Эмулятор Android для PC и Mac: топ-6',
-    desc: 'BlueStacks, LDPlayer, NoxPlayer, MEmu, Google Play Games, Android Studio Emulator. Плюсы и минусы.',
+    title: 'Ежедневные приложения',
+    items: [
+      {
+        href: '/obzory/luchshie-brauzery-iphone/',
+        title: 'Лучшие браузеры для iPhone',
+        desc: 'Safari, Chrome, Firefox, Brave, Яндекс, DuckDuckGo. Что отличается и чем.',
+      },
+      {
+        href: '/obzory/luchshie-prilozheniya-dlya-chteniya/',
+        title: 'Лучшие приложения для чтения книг',
+        desc: 'Литрес, Bookmate, Kindle, KyBook, FBReader. Подписки, форматы, экосистемы.',
+      },
+      {
+        href: '/obzory/luchshie-prilozheniya-dlya-zametok/',
+        title: 'Лучшие приложения для заметок',
+        desc: 'Apple Notes, Notion, Obsidian, Bear, Google Keep, Standard Notes. Под разные задачи.',
+      },
+    ],
+  },
+  {
+    title: 'Программы для iOS и Android',
+    items: [
+      {
+        href: '/obzory/alternativy-itunes/',
+        title: 'Альтернативы iTunes в 2026 году',
+        desc: 'iMazing, 3uTools, CopyTrans, Apple Devices, Finder, AltStore, iExplorer — чем заменить iTunes.',
+      },
+      {
+        href: '/dopolnitelnyjj-soft/ehmulyator-ios-ipad/',
+        title: 'Эмулятор iOS: что работает, а что обман',
+        desc: 'Xcode Simulator, облачные Appetize.io и BrowserStack, и почему «iPadian» — развод.',
+      },
+      {
+        href: '/dopolnitelnyjj-soft/ehmulyator-android/',
+        title: 'Эмулятор Android для PC и Mac',
+        desc: 'BlueStacks, LDPlayer, NoxPlayer, MEmu, Google Play Games, Android Studio Emulator.',
+      },
+    ],
   },
 ];
 ---
@@ -35,19 +100,21 @@ const articles = [
       </p>
     </header>
 
-    <section class="hub__group">
-      <h2>Сравнения и подборки</h2>
-      <ul class="hub__list">
-        {articles.map((a) => (
-          <li class="hub__item">
-            <a href={a.href}>
-              <h3>{a.title}</h3>
-              <p class="hub__desc">{a.desc}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    {sections.map((sec) => (
+      <section class="hub__group">
+        <h2>{sec.title}</h2>
+        <ul class="hub__list">
+          {sec.items.map((a) => (
+            <li class="hub__item">
+              <a href={a.href}>
+                <h3>{a.title}</h3>
+                <p class="hub__desc">{a.desc}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 </BaseLayout>
 

@@ -5,31 +5,71 @@ const title = 'Советы по работе с iPhone и Android';
 const description =
   'Практические советы, которые экономят время и батарею. Настройки, лайфхаки, разбор частых ошибок для iOS и Android.';
 
-const articles = [
+const sections = [
   {
-    href: '/poleznoe-ios/kak-nastroit-iphone/',
-    title: 'Как настроить iPhone после покупки',
-    desc: 'Чек-лист первого часа: Apple ID, Face ID, iCloud, батарея, безопасность. Делается за 30 минут.',
+    title: 'Экономия и производительность',
+    items: [
+      {
+        href: '/sovety/kak-sehkonomit-batareyu-iphone/',
+        title: 'Как сэкономить батарею iPhone',
+        desc: '15 рабочих настроек: яркость, 5G, Background App Refresh, Always-On. Без мифов про свайпы.',
+      },
+      {
+        href: '/sovety/kak-uskorit-android/',
+        title: 'Как ускорить Android',
+        desc: 'Чистим память, удаляем bloatware, отключаем анимации. Что реально работает, а что миф.',
+      },
+      {
+        href: '/sovety/kak-umenshit-trafik-na-telefone/',
+        title: 'Как уменьшить мобильный трафик',
+        desc: 'Настраиваем соцсети, мессенджеры, YouTube, облака — чтобы пакет доживал до конца месяца.',
+      },
+      {
+        href: '/sovety/osvobodit-mesto-na-iphone/',
+        title: 'Как освободить место на iPhone',
+        desc: 'Пошагово очищаем 10–50 ГБ: фото, кеш, тяжёлые приложения и загадочное «Другое».',
+      },
+    ],
   },
   {
-    href: '/android/kak-sdelat/sinhronizaciya-android-pc/',
-    title: 'Как синхронизировать Android с компьютером',
-    desc: 'Phone Link для Windows, Android File Transfer для Mac, облако и KDE Connect — выбираем способ под задачу.',
+    title: 'Контроль расходов',
+    items: [
+      {
+        href: '/sovety/upravlyat-podpiskami-app-store/',
+        title: 'Как управлять подписками App Store',
+        desc: 'Смотрим, отменяем, возвращаем деньги. Семейный доступ и нюансы российских карт.',
+      },
+    ],
   },
   {
-    href: '/ios/kak-sdelat/sinhronizaciya-iphone-pc/',
-    title: 'Как синхронизировать iPhone с компьютером',
-    desc: 'Apple Devices на Windows, Finder на Mac, Wi-Fi и облако. Разбираем, что куда идёт.',
-  },
-  {
-    href: '/poleznoe-ios/podklyuchit-ajjfon-k-televizoru/',
-    title: 'Как подключить iPhone к телевизору',
-    desc: 'AirPlay, HDMI-переходник и DLNA — без лишнего софта и провалов.',
-  },
-  {
-    href: '/android/kak-sdelat/skachat-prilozhenie-ne-iz-google-play/',
-    title: 'Как скачать приложение мимо Google Play',
-    desc: 'Безопасные альтернативы: RuStore, APKMirror, F-Droid, Huawei AppGallery.',
+    title: 'Настройка и синхронизация',
+    items: [
+      {
+        href: '/poleznoe-ios/kak-nastroit-iphone/',
+        title: 'Как настроить iPhone после покупки',
+        desc: 'Чек-лист первого часа: Apple ID, Face ID, iCloud, батарея, безопасность. За 30 минут.',
+      },
+      {
+        href: '/android/kak-sdelat/sinhronizaciya-android-pc/',
+        title: 'Как синхронизировать Android с компьютером',
+        desc: 'Phone Link, Android File Transfer, облако и KDE Connect — выбираем способ под задачу.',
+      },
+      {
+        href: '/ios/kak-sdelat/sinhronizaciya-iphone-pc/',
+        title: 'Как синхронизировать iPhone с компьютером',
+        desc: 'Apple Devices на Windows, Finder на Mac, Wi-Fi и облако. Что куда идёт.',
+      },
+      {
+        href: '/poleznoe-ios/podklyuchit-ajjfon-k-televizoru/',
+        title: 'Как подключить iPhone к телевизору',
+        desc: 'AirPlay, HDMI-переходник и DLNA — без лишнего софта и провалов.',
+      },
+      {
+        href: '/android/kak-sdelat/skachat-prilozhenie-ne-iz-google-play/',
+        title: 'Как скачать приложение мимо Google Play',
+        desc: 'Безопасные альтернативы: RuStore, APKMirror, F-Droid, Huawei AppGallery.',
+      },
+    ],
   },
 ];
 ---
@@ -45,19 +85,21 @@ const articles = [
       </p>
     </header>
 
-    <section class="hub__group">
-      <h2>Полезное для повседневной жизни</h2>
-      <ul class="hub__list">
-        {articles.map((a) => (
-          <li class="hub__item">
-            <a href={a.href}>
-              <h3>{a.title}</h3>
-              <p class="hub__desc">{a.desc}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    {sections.map((sec) => (
+      <section class="hub__group">
+        <h2>{sec.title}</h2>
+        <ul class="hub__list">
+          {sec.items.map((a) => (
+            <li class="hub__item">
+              <a href={a.href}>
+                <h3>{a.title}</h3>
+                <p class="hub__desc">{a.desc}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 </BaseLayout>
 
