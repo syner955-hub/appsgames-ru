@@ -44,13 +44,21 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -t ed25519 -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Rsync to origin
+      - name: Rsync site to origin
         run: |
           rsync -avz --delete \
             --exclude '.well-known' \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" \
             ./dist/ \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
+
+      - name: Upload nginx redirects include
+        # Кладём в /var/www/appsgames_ru_usr/data/nginx-redirects.conf
+        # (DEPLOY_PATH = /var/www/appsgames_ru_usr/data/www/appsgames.ru)
+        run: |
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
+            deploy/nginx-redirects.conf \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/../../nginx-redirects.conf
 
       - name: Cleanup SSH key
         if: always()
