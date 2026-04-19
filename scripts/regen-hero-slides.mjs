@@ -1,28 +1,31 @@
 #!/usr/bin/env node
 /**
- * Перегенерация 6 hero-картинок для главной страницы.
+ * Перегенерация AI-hero картинок в новом фото-реалистичном стиле.
  *
- * Что делает:
- *   1. Читает все MDX (как это делает src/pages/index.astro).
- *   2. Сортирует по pubDate desc, приоритет — свежие из /novosti/.
- *   3. Берёт топ-6 (= то, что реально показывается в HeroCarousel).
- *   4. Для каждой:
- *        - формирует сцену из title + description + category;
- *        - добавляет стиль-пресет (product photo / hands / flat-lay / macro)
- *          по хэшу slug — тот же, что в scripts/generate-ai-hero.mjs;
- *        - генерит 1024x1024 через FLUX 2 Pro;
- *        - ресайзит в 1200x630 webp и пишет в public/images/hero/<slug>.webp
- *          (перезаписывая старую AI-шную обложку);
- *        - если у MDX ещё нет frontmatter поля `hero:` — дописывает его.
+ * Режимы:
+ *   --mode=hero   (default)  top-6 из hero-карусели (свежие /novosti/)
+ *   --mode=home              всё что видно на главной: hero + feed + cornerstone
+ *                            (~ 15-20 уникальных статей, ~$0.60-0.80)
+ *
+ * Дополнительные флаги:
+ *   --skip-recent-min=N   не трогать картинки моложе N минут (default 60)
+ *                         — защита, чтобы не переплатить за только что
+ *                         сгенерированные свежие hero
+ *   --dry                 только показать список, не генерировать
+ *
+ * Для каждой статьи:
+ *   - формирует сцену из title + description + category;
+ *   - добавляет стиль-пресет (product photo / hands / flat-lay / macro),
+ *     выбираемый по хэшу slug (совпадает с generate-ai-hero.mjs);
+ *   - генерит 1024x1024 через FLUX 2 Pro;
+ *   - ресайзит в 1200x630 webp и пишет в public/images/hero/<slug>.webp;
+ *   - если в frontmatter MDX нет hero: — дописывает его.
  *
  * Запуск:
- *   NANO_GPT_API_KEY=sk-nano-... node scripts/regen-hero-slides.mjs
- *
- * Стоимость:
- *   6 × FLUX 2 Pro ≈ $0.25 на Nano-GPT.
+ *   NANO_GPT_API_KEY=sk-nano-... node scripts/regen-hero-slides.mjs --mode=home
  */
 
-import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -34,8 +37,17 @@ const TOKEN = process.env.NANO_GPT_API_KEY;
 const MODEL = process.env.NANO_GPT_MODEL || 'flux-2-pro';
 const LIMIT = Number(process.env.HERO_LIMIT || 6);
 
-if (!TOKEN) {
-  console.error('NANO_GPT_API_KEY не задан.');
+// CLI флаги
+const args = process.argv.slice(2);
+const argMode = (args.find((a) => a.startsWith('--mode=')) || '').split('=')[1] || 'hero';
+const argSkipMin = Number(
+  (args.find((a) => a.startsWith('--skip-recent-min=')) || '--skip-recent-min=60')
+    .split('=')[1] || 60,
+);
+const argDry = args.includes('--dry');
+
+if (!TOKEN && !argDry) {
+  console.error('NANO_GPT_API_KEY не задан (используйте --dry для просмотра списка).');
   process.exit(1);
 }
 
@@ -188,6 +200,19 @@ function ensureHeroInFrontmatter(raw, heroPath, heroAlt) {
   return out;
 }
 
+function categoryOf(url) {
+  const m = url.match(/^\/([^/]+)\//);
+  return m ? m[1] : 'other';
+}
+
+// Cornerstone (Начать с этого) — должен совпадать с src/pages/index.astro
+const CORNERSTONE_HREFS = [
+  '/ios/kak-sdelat/perenesti-dannyie-na-novyi-iphone/',
+  '/android/kak-sdelat/sbros-nastroek-android/',
+  '/bezopasnost/kak-nastroit-dvuhfaktornuyu-autentifikaciyu/',
+  '/obzory/luchshie-messenzhery-2026/',
+];
+
 // --- MAIN ---------------------------------------------------------
 async function main() {
   await mkdir(HERO_DIR, { recursive: true });
@@ -208,6 +233,7 @@ async function main() {
       pubDate: new Date(fm.pubDate),
       isNews: url.startsWith('/novosti/'),
       fileKey: path.basename(f),
+      categorySlug: categoryOf(url),
     });
   }
 
@@ -220,6 +246,8 @@ async function main() {
 
   const pool = [];
   const seen = new Set();
+
+  // 1) hero: top-6 с приоритетом /novosti/
   for (const a of articles.filter((x) => x.isNews)) {
     if (pool.length >= LIMIT) break;
     pool.push(a);
@@ -232,9 +260,82 @@ async function main() {
     seen.add(a.url);
   }
 
-  console.log(`Перегенерирую ${pool.length} hero-картинок:\n`);
+  // 2) mode=home: добавляем feed (round-robin) + cornerstone
+  if (argMode === 'home') {
+    const FEED_LIMIT = 10;
+    const feedPool = articles.filter((a) => !seen.has(a.url));
+    const feedCatOrder = ['ios', 'android', 'obzory', 'sovety', 'bezopasnost'];
+    const byCat = new Map();
+    for (const a of feedPool) {
+      if (!byCat.has(a.categorySlug)) byCat.set(a.categorySlug, []);
+      byCat.get(a.categorySlug).push(a);
+    }
+    // в каждой категории: сначала с реальным hero, потом по имени файла desc
+    for (const list of byCat.values()) {
+      list.sort((a, b) => {
+        const ha = a.fm.hero ? 0 : 1;
+        const hb = b.fm.hero ? 0 : 1;
+        if (ha !== hb) return ha - hb;
+        return b.fileKey.localeCompare(a.fileKey);
+      });
+    }
+    const feed = [];
+    let safety = 0;
+    while (feed.length < FEED_LIMIT && safety++ < 200) {
+      let progressed = false;
+      for (const cat of feedCatOrder) {
+        if (feed.length >= FEED_LIMIT) break;
+        const list = byCat.get(cat);
+        if (!list || list.length === 0) continue;
+        const next = list.shift();
+        if (seen.has(next.url)) continue;
+        seen.add(next.url);
+        feed.push(next);
+        progressed = true;
+      }
+      if (!progressed) break;
+    }
+    for (const a of feed) pool.push(a);
+
+    // cornerstone
+    const byUrl = new Map(articles.map((a) => [a.url, a]));
+    for (const href of CORNERSTONE_HREFS) {
+      const a = byUrl.get(href);
+      if (!a) continue;
+      if (seen.has(a.url)) continue;
+      seen.add(a.url);
+      pool.push(a);
+    }
+  }
+
+  // 3) фильтр: пропускаем картинки, обновлённые в последние argSkipMin минут
+  const now = Date.now();
+  const skipMs = argSkipMin * 60 * 1000;
+  const filtered = [];
+  for (const a of pool) {
+    const slug = path.basename(a.file, '.mdx');
+    const outFile = path.join(HERO_DIR, `${slug}.webp`);
+    try {
+      const st = await stat(outFile);
+      if (now - st.mtimeMs < skipMs) {
+        console.log(`  ↷ skip (updated ${Math.round((now - st.mtimeMs) / 60000)} min ago): ${a.url}`);
+        continue;
+      }
+    } catch {
+      // файла нет — генерим
+    }
+    filtered.push(a);
+  }
+  pool.length = 0;
+  pool.push(...filtered);
+
+  console.log(`Перегенерирую ${pool.length} hero-картинок (mode=${argMode}):\n`);
   pool.forEach((a, i) => console.log(`  ${i + 1}. ${a.url}  (${a.fm.title.slice(0, 60)}…)`));
   console.log('');
+  if (argDry) {
+    console.log('--dry: выход без генерации.');
+    return;
+  }
 
   let totalCost = 0;
   for (let i = 0; i < pool.length; i++) {
