@@ -43,6 +43,8 @@ const fullTitle = title.includes('AppsGames') ? title : `${title} — AppsGames.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="ru" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -85,7 +87,6 @@ const fullTitle = title.includes('AppsGames') ? title : `${title} — AppsGames.
         name: 'AppsGames.ru',
         url: 'https://appsgames.ru/',
         logo: 'https://appsgames.ru/favicon.svg',
-        sameAs: [],
       })}
     />
 

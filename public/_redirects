@@ -62,6 +62,7 @@
 /*/feed/*                        /               301
 
 # === Старый WP sitemap → новый
+/sitemap.xml                     /sitemap-index.xml   301
 /sitemap_index.xml               /sitemap-index.xml   301
 /post-sitemap.xml                /sitemap-0.xml       301
 /page-sitemap.xml                /sitemap-0.xml       301
