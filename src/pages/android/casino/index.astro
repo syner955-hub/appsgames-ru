@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = 'Казино на телефон — скачать приложения для Android и iOS (2026)';
+const description =
+  'Скачать казино на Андроид и Айфон бесплатно. APK файлы, бонусы за установку, быстрый вывод. Рейтинг лучших мобильных казино 2026.';
+
+const brands = [
+  {
+    href: '/android/casino/slotozal/',
+    name: 'Slotozal',
+    bonus: '100% до 50 000 ₽',
+    freeSpins: '50 фриспинов',
+    image: '/images/casino/slotozal.png',
+  },
+  {
+    href: '/android/casino/maxslots/',
+    name: 'MaxSlots',
+    bonus: '150% до 40 000 ₽',
+    freeSpins: '30 фриспинов',
+    image: '/images/casino/maxslots.png',
+  },
+  {
+    href: '/android/casino/beef-casino/',
+    name: 'Beef Casino',
+    bonus: '150% до 60 000 ₽',
+    freeSpins: '40 фриспинов',
+    image: '/images/casino/beef-casino.png',
+  },
+  {
+    href: '/android/casino/legzo-casino/',
+    name: 'Legzo Casino',
+    bonus: '200% до 100 000 ₽',
+    freeSpins: '100 фриспинов',
+    image: '/images/casino/legzo-casino.png',
+  },
+  {
+    href: '/android/casino/leebet/',
+    name: 'Leebet',
+    bonus: '100% до 30 000 ₽',
+    freeSpins: '20 фриспинов',
+    image: '/images/casino/leebet.png',
+  },
+  {
+    href: '/android/casino/r7-casino/',
+    name: 'R7 Casino',
+    bonus: '200% до 50 000 ₽',
+    freeSpins: '50 фриспинов',
+    image: '/images/casino/r7-casino.png',
+  },
+  {
+    href: '/android/casino/starda-casino/',
+    name: 'Starda Casino',
+    bonus: '200% до 50 000 ₽',
+    freeSpins: '50 фриспинов',
+    image: '/images/casino/starda-casino.png',
+  },
+  {
+    href: '/android/casino/kometa-casino/',
+    name: 'Kometa Casino',
+    bonus: '100% до 50 000 ₽',
+    freeSpins: '200 фриспинов',
+    image: '/images/casino/kometa-casino.png',
+  },
+  {
+    href: '/android/casino/7k-casino/',
+    name: '7K Casino',
+    bonus: '100% до 15 000 ₽',
+    freeSpins: '50 фриспинов',
+    image: '/images/casino/7k-casino.png',
+  },
+  {
+    href: '/android/casino/vavada/',
+    name: 'Vavada',
+    bonus: '100% до 50 000 ₽',
+    freeSpins: '100 фриспинов без депозита',
+    image: '/images/casino/vavada.png',
+  },
+  {
+    href: '/android/casino/vulkan/',
+    name: 'Вулкан',
+    bonus: '100% до 15 000 ₽',
+    freeSpins: '50 фриспинов',
+    image: '/images/casino/vulkan.png',
+  },
+  {
+    href: '/android/casino/pharaon-casino/',
+    name: 'Pharaon Casino',
+    bonus: '150% до 45 000 ₽',
+    freeSpins: '30 фриспинов',
+    image: '/images/casino/pharaon-casino.png',
+  },
+  {
+    href: '/android/casino/vodka-casino/',
+    name: 'Vodka Casino',
+    bonus: '200% до 80 000 ₽',
+    freeSpins: '60 фриспинов',
+    image: '/images/casino/vodka-casino.png',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hub container">
+    <h1>Казино на телефон — скачать приложения для Android и iOS</h1>
+    <p class="hub__intro">
+      APK-файлы мобильных казино с бонусами за установку. Каждое приложение проверено: работает на Android 5.0+, поддерживает вывод через СБП и карты МИР.
+    </p>
+
+    <div class="hub__grid">
+      {brands.map((b) => (
+        <a href={b.href} class="brand-card">
+          <img src={b.image} alt={`${b.name} логотип`} width="64" height="64" loading="lazy" />
+          <div class="brand-card__body">
+            <h2 class="brand-card__name">{b.name}</h2>
+            <p class="brand-card__bonus">{b.bonus}</p>
+            <p class="brand-card__spins">{b.freeSpins} за установку</p>
+          </div>
+          <span class="brand-card__cta">Скачать →</span>
+        </a>
+      ))}
+    </div>
+
+    <section class="hub__text">
+      <h2>Как установить APK казино на Android</h2>
+      <p>Google Play не размещает приложения онлайн-казино — установка идёт через APK-файлы напрямую. Процесс одинаков для всех брендов:</p>
+      <ol>
+        <li>Откройте «Настройки» → «Безопасность» → включите «Неизвестные источники»</li>
+        <li>Скачайте APK со страницы нужного казино</li>
+        <li>Откройте загруженный файл и нажмите «Установить»</li>
+        <li>Запустите приложение с главного экрана</li>
+      </ol>
+      <p>Для iPhone — используйте мобильную версию сайта через Safari. Добавьте ярлык на главный экран для быстрого доступа.</p>
+
+      <h2>Как выбрать казино для телефона</h2>
+      <p>На что смотреть при выборе мобильного казино:</p>
+      <ul>
+        <li><strong>Лицензия</strong> — Curaçao, MGA или другой регулятор</li>
+        <li><strong>Скорость вывода</strong> — СБП от 5 минут, карты до 24 часов</li>
+        <li><strong>Бонусы</strong> — размер приветственного пакета и вейджер</li>
+        <li><strong>Каталог игр</strong> — количество слотов и провайдеры</li>
+        <li><strong>Способы оплаты</strong> — карты МИР, СБП, крипта</li>
+      </ul>
+    </section>
+  </section>
+
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: title,
+      description: description,
+      url: 'https://appsgames.ru/android/casino/',
+      inLanguage: 'ru-RU',
+    })}
+  />
+</BaseLayout>
+
+<style>
+  .hub {
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: clamp(3rem, 5vw, 4rem);
+    max-width: 960px;
+  }
+  .hub h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.6rem, 1.3rem + 1.5vw, 2.4rem);
+  }
+  .hub__intro {
+    margin: 0 0 2rem;
+    color: var(--fg-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .hub__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 640px) {
+    .hub__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .brand-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .brand-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+  }
+  .brand-card img {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .brand-card__body {
+    flex: 1;
+    min-width: 0;
+  }
+  .brand-card__name {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 1.2;
+  }
+  .brand-card__bonus {
+    margin: 0.3rem 0 0;
+    font-size: 0.88rem;
+    color: var(--fg-muted);
+  }
+  .brand-card__spins {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .brand-card__cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .hub__text h2 {
+    margin: 2rem 0 0.8rem;
+    font-size: 1.3rem;
+  }
+  .hub__text p {
+    color: var(--fg-muted);
+    line-height: 1.6;
+  }
+  .hub__text ol,
+  .hub__text ul {
+    padding-left: 1.5rem;
+    color: var(--fg-muted);
+    line-height: 1.7;
+  }
+  .hub__text li {
+    margin-bottom: 0.4rem;
+  }
+</style>
