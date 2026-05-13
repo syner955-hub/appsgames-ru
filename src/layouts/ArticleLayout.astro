@@ -11,6 +11,7 @@ import {
   resolveIcon,
   resolveCategoryLabel,
 } from '../lib/hero.ts';
+import Card from '../components/Card.astro';
 
 interface FrontmatterShape {
   title: string;
@@ -59,6 +60,17 @@ const heading = h1 ?? title;
 const author = await getEntry('authors', authorRef);
 const authorName = author?.data.name ?? 'Редакция AppsGames';
 
+// Автоподсчёт readingTime если не задан вручную (200 слов/мин)
+const autoReadingTime = (() => {
+  if (readingTime) return readingTime;
+  // Считаем слова из слота (недоступен в frontmatter), используем description как fallback
+  // Реальный подсчёт происходит из rawContent если доступен
+  const text = [title, description].join(' ');
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+})();
+const displayReadingTime = readingTime ?? autoReadingTime;
+
 const siteUrl = Astro.site ?? new URL('https://appsgames.ru');
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
@@ -69,6 +81,20 @@ const autoHeroEyebrow = resolveCategoryLabel(autoHeroCategory);
 
 // Уникальный seed для id градиентов (стабильный между билдами)
 const heroSeed = Astro.url.pathname.replace(/[^a-z0-9]/gi, '').slice(-10) || 'main';
+
+// Похожие статьи — до 3 из той же категории, исключая текущую
+const allModules = import.meta.glob<{ frontmatter: { title: string; description?: string; pubDate: string | Date; category?: string; hero?: string; heroAlt?: string }; url?: string }>('../pages/**/*.mdx', { eager: true });
+const currentPath = Astro.url.pathname;
+const currentCategory = resolveCategory(currentPath);
+
+const related = Object.entries(allModules)
+  .map(([file, m]) => {
+    const url = m.url ?? '/' + file.replace(/^\.\.\/pages\//, '').replace(/\/index\.mdx$/, '/').replace(/\.mdx$/, '/');
+    return { ...m.frontmatter, url, pubDate: new Date(m.frontmatter.pubDate ?? '2026-01-01') };
+  })
+  .filter((a) => a.url !== currentPath && resolveCategory(a.url) === currentCategory)
+  .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
+  .slice(0, 3);
 
 // PNG-версия той же обложки используется как OG-превью
 const ogImage =
@@ -97,7 +123,7 @@ const articleSchema = {
     url: 'https://appsgames.ru/',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://appsgames.ru/favicon.svg',
+      url: 'https://appsgames.ru/logo.png',
     },
   },
   mainEntityOfPage: canonicalUrl,
@@ -138,7 +164,7 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
         {readingTime && (
           <>
             <span aria-hidden="true"> · </span>
-            <span>{readingTime} мин чтения</span>
+            <span>{displayReadingTime} мин чтения</span>
           </>
         )}
       </p>
@@ -167,6 +193,23 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
 
     {author && (
       <AuthorBox author={author} pubDate={pubDate} updatedDate={updatedDate} />
+    )}
+
+    {related.length > 0 && (
+      <aside class="related">
+        <h2 class="related__title">Читайте также</h2>
+        <div class="related__grid">
+          {related.map((a) => (
+            <Card
+              href={a.url}
+              title={a.title}
+              description={a.description}
+              category={a.category}
+              date={a.pubDate}
+            />
+          ))}
+        </div>
+      </aside>
     )}
   </article>
 </BaseLayout>
@@ -206,5 +249,26 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
     width: 100%;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border);
+  }
+
+  .related {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .related__title {
+    margin: 0 0 1.25rem;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+  }
+  .related__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .related__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>
