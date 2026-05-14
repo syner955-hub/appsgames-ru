@@ -298,14 +298,18 @@ const fmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' });
 
     let idx = 0;
     let timer = null;
+    let trackWidth = track.clientWidth;
     const INTERVAL = 6500;
+
+    // Обновляем ширину только при ресайзе
+    window.addEventListener('resize', () => { trackWidth = track.clientWidth; }, { passive: true });
 
     function scrollTo(i, smooth = true) {
       idx = (i + slides.length) % slides.length;
       const slide = slides[idx];
       if (!slide) return;
       track.scrollTo({
-        left: slide.offsetLeft,
+        left: idx * trackWidth,
         behavior: smooth ? 'smooth' : 'auto',
       });
       slides.forEach((s, k) =>
@@ -343,7 +347,7 @@ const fmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' });
     track.addEventListener('scroll', () => {
       if (scrollT) clearTimeout(scrollT);
       scrollT = setTimeout(() => {
-        const i = Math.round(track.scrollLeft / track.clientWidth);
+        const i = Math.round(track.scrollLeft / trackWidth);
         if (i !== idx && i >= 0 && i < slides.length) {
           idx = i;
           slides.forEach((s, k) =>
