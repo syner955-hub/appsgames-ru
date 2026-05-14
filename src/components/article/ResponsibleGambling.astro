@@ -1,0 +1,54 @@
+---
+interface Props {
+  text?: string;
+}
+const { text = '18+. Азартные игры могут вызывать зависимость. Играйте ответственно.' } = Astro.props;
+---
+
+<aside class="rg-notice" aria-label="Ответственная игра">
+  <span class="rg-notice__badge">18+</span>
+  <p class="rg-notice__text">{text}</p>
+  <a class="rg-notice__link" href="https://www.gamblingtherapy.org/ru/" target="_blank" rel="noopener">Помощь при зависимости →</a>
+</aside>
+
+<style>
+  .rg-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-left: 4px solid #dc3545;
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+  .rg-notice__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dc3545;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .rg-notice__text {
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    line-height: 1.4;
+  }
+  .rg-notice__link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+</style>

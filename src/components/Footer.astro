@@ -26,6 +26,7 @@ const year = new Date().getFullYear();
     </nav>
 
     <p class="site-footer__copy">© {year} AppsGames.ru</p>
+    <p class="site-footer__disclaimer">18+ | Азартные игры могут вызывать зависимость | <a href="/gambling-disclaimer/">Играйте ответственно</a></p>
   </div>
 </footer>
 
@@ -76,5 +77,15 @@ const year = new Date().getFullYear();
     padding-top: 1.5rem;
     border-top: 1px solid var(--border);
     color: var(--fg-subtle);
+  }
+  .site-footer__disclaimer {
+    grid-column: 1 / -1;
+    margin: 0.4rem 0 0;
+    font-size: 0.78rem;
+    color: var(--fg-subtle);
+  }
+  .site-footer__disclaimer a {
+    color: var(--fg-subtle);
+    text-decoration: underline;
   }
 </style>
