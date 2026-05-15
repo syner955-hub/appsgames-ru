@@ -2,11 +2,9 @@ name: Auto-publish news
 
 on:
   schedule:
-    # 3 запуска в день в разное время (UTC). МСК = UTC+3.
-    # 07:00 UTC = 10:00 МСК (утро)
-    # 12:00 UTC = 15:00 МСК (день)
-    # 17:00 UTC = 20:00 МСК (вечер)
-    - cron: '0 7,12,17 * * *'
+    # 1 запуск в день (UTC). МСК = UTC+3.
+    # 09:00 UTC = 12:00 МСК (день)
+    - cron: '0 9 * * *'
   workflow_dispatch:
     inputs:
       count:
