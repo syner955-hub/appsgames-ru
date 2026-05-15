@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/prose.css';
+
+const title = 'Скачать приложения на Андроид бесплатно: каталог APK 2026';
+const description = 'Каталог проверенных приложений для Android. Скачайте мессенджеры, навигаторы, банковские приложения, игры и утилиты бесплатно.';
+
+const apps = [
+  { href: '/apps/telegram/', name: 'Telegram', category: 'Мессенджеры', desc: 'Быстрый мессенджер с каналами, группами и ботами', color: '#0088cc' },
+  { href: '/apps/whatsapp/', name: 'WhatsApp', category: 'Мессенджеры', desc: 'Мессенджер с end-to-end шифрованием для звонков и переписки', color: '#25D366' },
+  { href: '/apps/vk/', name: 'ВКонтакте', category: 'Соцсети', desc: 'Соцсеть с музыкой, видео, сообществами и мессенджером', color: '#0077FF' },
+  { href: '/apps/yandex-navigator/', name: 'Яндекс Навигатор', category: 'Навигация', desc: 'Навигатор с пробками, камерами и голосовым управлением', color: '#FC3F1D' },
+  { href: '/apps/2gis/', name: '2ГИС', category: 'Навигация', desc: 'Карты городов с маршрутами транспорта и справочником организаций', color: '#2DB842' },
+  { href: '/apps/sberbank/', name: 'Сбербанк Онлайн', category: 'Финансы', desc: 'Мобильный банк: переводы, платежи, вклады, кредиты', color: '#21A038' },
+  { href: '/apps/tinkoff/', name: 'Тинькофф', category: 'Финансы', desc: 'Банковское приложение с инвестициями, кэшбэком и страхованием', color: '#FFDD2D' },
+  { href: '/apps/rustore/', name: 'RuStore', category: 'Магазины', desc: 'Российский магазин приложений, альтернатива Google Play', color: '#0077FF' },
+  { href: '/apps/adguard/', name: 'AdGuard', category: 'Утилиты', desc: 'Блокировщик рекламы для браузеров и приложений', color: '#68BC71' },
+  { href: '/apps/minecraft/', name: 'Minecraft', category: 'Игры', desc: 'Песочница с открытым миром: стройте, выживайте, исследуйте', color: '#62B47A' },
+  { href: '/apps/brawl-stars/', name: 'Brawl Stars', category: 'Игры', desc: 'Мультиплеерный шутер 3v3 от создателей Clash Royale', color: '#F9A825' },
+  { href: '/apps/genshin-impact/', name: 'Genshin Impact', category: 'Игры', desc: 'RPG с открытым миром, элементальной боевой системой и сюжетом', color: '#5B8BD4' },
+  { href: '/apps/vpn-master/', name: 'VPN Master', category: 'VPN', desc: 'Бесплатный VPN для обхода блокировок и защиты трафика', color: '#6C5CE7' },
+  { href: '/apps/spotify/', name: 'Spotify', category: 'Музыка', desc: 'Стриминг музыки и подкастов с персональными рекомендациями', color: '#1DB954' },
+  { href: '/apps/shazam/', name: 'Shazam', category: 'Музыка', desc: 'Распознавание музыки за секунды, история и плейлисты', color: '#0088FF' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="apps-hub container">
+    <h1>Приложения для Android: скачать бесплатно</h1>
+    <p class="apps-hub__intro">
+      Каталог проверенных приложений для Android. Обзоры, инструкции по установке и ссылки на официальные источники (Google Play, RuStore, сайты разработчиков).
+    </p>
+
+    <div class="apps-hub__grid">
+      {apps.map((app) => (
+        <a href={app.href} class="app-card">
+          <span class="app-card__icon" style={`background: ${app.color}`}>
+            {app.name.charAt(0)}
+          </span>
+          <div class="app-card__body">
+            <h2 class="app-card__name">{app.name}</h2>
+            <span class="app-card__cat">{app.category}</span>
+            <p class="app-card__desc">{app.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .apps-hub {
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: clamp(3rem, 5vw, 4rem);
+    max-width: 960px;
+  }
+  .apps-hub h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.6rem, 1.3rem + 1.5vw, 2.4rem);
+  }
+  .apps-hub__intro {
+    margin: 0 0 2rem;
+    color: var(--fg-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .apps-hub__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .apps-hub__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 900px) {
+    .apps-hub__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .app-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .app-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+    text-decoration: none;
+  }
+  .app-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .app-card__body {
+    min-width: 0;
+  }
+  .app-card__name {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+  .app-card__cat {
+    display: inline-block;
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .app-card__desc {
+    margin: 0.3rem 0 0;
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
