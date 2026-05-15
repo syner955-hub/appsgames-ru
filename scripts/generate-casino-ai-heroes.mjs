@@ -216,3 +216,4 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
+// This file was already run - adding new brands to generate
