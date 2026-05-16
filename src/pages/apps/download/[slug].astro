@@ -1,0 +1,272 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const apps = [
+    { slug: 'telegram', name: 'Telegram', pkg: 'org.telegram.messenger', size: '48 МБ', version: '11.6.2', android: '6.0+' },
+    { slug: 'whatsapp', name: 'WhatsApp', pkg: 'com.whatsapp', size: '80 МБ', version: '2.24.25', android: '5.0+' },
+    { slug: 'viber', name: 'Viber', pkg: 'com.viber.voip', size: '100 МБ', version: '22.5.1', android: '5.0+' },
+    { slug: 'signal', name: 'Signal', pkg: 'org.thoughtcrime.securesms', size: '113 МБ', version: '7.14.5', android: '5.0+' },
+    { slug: 'discord', name: 'Discord', pkg: 'com.discord', size: '129 МБ', version: '236.21', android: '7.0+' },
+    { slug: 'vk', name: 'ВКонтакте', pkg: 'com.vkontakte.android', size: '176 МБ', version: '8.92', android: '7.0+' },
+    { slug: 'yandex-navigator', name: 'Яндекс Навигатор', pkg: 'ru.yandex.yandexnavi', size: '192 МБ', version: '20.5.0', android: '6.0+' },
+    { slug: '2gis', name: '2ГИС', pkg: 'ru.dublgis.dgismobile', size: '97 МБ', version: '7.5.0', android: '6.0+' },
+    { slug: 'google-maps', name: 'Google Maps', pkg: 'com.google.android.apps.maps', size: '81 МБ', version: '11.128.0', android: '6.0+' },
+    { slug: 'waze', name: 'Waze', pkg: 'com.waze', size: '208 МБ', version: '4.105.0', android: '6.0+' },
+    { slug: 'sberbank', name: 'Сбербанк Онлайн', pkg: 'ru.sberbankmobile', size: '208 МБ', version: '15.5.0', android: '7.0+' },
+    { slug: 'tinkoff', name: 'Тинькофф', pkg: 'com.idamob.tinkoff.android', size: '304 МБ', version: '6.45.0', android: '7.0+' },
+    { slug: 'alfa-bank', name: 'Альфа-Банк', pkg: 'ru.alfabank.mobile.android', size: '150 МБ', version: '13.8.0', android: '7.0+' },
+    { slug: 'yumoney', name: 'ЮMoney', pkg: 'ru.yoomoney.sdk.auth', size: '80 МБ', version: '5.12.0', android: '6.0+' },
+    { slug: 'vpn-master', name: 'VPN Master', pkg: 'free.vpn.unblock.proxy.vpnmaster', size: '30 МБ', version: '8.5.0', android: '5.0+' },
+    { slug: 'windscribe', name: 'Windscribe VPN', pkg: 'com.windscribe.vpn', size: '30 МБ', version: '3.8.1', android: '6.0+' },
+    { slug: 'protonvpn', name: 'ProtonVPN', pkg: 'ch.protonvpn.android', size: '50 МБ', version: '5.5.0', android: '6.0+' },
+    { slug: 'nordvpn', name: 'NordVPN', pkg: 'com.nordvpn.android', size: '40 МБ', version: '6.25.0', android: '6.0+' },
+    { slug: 'spotify', name: 'Spotify', pkg: 'com.spotify.music', size: '97 МБ', version: '8.9.84', android: '5.0+' },
+    { slug: 'shazam', name: 'Shazam', pkg: 'com.shazam.android', size: '23 МБ', version: '14.50.0', android: '9.0+' },
+    { slug: 'youtube', name: 'YouTube', pkg: 'com.google.android.youtube', size: '144 МБ', version: '19.50.40', android: '8.0+' },
+    { slug: 'vlc', name: 'VLC', pkg: 'org.videolan.vlc', size: '46 МБ', version: '3.6.4', android: '4.2+' },
+    { slug: 'kinemaster', name: 'KineMaster', pkg: 'com.nexstreaming.app.kinemasterfree', size: '112 МБ', version: '7.5.8', android: '6.0+' },
+    { slug: 'capcut', name: 'CapCut', pkg: 'com.lemon.lvoverseas', size: '289 МБ', version: '13.5.0', android: '5.0+' },
+    { slug: 'yandex-music', name: 'Яндекс Музыка', pkg: 'ru.yandex.music', size: '32 МБ', version: '2024.12.2', android: '6.0+' },
+    { slug: 'google-chrome', name: 'Google Chrome', pkg: 'com.android.chrome', size: '12 МБ', version: '131.0.6778', android: '8.0+' },
+    { slug: 'yandex-browser', name: 'Яндекс Браузер', pkg: 'com.yandex.browser', size: '288 МБ', version: '24.12.5', android: '7.0+' },
+    { slug: 'wps-office', name: 'WPS Office', pkg: 'cn.wps.moffice_eng', size: '128 МБ', version: '18.9.2', android: '5.0+' },
+    { slug: 'camscanner', name: 'CamScanner', pkg: 'com.intsig.camscanner', size: '208 МБ', version: '7.0.5', android: '5.0+' },
+    { slug: 'rustore', name: 'RuStore', pkg: 'ru.vk.store', size: '50 МБ', version: '2.5.0', android: '5.0+' },
+    { slug: 'adguard', name: 'AdGuard', pkg: 'com.adguard.android', size: '61 МБ', version: '4.7.0', android: '5.0+' },
+    { slug: 'subway-surfers', name: 'Subway Surfers', pkg: 'com.kiloo.subwaysurf', size: '240 МБ', version: '3.35.0', android: '5.0+' },
+    { slug: 'temple-run-2', name: 'Temple Run 2', pkg: 'com.imangi.templerun2', size: '176 МБ', version: '1.108.0', android: '5.0+' },
+    { slug: 'candy-crush', name: 'Candy Crush Saga', pkg: 'com.king.candycrushsaga', size: '160 МБ', version: '1.275.0', android: '5.0+' },
+    { slug: 'fruit-ninja', name: 'Fruit Ninja', pkg: 'com.halfbrick.fruitninjafree', size: '46 МБ', version: '3.64.0', android: '4.1+' },
+    { slug: 'among-us', name: 'Among Us', pkg: 'com.innersloth.spacemafia', size: '13 МБ', version: '2024.11.26', android: '5.0+' },
+    { slug: 'asphalt-9', name: 'Asphalt 9: Legends', pkg: 'com.gameloft.android.ANMP.GloftA9HM', size: '30 МБ', version: '4.6.0', android: '5.0+' },
+    { slug: 'hill-climb-racing', name: 'Hill Climb Racing', pkg: 'com.fingersoft.hillclimb', size: '160 МБ', version: '1.62.0', android: '4.2+' },
+    { slug: 'real-racing-3', name: 'Real Racing 3', pkg: 'com.ea.game.r3_row', size: '112 МБ', version: '12.6.2', android: '5.0+' },
+    { slug: 'clash-of-clans', name: 'Clash of Clans', pkg: 'com.supercell.clashofclans', size: '753 МБ', version: '16.0.25', android: '5.0+' },
+    { slug: 'clash-royale', name: 'Clash Royale', pkg: 'com.supercell.clashroyale', size: '35 МБ', version: '3.3024.4', android: '5.0+' },
+    { slug: 'plants-vs-zombies-2', name: 'Plants vs. Zombies 2', pkg: 'com.ea.game.pvz2_row', size: '56 МБ', version: '11.5.1', android: '5.0+' },
+    { slug: 'plague-inc', name: 'Plague Inc.', pkg: 'com.miniclip.plagueinc', size: '161 МБ', version: '1.19.17', android: '5.0+' },
+    { slug: 'brawl-stars', name: 'Brawl Stars', pkg: 'com.supercell.brawlstars', size: '36 МБ', version: '58.209', android: '5.0+' },
+    { slug: 'pubg-mobile', name: 'PUBG Mobile', pkg: 'com.tencent.ig', size: '1.3 ГБ', version: '3.5.0', android: '5.1+' },
+    { slug: 'standoff-2', name: 'Standoff 2', pkg: 'com.axlebolt.standoff2', size: '113 МБ', version: '0.28.5', android: '5.0+' },
+    { slug: 'call-of-duty-mobile', name: 'Call of Duty: Mobile', pkg: 'com.activision.callofduty.shooter', size: '112 МБ', version: '1.0.45', android: '5.0+' },
+    { slug: 'shadow-fight-3', name: 'Shadow Fight 3', pkg: 'com.nekki.shadowfight3', size: '241 МБ', version: '1.37.2', android: '5.0+' },
+    { slug: 'genshin-impact', name: 'Genshin Impact', pkg: 'com.miHoYo.GenshinImpact', size: '33 МБ', version: '5.3.0', android: '8.0+' },
+    { slug: 'minecraft', name: 'Minecraft', pkg: 'com.mojang.minecraftpe', size: '200 МБ', version: '1.21.50', android: '5.0+' },
+  ];
+  return apps.map((app) => ({
+    params: { slug: app.slug },
+    props: { app },
+  }));
+};
+
+const { app } = Astro.props;
+const downloadUrl = `https://d.apkpure.net/b/APK/${app.pkg}?version=latest`;
+const playUrl = `https://play.google.com/store/apps/details?id=${app.pkg}`;
+---
+
+<BaseLayout title={`Скачать ${app.name} APK бесплатно на Android`} description={`Скачайте ${app.name} APK (${app.size}) бесплатно. Версия ${app.version}, Android ${app.android}.`}>
+  <section class="download-page container">
+    <div class="download-card">
+      <img src={`/images/apps/${app.slug}.webp`} alt={app.name} width="80" height="80" class="download-card__icon" />
+      <h1 class="download-card__title">Скачать {app.name}</h1>
+      <p class="download-card__subtitle">APK-файл для Android</p>
+
+      <div class="download-card__meta">
+        <div class="meta-item">
+          <span class="meta-label">Версия</span>
+          <span class="meta-value">{app.version}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Размер</span>
+          <span class="meta-value">{app.size}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Android</span>
+          <span class="meta-value">{app.android}</span>
+        </div>
+      </div>
+
+      <div class="download-card__timer" id="timer-block">
+        <p class="timer-text">Ссылка будет готова через <span id="countdown">5</span> сек...</p>
+        <div class="timer-bar"><div class="timer-bar__fill" id="timer-fill"></div></div>
+      </div>
+
+      <div class="download-card__buttons" id="buttons-block" style="display:none">
+        <a href={downloadUrl} class="btn-download" id="download-link" rel="nofollow noopener" target="_blank">
+          Скачать APK ({app.size})
+        </a>
+        <a href={playUrl} class="btn-play" rel="nofollow noopener" target="_blank">
+          Открыть в Google Play
+        </a>
+      </div>
+
+      <p class="download-card__note">Файл загружается с внешнего сервера. Если скачивание не началось, воспользуйтесь ссылкой на Google Play.</p>
+
+      <a href={`/apps/${app.slug}/`} class="download-card__back">← Вернуться к обзору {app.name}</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+(function() {
+  let seconds = 5;
+  const countdown = document.getElementById('countdown');
+  const timerFill = document.getElementById('timer-fill');
+  const timerBlock = document.getElementById('timer-block');
+  const buttonsBlock = document.getElementById('buttons-block');
+
+  timerFill.style.transition = 'width 1s linear';
+
+  const interval = setInterval(function() {
+    seconds--;
+    countdown.textContent = seconds;
+    timerFill.style.width = ((5 - seconds) / 5 * 100) + '%';
+
+    if (seconds <= 0) {
+      clearInterval(interval);
+      timerBlock.style.display = 'none';
+      buttonsBlock.style.display = 'flex';
+    }
+  }, 1000);
+})();
+</script>
+
+<style>
+  .download-page {
+    padding: clamp(2rem, 5vw, 4rem) 0;
+    display: flex;
+    justify-content: center;
+  }
+  .download-card {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+  }
+  .download-card__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    margin: 0 auto 1.2rem;
+    display: block;
+  }
+  .download-card__title {
+    margin: 0 0 0.3rem;
+    font-size: 1.5rem;
+  }
+  .download-card__subtitle {
+    margin: 0 0 1.5rem;
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+  }
+  .download-card__meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .meta-label {
+    font-size: 0.75rem;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .meta-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* Timer */
+  .download-card__timer {
+    margin-bottom: 1.5rem;
+  }
+  .timer-text {
+    margin: 0 0 0.8rem;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+  }
+  .timer-bar {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--bg-soft);
+    overflow: hidden;
+  }
+  .timer-bar__fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  /* Buttons */
+  .download-card__buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .btn-download:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--fg);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .btn-play:hover {
+    background: var(--bg-card);
+    text-decoration: none;
+  }
+
+  .download-card__note {
+    margin: 0 0 1.2rem;
+    font-size: 0.8rem;
+    color: var(--fg-subtle);
+    line-height: 1.4;
+  }
+  .download-card__back {
+    font-size: 0.88rem;
+    color: var(--fg-muted);
+  }
+  .download-card__back:hover {
+    color: var(--fg);
+  }
+</style>
