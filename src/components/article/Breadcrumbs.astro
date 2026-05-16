@@ -1,18 +1,26 @@
 ---
 interface Crumb {
-  name: string;
+  name?: string;
+  label?: string;
   url?: string;
+  href?: string;
 }
 interface Props {
   items: Crumb[];
 }
 const { items } = Astro.props;
 
+// Normalize: accept both name/url and label/href formats
+const normalized = items.map((c) => ({
+  name: c.name ?? c.label ?? '',
+  url: c.url ?? c.href,
+}));
+
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://appsgames.ru';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: items.map((c, i) => ({
+  itemListElement: normalized.map((c, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     name: c.name,
@@ -23,10 +31,10 @@ const jsonLd = {
 
 <nav class="breadcrumbs" aria-label="Хлебные крошки">
   <ol>
-    {items.map((c, i) => (
+    {normalized.map((c, i) => (
       <li>
         {c.url ? <a href={c.url}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
-        {i < items.length - 1 && <span class="breadcrumbs__sep" aria-hidden="true">/</span>}
+        {i < normalized.length - 1 && <span class="breadcrumbs__sep" aria-hidden="true">/</span>}
       </li>
     ))}
   </ol>

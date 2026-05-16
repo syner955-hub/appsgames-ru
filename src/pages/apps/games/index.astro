@@ -1,0 +1,281 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = 'Скачать игры на Андроид бесплатно: APK каталог 2026';
+const description = 'Лучшие игры для Android — аркады, гонки, стратегии, шутеры и RPG. Скачайте бесплатно APK с обзорами и ссылками на официальные источники.';
+
+const categories = [
+  {
+    name: 'Аркады',
+    apps: [
+      { href: '/apps/subway-surfers/', name: 'Subway Surfers', desc: 'Бесконечный раннер по железным путям', icon: '/images/apps/subway-surfers.webp' },
+      { href: '/apps/temple-run-2/', name: 'Temple Run 2', desc: 'Раннер с препятствиями в храме', icon: '/images/apps/temple-run-2.webp' },
+      { href: '/apps/candy-crush/', name: 'Candy Crush Saga', desc: 'Головоломка «три в ряд» с конфетами', icon: '/images/apps/candy-crush.webp' },
+      { href: '/apps/fruit-ninja/', name: 'Fruit Ninja', desc: 'Разрезайте фрукты одним движением', icon: '/images/apps/fruit-ninja.webp' },
+      { href: '/apps/among-us/', name: 'Among Us', desc: 'Социальная игра на вычисление предателя', icon: '/images/apps/among-us.webp' },
+    ],
+  },
+  {
+    name: 'Гонки',
+    apps: [
+      { href: '/apps/asphalt-9/', name: 'Asphalt 9: Legends', desc: 'Аркадные гонки на суперкарах', icon: '/images/apps/asphalt-9.webp' },
+      { href: '/apps/hill-climb-racing/', name: 'Hill Climb Racing', desc: 'Физическая гоночная аркада', icon: '/images/apps/hill-climb-racing.webp' },
+      { href: '/apps/real-racing-3/', name: 'Real Racing 3', desc: 'Реалистичный гоночный симулятор', icon: '/images/apps/real-racing-3.webp' },
+    ],
+  },
+  {
+    name: 'Стратегии',
+    apps: [
+      { href: '/apps/clash-of-clans/', name: 'Clash of Clans', desc: 'Стройте деревню и атакуйте врагов', icon: '/images/apps/clash-of-clans.webp' },
+      { href: '/apps/clash-royale/', name: 'Clash Royale', desc: 'Карточные бои в реальном времени', icon: '/images/apps/clash-royale.webp' },
+      { href: '/apps/plants-vs-zombies-2/', name: 'Plants vs. Zombies 2', desc: 'Tower defense с растениями против зомби', icon: '/images/apps/plants-vs-zombies-2.webp' },
+      { href: '/apps/plague-inc/', name: 'Plague Inc.', desc: 'Стратегия распространения патогена', icon: '/images/apps/plague-inc.webp' },
+    ],
+  },
+  {
+    name: 'Экшен и шутеры',
+    apps: [
+      { href: '/apps/brawl-stars/', name: 'Brawl Stars', desc: 'Мультиплеерный шутер 3v3', icon: '/images/apps/brawl-stars.webp' },
+      { href: '/apps/pubg-mobile/', name: 'PUBG Mobile', desc: 'Королевская битва на 100 игроков', icon: '/images/apps/pubg-mobile.webp' },
+      { href: '/apps/standoff-2/', name: 'Standoff 2', desc: 'Тактический шутер 5 на 5', icon: '/images/apps/standoff-2.webp' },
+      { href: '/apps/call-of-duty-mobile/', name: 'Call of Duty: Mobile', desc: 'Шутер с мультиплеером и королевской битвой', icon: '/images/apps/call-of-duty-mobile.webp' },
+      { href: '/apps/shadow-fight-3/', name: 'Shadow Fight 3', desc: 'Файтинг с RPG-элементами', icon: '/images/apps/shadow-fight-3.webp' },
+    ],
+  },
+  {
+    name: 'RPG',
+    apps: [
+      { href: '/apps/genshin-impact/', name: 'Genshin Impact', desc: 'RPG с открытым миром и элементами', icon: '/images/apps/genshin-impact.webp' },
+      { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница: стройте, выживайте, исследуйте', icon: '/images/apps/minecraft.webp' },
+    ],
+  },
+];
+
+const allApps = categories.flatMap((cat) => cat.apps);
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Игры для Android",
+    "numberOfItems": allApps.length,
+    "itemListElement": allApps.map((app, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": app.name,
+      "url": `https://appsgames.ru${app.href}`
+    }))
+  })} />
+
+  <section class="apps-page container">
+    <div class="apps-layout">
+      <aside class="apps-sidebar">
+        <h3 class="apps-sidebar__title">Жанры</h3>
+        <nav class="apps-sidebar__nav">
+          {categories.map((cat) => (
+            <a href={`#${cat.name.toLowerCase().replace(/\s/g, '-')}`} class="apps-sidebar__link">{cat.name} <span class="apps-sidebar__count">{cat.apps.length}</span></a>
+          ))}
+        </nav>
+      </aside>
+
+      <main class="apps-main">
+        <h1>Игры для Android: скачать бесплатно</h1>
+        <p class="apps-main__intro">Подборка лучших мобильных игр — аркады, гонки, стратегии, шутеры и RPG. Обзоры, скриншоты и ссылки на официальные источники.</p>
+
+        {categories.map((cat) => (
+          <section class="apps-category" id={cat.name.toLowerCase().replace(/\s/g, '-')}>
+            <h2 class="apps-category__title">{cat.name}</h2>
+            <div class="apps-category__grid">
+              {cat.apps.map((app) => (
+                <a href={app.href} class="app-card">
+                  <img src={app.icon} alt={app.name} width="56" height="56" loading="lazy" class="app-card__icon" />
+                  <div class="app-card__body">
+                    <span class="app-card__name">{app.name}</span>
+                    <span class="app-card__desc">{app.desc}</span>
+                  </div>
+                  <span class="app-card__btn">Скачать</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </main>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .apps-page {
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: clamp(3rem, 5vw, 4rem);
+  }
+  .apps-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 860px) {
+    .apps-layout {
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Sidebar */
+  .apps-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+  }
+  @media (max-width: 859px) {
+    .apps-sidebar {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .apps-sidebar__title {
+      width: 100%;
+    }
+  }
+  .apps-sidebar__title {
+    margin: 0 0 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-subtle);
+  }
+  .apps-sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  @media (max-width: 859px) {
+    .apps-sidebar__nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+  }
+  .apps-sidebar__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--fg);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .apps-sidebar__link:hover {
+    background: var(--bg-soft);
+    text-decoration: none;
+  }
+  .apps-sidebar__count {
+    font-size: 0.75rem;
+    color: var(--fg-subtle);
+    background: var(--bg-soft);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  /* Main */
+  .apps-main h1 {
+    margin: 0 0 0.8rem;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
+  }
+  .apps-main__intro {
+    margin: 0 0 2rem;
+    color: var(--fg-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Category */
+  .apps-category {
+    margin-bottom: 2.5rem;
+  }
+  .apps-category__title {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .apps-category__grid {
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) {
+    .apps-category__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* App card */
+  .app-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.12s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .app-card:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+  }
+  .app-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .app-card__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .app-card__name {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .app-card__desc {
+    font-size: 0.82rem;
+    color: var(--fg-muted);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .app-card__btn {
+    flex-shrink: 0;
+    padding: 0.45rem 1rem;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .app-card:hover .app-card__btn {
+    background: var(--accent-hover);
+  }
+</style>

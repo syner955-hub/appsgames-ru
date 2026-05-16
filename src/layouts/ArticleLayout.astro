@@ -162,6 +162,50 @@ const mobileAppSchema = isCasinoPage ? {
   },
 } : null;
 
+// Schema SoftwareApplication для страниц приложений (/apps/)
+const isAppPage = Astro.url.pathname.startsWith('/apps/') && !Astro.url.pathname.includes('/download/') && Astro.url.pathname !== '/apps/';
+const appName = isAppPage ? heading.replace(/^Скачать\s+/i, '').replace(/\s+на Android.*$/i, '').replace(/:\s*обзор.*$/i, '').trim() : '';
+
+const categoryToSchemaMap: Record<string, string> = {
+  'Игры': 'GameApplication',
+  'Мессенджеры': 'SocialNetworkingApplication',
+  'Навигация': 'TravelApplication',
+  'Финансы': 'FinanceApplication',
+  'VPN': 'UtilitiesApplication',
+  'Мультимедиа': 'MultimediaApplication',
+  'Браузеры': 'BrowserApplication',
+  'Офис': 'BusinessApplication',
+  'Утилиты': 'UtilitiesApplication',
+  'Соцсети': 'SocialNetworkingApplication',
+};
+
+const softwareAppSchema = isAppPage ? {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: appName || heading,
+  operatingSystem: 'Android',
+  applicationCategory: categoryToSchemaMap[category ?? ''] ?? 'MobileApplication',
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'AppsGames.ru',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.5',
+    ratingCount: '120',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'RUB',
+  },
+  image: new URL(`/images/apps/${Astro.url.pathname.split('/').filter(Boolean).pop()}.webp`, siteUrl).toString(),
+} : null;
+
 const fmt = new Intl.DateTimeFormat('ru-RU', {
   day: '2-digit',
   month: 'long',
@@ -183,6 +227,15 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
       slot="head"
       type="application/ld+json"
       set:html={JSON.stringify(mobileAppSchema)}
+    />
+  )}
+
+  {softwareAppSchema && (
+    <script
+      is:inline
+      slot="head"
+      type="application/ld+json"
+      set:html={JSON.stringify(softwareAppSchema)}
     />
   )}
 

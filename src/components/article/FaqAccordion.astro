@@ -1,17 +1,25 @@
 ---
 interface FaqItem {
-  q: string;
-  a: string;
+  q?: string;
+  a?: string;
+  question?: string;
+  answer?: string;
 }
 interface Props {
   items: FaqItem[];
 }
 const { items } = Astro.props;
 
+// Normalize: accept both q/a and question/answer formats
+const normalized = items.map((i) => ({
+  q: i.q ?? i.question ?? '',
+  a: i.a ?? i.answer ?? '',
+}));
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: items.map((i) => ({
+  mainEntity: normalized.map((i) => ({
     '@type': 'Question',
     name: i.q,
     acceptedAnswer: {
@@ -24,7 +32,7 @@ const jsonLd = {
 
 <section class="faq" aria-label="Часто задаваемые вопросы">
   <h2>Частые вопросы</h2>
-  {items.map((item, idx) => (
+  {normalized.map((item, idx) => (
     <details class="faq__item" open={idx === 0}>
       <summary>{item.q}</summary>
       <div class="faq__answer">
