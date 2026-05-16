@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Clash of Clans - стратегия от Supercell, которая не теряет популярности с 2012 года. Игроки строят деревню, развивают оборону и собирают армию для атак на базы других игроков. Клановая система объединяет людей для совместных войн и рейдов.
 
@@ -106,4 +107,10 @@ Clash of Clans - стратегия от Supercell, которая не теря
     question: "Как найти хороший клан?",
     answer: "Используйте внутриигровой поиск кланов с фильтрами по активности и уровню. Ищите кланы с регулярными войнами и активным чатом. Также можно найти кланы на Reddit и Discord."
   }
+]} />
+
+<Comments appName="Clash of Clans" comments={[
+  { author: "Сергей", date: "14 мая 2026", rating: 5, text: "Играю с 2015 года и до сих пор не надоело. Клановые войны — лучшее, что есть в мобильных играх." },
+  { author: "Алексей", date: "9 апреля 2026", rating: 4, text: "Затягивает надолго, но на высоких уровнях ждать апгрейдов по неделе — это тяжело." },
+  { author: "Мария", date: "22 марта 2026", rating: 5, text: "Нашла клан с друзьями, теперь каждый вечер воюем. Социалка в игре на высоте." },
 ]} />

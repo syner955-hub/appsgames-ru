@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Brawl Stars, динамичная мобильная игра от Supercell в жанре командного экшена. Короткие матчи по 3 минуты, десятки уникальных персонажей и множество игровых режимов делают её одной из самых популярных мобильных игр в мире.
 
@@ -116,4 +117,10 @@ Brawl Stars доступен в App Store бесплатно. Прогресс �
     question: "Есть ли офлайн-режим?",
     answer: "Нет, Brawl Stars требует постоянного подключения к интернету. Все матчи проходят онлайн против реальных игроков или ботов на сервере."
   }
+]} />
+
+<Comments appName="Brawl Stars" comments={[
+  { author: "Иван", date: "12 мая 2026", rating: 5, text: "Идеальная игра для перерывов. Матч за 3 минуты, и не надо сидеть часами." },
+  { author: "Ольга", date: "1 апреля 2026", rating: 4, text: "Дочка подсадила, теперь всей семьёй играем. Весело, но рандомные тиммейты иногда бесят." },
+  { author: "Николай", date: "18 марта 2026", rating: 4, text: "Новый сезон порадовал, бравлер интересный. Баланс стал получше, чем раньше." },
 ]} />

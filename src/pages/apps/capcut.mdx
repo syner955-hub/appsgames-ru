@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 CapCut - бесплатный видеоредактор от создателей TikTok. Приложение сочетает простоту использования с продвинутыми инструментами на базе ИИ. Экспорт без водяных знаков доступен всем пользователям без подписки.
 
@@ -93,6 +94,11 @@ CapCut разработан компанией ByteDance и тесно инте�
   { version: "13.3.0", date: "Апрель 2026", changes: ["Добавлены шаблоны для Reels", "Ускорен экспорт видео"] },
 ]} />
 
+<Comments appName="CapCut" comments={[
+  { author: "Полина Жукова", date: "2026-02-20", rating: 5, text: "Монтирую рилсы для инсты, шаблоны экономят кучу времени. И без водяного знака — топ." },
+  { author: "Руслан М.", date: "2026-04-07", rating: 5, text: "ИИ-субтитры работают отлично, даже на русском распознаёт нормально. Лучший бесплатный редактор." },
+  { author: "Светлана Ковалёва", date: "2026-03-15", rating: 4, text: "На моём телефоне с 3 ГБ оперативки иногда вылетает при длинных видео. Но функционал шикарный." },
+]} />
 <FaqAccordion items={[
   {
     question: "CapCut действительно бесплатный без водяных знаков?",

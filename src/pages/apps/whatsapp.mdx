@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 WhatsApp, самый распространённый мессенджер в мире с более чем 2 миллиардами пользователей. Все сообщения защищены сквозным шифрованием по умолчанию. Приложение принадлежит компании Meta.
 
@@ -117,4 +118,10 @@ WhatsApp доступен в App Store для iOS. Перенос чатов м�
     question: "Как использовать два аккаунта WhatsApp?",
     answer: "На Android можно добавить второй аккаунт через настройки приложения, если устройство поддерживает две SIM-карты."
   }
+]} />
+
+<Comments appName="WhatsApp" comments={[
+  { author: "Ольга", date: "8 мая 2026", rating: 4, text: "Все родственники тут сидят, поэтому деваться некуда. Работает стабильно, звонки нормальные." },
+  { author: "Иван", date: "22 апреля 2026", rating: 5, text: "Простой как валенок — открыл и пишешь. Бабушка разобралась за пять минут, это о многом говорит." },
+  { author: "Екатерина", date: "1 апреля 2026", rating: 3, text: "Не хватает нормальных стикеров и каналов как в Телеграме. Но для семейного чата сойдёт." },
 ]} />

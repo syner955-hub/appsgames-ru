@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 CamScanner позволяет сканировать документы камерой телефона и сохранять их в формате PDF или JPEG. Приложение используют более 750 миллионов человек по всему миру. Подходит для работы с договорами, чеками, визитками и рукописными заметками.
 
@@ -93,6 +94,11 @@ CamScanner автоматически определяет границы док
   { version: "6.9.0", date: "Апрель 2026", changes: ["Добавлен пакетный скан", "Оптимизация размера PDF"] },
 ]} />
 
+<Comments appName="CamScanner" comments={[
+  { author: "Павел Николаев", date: "2026-04-08", rating: 5, text: "Сканирую документы для бухгалтерии каждый день. Качество PDF отличное, текст распознаёт чётко." },
+  { author: "Ирина", date: "2026-02-25", rating: 4, text: "Удобно для быстрого скана чеков и договоров. Жаль что OCR нормальный только в платной версии." },
+  { author: "Денис К.", date: "2026-03-12", rating: 4, text: "Заменил мне сканер на работе. Автообрезка работает хорошо, редко приходится поправлять вручную." },
+]} />
 <FaqAccordion items={[
   {
     question: "Можно ли использовать CamScanner без интернета?",
@@ -106,4 +112,10 @@ CamScanner автоматически определяет границы док
     question: "Какие форматы поддерживает экспорт?",
     answer: "CamScanner экспортирует документы в PDF, JPEG, PNG, Word (.docx) и Excel (.xlsx)."
   }
+]} />
+
+<Comments appName="CamScanner" comments={[
+  { author: "Павел Николаев", date: "2026-04-08", rating: 5, text: "Сканирую документы для бухгалтерии каждый день. Качество PDF отличное, текст распознаёт чётко." },
+  { author: "Ирина", date: "2026-02-25", rating: 4, text: "Удобно для быстрого скана чеков и договоров. Жаль что OCR нормальный только в платной версии." },
+  { author: "Денис К.", date: "2026-03-12", rating: 4, text: "Заменил мне сканер на работе. Автообрезка работает хорошо, редко приходится поправлять вручную." },
 ]} />

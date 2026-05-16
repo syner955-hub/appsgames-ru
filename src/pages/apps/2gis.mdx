@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 2ГИС, это городской справочник и навигатор с детализированными картами зданий, этажей и дворов. Приложение работает офлайн и содержит актуальную информацию об организациях, маршрутах транспорта и дорожной обстановке.
 
@@ -118,4 +119,10 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
     question: "В каких городах работает 2ГИС?",
     answer: "2ГИС покрывает более 600 городов России, а также города Казахстана, Узбекистана, ОАЭ, Чили и других стран. Список постоянно расширяется."
   }
+]} />
+
+<Comments appName="2ГИС" comments={[
+  { author: "Елена", date: "7 мая 2026", rating: 5, text: "Этажные планы ТЦ — это гениально. Нашла нужный магазин в огромном молле за минуту." },
+  { author: "Сергей", date: "20 апреля 2026", rating: 5, text: "Офлайн работает без нареканий. В подземном паркинге нашёл выезд по карте, когда связи не было." },
+  { author: "Наталья", date: "12 марта 2026", rating: 4, text: "Справочник организаций актуальный, телефоны и часы работы всегда совпадают. Навигация чуть хуже Яндекса, но в целом норм." },
 ]} />

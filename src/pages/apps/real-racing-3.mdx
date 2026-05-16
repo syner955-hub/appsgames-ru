@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Real Racing 3 от Electronic Arts - гоночный симулятор с акцентом на реализм. Игра включает реальные трассы (Silverstone, Le Mans, Nürburgring), лицензированные автомобили и продвинутую физическую модель. Это один из самых серьёзных гоночных проектов на мобильных устройствах.
 
@@ -93,6 +94,11 @@ Real Racing 3 от Electronic Arts - гоночный симулятор с ак
   { version: "12.5.0", date: "Апрель 2026", changes: ["Новая трасса Circuit de Barcelona-Catalunya", "Оптимизирована производительность на средних устройствах"] },
 ]} />
 
+<Comments appName="Real Racing 3" comments={[
+  { author: "Дмитрий Орлов", date: "2026-02-11", rating: 5, text: "Лучшие гонки на мобилке. Графика как на консоли, управление гироскопом кайф." },
+  { author: "Сергей", date: "2026-04-05", rating: 4, text: "Машины и трассы реальные, физика приятная. Но ремонт после каждой гонки бесит, явно подталкивают к донату." },
+  { author: "Вадим Н.", date: "2026-03-25", rating: 4, text: "Играю уже год, контента много. Единственный минус — весит прилично, на 64 гб уже тесновато." },
+]} />
 <FaqAccordion items={[
   {
     question: "Real Racing 3 - это симулятор или аркада?",
@@ -106,4 +112,10 @@ Real Racing 3 от Electronic Arts - гоночный симулятор с ак
     question: "Зачем нужен ремонт автомобиля?",
     answer: "После каждой гонки автомобиль получает износ. Ремонт стоит игровую валюту или требует ожидания. Это стимулирует использовать несколько машин."
   }
+]} />
+
+<Comments appName="Real Racing 3" comments={[
+  { author: "Дмитрий Орлов", date: "2026-02-11", rating: 5, text: "Лучшие гонки на мобилке. Графика как на консоли, управление гироскопом кайф." },
+  { author: "Сергей", date: "2026-04-05", rating: 4, text: "Машины и трассы реальные, физика приятная. Но ремонт после каждой гонки бесит, явно подталкивают к донату." },
+  { author: "Вадим Н.", date: "2026-03-25", rating: 4, text: "Играю уже год, контента много. Единственный минус — весит прилично, на 64 гб уже тесновато." },
 ]} />

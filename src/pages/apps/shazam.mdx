@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Shazam, приложение для мгновенного распознавания музыки от Apple. Достаточно поднести телефон к источнику звука, и Shazam определит название трека, исполнителя и альбом за несколько секунд.
 
@@ -101,6 +102,11 @@ Shazam доступен в App Store и глубоко интегрирован 
   { version: "14.45.0", date: "Апрель 2026", changes: ["Обновлен интерфейс истории", "Улучшена работа в фоне"] },
 ]} />
 
+<Comments appName="Shazam" comments={[
+  { author: "Валерия Н.", date: "2026-02-16", rating: 5, text: "Распознаёт за пару секунд даже в шумном кафе. Незаменимая штука когда слышишь классный трек." },
+  { author: "Тимур Абдуллаев", date: "2026-04-03", rating: 5, text: "Пользуюсь Auto Shazam в машине — потом смотрю историю и добавляю в плейлист. Гениально просто." },
+  { author: "Оксана Белова", date: "2026-03-22", rating: 4, text: "Работает быстро и точно, но малоизвестные треки иногда не находит. В целом приложение отличное." },
+]} />
 <FaqAccordion items={[
   {
     question: "Shazam бесплатный?",

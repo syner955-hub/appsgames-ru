@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Call of Duty: Mobile переносит опыт консольного шутера на мобильные устройства. Игра объединяет карты, оружие и персонажей из разных частей серии в одном проекте. Доступны классический мультиплеер, королевская битва и зомби-режим.
 
@@ -93,6 +94,11 @@ Activision выпустила мобильную версию франшизы �
   { version: "1.0.42", date: "Апрель 2026", changes: ["Обновлён режим королевской битвы с новыми точками интереса", "Улучшена оптимизация для устройств с 3 ГБ ОЗУ"] },
 ]} />
 
+<Comments appName="Call of Duty: Mobile" comments={[
+  { author: "Константин", date: "2026-03-27", rating: 5, text: "Полноценный шутер на телефоне, не верил пока не попробовал. Графика и управление на уровне." },
+  { author: "Артур Гаврилов", date: "2026-01-12", rating: 4, text: "Королевская битва топ, но весит игра как слон. На 3 гб оперативки подлагивает в замесах." },
+  { author: "Николай С.", date: "2026-04-25", rating: 5, text: "Перешёл с PUBG, тут стрельба приятнее и карт больше. Рейтинговые матчи держат в тонусе." },
+]} />
 <FaqAccordion items={[
   {
     question: "Игра действительно бесплатная?",
@@ -106,4 +112,10 @@ Activision выпустила мобильную версию франшизы �
     question: "Поддерживается ли игра на контроллере?",
     answer: "Да, Call of Duty: Mobile поддерживает Bluetooth-контроллеры. При игре с контроллером матчмейкинг подбирает соперников с аналогичным типом управления."
   }
+]} />
+
+<Comments appName="Call of Duty: Mobile" comments={[
+  { author: "Константин", date: "2026-03-27", rating: 5, text: "Полноценный шутер на телефоне, не верил пока не попробовал. Графика и управление на уровне." },
+  { author: "Артур Гаврилов", date: "2026-01-12", rating: 4, text: "Королевская битва топ, но весит игра как слон. На 3 гб оперативки подлагивает в замесах." },
+  { author: "Николай С.", date: "2026-04-25", rating: 5, text: "Перешёл с PUBG, тут стрельба приятнее и карт больше. Рейтинговые матчи держат в тонусе." },
 ]} />

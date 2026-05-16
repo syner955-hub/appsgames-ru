@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 VLC - свободный медиаплеер от VideoLAN, способный воспроизводить практически любой формат без дополнительных кодеков. Приложение полностью бесплатно, не содержит рекламы и не собирает данные пользователей.
 
@@ -93,6 +94,11 @@ VLC Media Player для Android является мобильной версие
   { version: "3.6.0", date: "Апрель 2026", changes: ["Обновлен интерфейс плеера", "Добавлена поддержка Chromecast"] },
 ]} />
 
+<Comments appName="VLC" comments={[
+  { author: "Константин Б.", date: "2026-01-08", rating: 5, text: "Открывает вообще всё. Скинул MKV с компа — играет без проблем, субтитры подхватывает автоматом." },
+  { author: "Людмила Тихонова", date: "2026-03-28", rating: 4, text: "Надёжный плеер, пользуюсь много лет. Интерфейс мог бы быть посовременнее, но работает стабильно." },
+  { author: "Евгений Р.", date: "2026-05-05", rating: 5, text: "Бесплатный, без рекламы, играет любые форматы. Не понимаю зачем люди платят за другие плееры." },
+]} />
 <FaqAccordion items={[
   {
     question: "Какие форматы поддерживает VLC на Android?",

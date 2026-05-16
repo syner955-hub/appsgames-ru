@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Plants vs. Zombies 2 переносит сражения растений и зомби в разные исторические эпохи. Игрок путешествует от Древнего Египта до далекого будущего, собирая уникальные растения для защиты. Продолжение получило сотни новых уровней и регулярные обновления контента.
 
@@ -93,6 +94,11 @@ Plants vs. Zombies 2 переносит сражения растений и з�
   { version: "11.4.0", date: "Апрель 2026", changes: ["Добавлен режим Арена", "Балансировка зомби"] },
 ]} />
 
+<Comments appName="Plants vs. Zombies 2" comments={[
+  { author: "Владислав", date: "2026-02-16", rating: 5, text: "Обожаю эту серию с первой части. Вторая добавила кучу миров и растений, контента на месяцы." },
+  { author: "Екатерина Морозова", date: "2026-04-01", rating: 4, text: "Дочка играет не отрываясь. Красочная и добрая игра, но иногда навязывают покупки." },
+  { author: "Степан К.", date: "2026-03-10", rating: 4, text: "Хорошая tower defense, но баланс подкрутили в сторону доната. Раньше было проще без покупок." },
+]} />
 <FaqAccordion items={[
   {
     question: "Можно ли играть без интернета?",
@@ -106,4 +112,10 @@ Plants vs. Zombies 2 переносит сражения растений и з�
     question: "Сохраняется ли прогресс при смене устройства?",
     answer: "Да, привяжите аккаунт Google Play Games или EA Account. Прогресс синхронизируется автоматически при входе на новом устройстве."
   }
+]} />
+
+<Comments appName="Plants vs. Zombies 2" comments={[
+  { author: "Владислав", date: "2026-02-16", rating: 5, text: "Обожаю эту серию с первой части. Вторая добавила кучу миров и растений, контента на месяцы." },
+  { author: "Екатерина Морозова", date: "2026-04-01", rating: 4, text: "Дочка играет не отрываясь. Красочная и добрая игра, но иногда навязывают покупки." },
+  { author: "Степан К.", date: "2026-03-10", rating: 4, text: "Хорошая tower defense, но баланс подкрутили в сторону доната. Раньше было проще без покупок." },
 ]} />

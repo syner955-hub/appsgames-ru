@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 WPS Office - бесплатный офисный пакет, совместимый с форматами Microsoft Office. Приложение объединяет текстовый редактор, таблицы, презентации и PDF-ридер в одном компактном пакете. Более 500 миллионов установок на Android.
 
@@ -93,6 +94,11 @@ WPS Office разработан китайской компанией Kingsoft �
   { version: "18.8.0", date: "Апрель 2026", changes: ["Добавлен ИИ-помощник", "Исправлены ошибки форматирования"] },
 ]} />
 
+<Comments appName="WPS Office" comments={[
+  { author: "Елена Козлова", date: "2026-02-20", rating: 5, text: "Открывает все вордовские файлы без проблем. На телефоне удобнее чем гугл доки." },
+  { author: "Андрей", date: "2026-03-30", rating: 4, text: "Для бесплатного офиса очень достойно. Реклама есть, но терпимо." },
+  { author: "Ксения П.", date: "2026-01-15", rating: 4, text: "Пользуюсь для учёбы, презентации делать удобно. Иногда шрифты слетают при открытии на компе." },
+]} />
 <FaqAccordion items={[
   {
     question: "WPS Office полностью совместим с Microsoft Office?",
@@ -106,4 +112,10 @@ WPS Office разработан китайской компанией Kingsoft �
     question: "Чем WPS Office лучше Google Документов?",
     answer: "WPS Office работает офлайн без ограничений, лучше сохраняет форматирование файлов Microsoft Office и объединяет все инструменты в одном приложении. Google Документы выигрывают в совместной работе и не показывают рекламу."
   }
+]} />
+
+<Comments appName="WPS Office" comments={[
+  { author: "Елена Козлова", date: "2026-02-20", rating: 5, text: "Открывает все вордовские файлы без проблем. На телефоне удобнее чем гугл доки." },
+  { author: "Андрей", date: "2026-03-30", rating: 4, text: "Для бесплатного офиса очень достойно. Реклама есть, но терпимо." },
+  { author: "Ксения П.", date: "2026-01-15", rating: 4, text: "Пользуюсь для учёбы, презентации делать удобно. Иногда шрифты слетают при открытии на компе." },
 ]} />

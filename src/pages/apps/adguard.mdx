@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 AdGuard, блокировщик рекламы для Android, который фильтрует рекламу во всех приложениях и браузерах без root-доступа. Приложение также защищает от фишинга, трекеров и вредоносных сайтов.
 
@@ -101,6 +102,11 @@ AdGuard доступен в App Store, но на iOS работает тольк
   { version: "4.6.0", date: "Апрель 2026", changes: ["Улучшена совместимость с Android 15", "Исправлены ложные срабатывания на некоторых сайтах"] },
 ]} />
 
+<Comments appName="AdGuard" comments={[
+  { author: "Игорь Волков", date: "2026-01-28", rating: 5, text: "Забыл что такое реклама на телефоне. Работает во всех приложениях, не только в браузере." },
+  { author: "Светлана М.", date: "2026-03-15", rating: 4, text: "Отлично блокирует, но пришлось повозиться с настройкой. Некоторые сайты ломаются, приходится добавлять в исключения." },
+  { author: "Тимур", date: "2026-04-02", rating: 5, text: "Купил пожизненную лицензию два года назад, ни разу не пожалел. Трафик экономит заметно." },
+]} />
 <FaqAccordion items={[
   {
     question: "AdGuard бесплатный?",
@@ -118,4 +124,10 @@ AdGuard доступен в App Store, но на iOS работает тольк
     question: "Почему AdGuard нет в Google Play?",
     answer: "Google запрещает приложения, которые блокируют рекламу в других приложениях, так как это противоречит их бизнес-модели. Скачивайте только с официального сайта adguard.com."
   }
+]} />
+
+<Comments appName="AdGuard" comments={[
+  { author: "Игорь Волков", date: "2026-01-28", rating: 5, text: "Забыл что такое реклама на телефоне. Работает во всех приложениях, не только в браузере." },
+  { author: "Светлана М.", date: "2026-03-15", rating: 4, text: "Отлично блокирует, но пришлось повозиться с настройкой. Некоторые сайты ломаются, приходится добавлять в исключения." },
+  { author: "Тимур", date: "2026-04-02", rating: 5, text: "Купил пожизненную лицензию два года назад, ни разу не пожалел. Трафик экономит заметно." },
 ]} />

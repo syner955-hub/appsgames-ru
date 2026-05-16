@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Мобильное приложение Альфа-Банка заменяет визит в отделение для большинства банковских операций. Переводы, платежи, открытие счетов и вкладов доступны в несколько касаний. Приложение также включает инвестиционные инструменты и кэшбэк-программу.
 
@@ -91,6 +92,11 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
   { version: "13.6.0", date: "Апрель 2026", changes: ["Добавлены виджеты для главного экрана Android", "Исправлена ошибка при открытии вкладов"] },
 ]} />
 
+<Comments appName="Альфа-Банк" comments={[
+  { author: "Сергей Новиков", date: "2026-02-14", rating: 4, text: "Приложение стабильное, переводы быстрые. Кэшбэк у партнёров реально выгодный." },
+  { author: "Елена Д.", date: "2026-04-19", rating: 5, text: "Оформила кредитку прямо в приложении, курьер привёз на следующий день. Очень удобно." },
+  { author: "Павел Морозов", date: "2026-03-08", rating: 3, text: "Занимает слишком много памяти, на старом телефоне еле ворочается. Функционал норм, но оптимизация хромает." },
+]} />
 <FaqAccordion items={[
   {
     question: "Можно ли открыть счёт в Альфа-Банке через приложение?",

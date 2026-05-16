@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Google Maps предоставляет детальные карты более 220 стран с навигацией для автомобилей, общественного транспорта и пешеходов. Приложение показывает пробки в реальном времени и предлагает альтернативные маршруты. Встроенный поиск помогает находить рестораны, магазины и достопримечательности поблизости.
 
@@ -106,4 +107,10 @@ Google Maps остаётся самым полным картографичес�
     question: "Как уменьшить расход батареи при навигации?",
     answer: "Уменьшите яркость экрана, загрузите офлайн-карту маршрута заранее и отключите спутниковый слой. Также помогает режим энергосбережения в настройках телефона."
   }
+]} />
+
+<Comments appName="Google Maps" comments={[
+  { author: "Ольга", date: "4 мая 2026", rating: 5, text: "В путешествиях незаменимы. Офлайн-карты спасали в Грузии, где связь ловила через раз." },
+  { author: "Николай", date: "17 апреля 2026", rating: 4, text: "Пробки показывает точно, маршруты строит нормально. Но батарею жрёт прилично." },
+  { author: "Анна", date: "1 марта 2026", rating: 4, text: "Удобно искать кафе и магазины рядом. Отзывы с фотками помогают выбрать, куда зайти." },
 ]} />

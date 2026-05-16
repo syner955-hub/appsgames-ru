@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Fruit Ninja остается одной из самых узнаваемых мобильных аркад. Механика проста: проводите пальцем по экрану, разрезая подброшенные фрукты и избегая бомб. За простотой скрывается затягивающий геймплей с системой комбо и рекордов.
 
@@ -93,6 +94,11 @@ Halfbrick Studios выпустила Fruit Ninja в 2010 году, и с тех 
   { version: "3.62.0", date: "Апрель 2026", changes: ["Обновлены сезонные фрукты", "Исправлены баги мультиплеера"] },
 ]} />
 
+<Comments appName="Fruit Ninja" comments={[
+  { author: "Лев Кузнецов", date: "2026-04-12", rating: 5, text: "Ребёнку три года, режет фрукты и хохочет. Простая и безопасная игра для малышей." },
+  { author: "Валерия", date: "2026-02-22", rating: 4, text: "Ностальгия! Играла ещё на первом айфоне. Новые режимы добавили, стало интереснее." },
+  { author: "Антон Р.", date: "2026-03-06", rating: 4, text: "Хороший таймкиллер, но реклама между раундами напрягает. В остальном претензий нет." },
+]} />
 <FaqAccordion items={[
   {
     question: "Подходит ли Fruit Ninja для детей?",
@@ -106,4 +112,10 @@ Halfbrick Studios выпустила Fruit Ninja в 2010 году, и с тех 
     question: "Чем отличается бесплатная версия от платной?",
     answer: "Бесплатная версия содержит рекламу между раундами. Покупка премиум-версии убирает рекламу и открывает дополнительные клинки и додзё."
   }
+]} />
+
+<Comments appName="Fruit Ninja" comments={[
+  { author: "Лев Кузнецов", date: "2026-04-12", rating: 5, text: "Ребёнку три года, режет фрукты и хохочет. Простая и безопасная игра для малышей." },
+  { author: "Валерия", date: "2026-02-22", rating: 4, text: "Ностальгия! Играла ещё на первом айфоне. Новые режимы добавили, стало интереснее." },
+  { author: "Антон Р.", date: "2026-03-06", rating: 4, text: "Хороший таймкиллер, но реклама между раундами напрягает. В остальном претензий нет." },
 ]} />

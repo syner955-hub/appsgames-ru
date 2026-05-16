@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Signal считается эталоном безопасности среди мессенджеров. Приложение использует собственный протокол шифрования, который применяют даже конкуренты. Здесь нет рекламы, трекеров и сбора данных о пользователях.
 
@@ -93,6 +94,11 @@ Signal разработан некоммерческой организацие�
   { version: "7.13.0", date: "Апрель 2026", changes: ["Добавлены пользовательские обои", "Ускорена отправка медиа"] },
 ]} />
 
+<Comments appName="Signal" comments={[
+  { author: "Илья Черных", date: "2026-03-05", rating: 5, text: "Единственный мессенджер которому доверяю личную переписку. Работает быстро, ничего лишнего." },
+  { author: "Вероника Д.", date: "2026-04-12", rating: 4, text: "Безопасность на высоте, но мало кто из знакомых пользуется. Приходится держать параллельно Телеграм." },
+  { author: "Фёдор Савельев", date: "2026-01-29", rating: 5, text: "Открытый код, нет рекламы, нет слежки. Для рабочих чатов идеально, звонки тоже качественные." },
+]} />
 <FaqAccordion items={[
   {
     question: "Действительно ли Signal безопаснее других мессенджеров?",

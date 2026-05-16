@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Among Us - социальная игра от Innersloth, где группа игроков выполняет задания на космическом корабле, а один или несколько предателей пытаются устранить экипаж. Игра стала культурным феноменом благодаря простым правилам и напряженным обсуждениям между раундами.
 
@@ -106,4 +107,10 @@ Among Us - социальная игра от Innersloth, где группа и
     question: "Как играть с друзьями на разных платформах?",
     answer: "Создайте приватную комнату и отправьте друзьям код. Among Us поддерживает кроссплей между Android, iOS, ПК и консолями - все могут играть вместе."
   }
+]} />
+
+<Comments appName="Among Us" comments={[
+  { author: "Елена", date: "3 мая 2026", rating: 5, text: "Собираемся с друзьями в дискорде и играем вечерами. Столько смеха и подозрений — обожаю." },
+  { author: "Дмитрий", date: "14 апреля 2026", rating: 4, text: "С друзьями топ, но в рандоме часто кидают игру после первого раунда. Обидно." },
+  { author: "Наталья", date: "25 февраля 2026", rating: 4, text: "Простая, но затягивает. Даже мама разобралась за одну партию и теперь играет с нами." },
 ]} />

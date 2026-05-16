@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Яндекс Навигатор, бесплатное приложение для автомобильной навигации с учётом пробок в реальном времени. Сервис строит оптимальные маршруты по России и странам СНГ, используя данные миллионов водителей.
 
@@ -118,4 +119,10 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
     question: "Навигатор показывает камеры ГИБДД?",
     answer: "Да, приложение предупреждает о стационарных и мобильных камерах контроля скорости, а также о камерах на полосу и проезд на красный."
   }
+]} />
+
+<Comments appName="Яндекс Навигатор" comments={[
+  { author: "Павел", date: "13 мая 2026", rating: 5, text: "Пробки считает лучше всех. Каждый день езжу на работу и всегда приезжаю вовремя." },
+  { author: "Виктория", date: "26 апреля 2026", rating: 5, text: "Алиса удобная — сказала адрес голосом и поехала. Руки от руля не отрываю." },
+  { author: "Дмитрий", date: "8 марта 2026", rating: 4, text: "По России работает отлично, но за границей бесполезен. Для поездок в Европу ставлю Google Maps." },
 ]} />

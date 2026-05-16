@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Spotify, крупнейший музыкальный стриминговый сервис в мире с каталогом более 100 миллионов треков и 6 миллионов подкастов. Платформа предлагает персонализированные рекомендации на основе алгоритмов машинного обучения.
 
@@ -120,4 +121,10 @@ Spotify доступен в App Store. Функциональность иден
     question: "Как улучшить качество звука?",
     answer: "В настройках выберите качество 'Очень высокое' (320 kbps). С подпиской Premium доступен режим HiFi с качеством без потерь (lossless)."
   }
+]} />
+
+<Comments appName="Spotify" comments={[
+  { author: "Мария", date: "7 мая 2026", rating: 5, text: "Discover Weekly каждую неделю подкидывает что-то новое. Половину любимых артистов нашла именно там." },
+  { author: "Алексей", date: "14 апреля 2026", rating: 4, text: "Качество звука отличное, интерфейс удобный. Жаль только, что без премиума на телефоне нельзя выбрать трек." },
+  { author: "Екатерина", date: "28 марта 2026", rating: 4, text: "Подкасты удобно слушать прямо тут, не надо отдельное приложение ставить. Рекомендации музыки тоже радуют." },
 ]} />

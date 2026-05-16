@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Тинькофф, мобильное приложение одноимённого банка, который работает полностью онлайн без физических отделений. Приложение объединяет банкинг, инвестиции, страхование, путешествия и развлечения в единой экосистеме.
 
@@ -100,6 +101,11 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
   { version: "6.42.0", date: "Апрель 2026", changes: ["Добавлена функция автоплатежей по расписанию", "Исправлены ошибки в push-уведомлениях"] },
 ]} />
 
+<Comments appName="Тинькофф" comments={[
+  { author: "Максим Р.", date: "2026-01-22", rating: 5, text: "Лучшее банковское приложение. Кешбэк реально начисляется, поддержка отвечает за минуту." },
+  { author: "Наталья Петрова", date: "2026-03-30", rating: 4, text: "Удобно что всё в одном месте — и инвестиции, и страховки. Жаль только что Pro подорожал." },
+  { author: "Игорь Зайцев", date: "2026-05-02", rating: 5, text: "Перешёл из Сбера полгода назад, разница огромная. Интерфейс понятный, всё работает быстро." },
+]} />
 <FaqAccordion items={[
   {
     question: "Как скачать Тинькофф без Google Play?",

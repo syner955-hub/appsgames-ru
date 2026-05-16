@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Asphalt 9: Legends - флагманская аркадная гонка от Gameloft с коллекцией из более чем 100 лицензированных автомобилей. Игра предлагает зрелищные трассы по всему миру и динамичный онлайн-режим. Графика выполнена на уровне консольных проектов.
 
@@ -106,4 +107,10 @@ Asphalt 9: Legends - флагманская аркадная гонка от Gam
     question: "Asphalt 9 бесплатная?",
     answer: "Да, игра бесплатна с внутриигровыми покупками. Все машины и контент можно получить без вложений, но это займёт больше времени."
   }
+]} />
+
+<Comments appName="Asphalt 9" comments={[
+  { author: "Павел", date: "6 мая 2026", rating: 5, text: "Графика для мобилки — космос. Гоняю на Ламбе по Токио, кайф." },
+  { author: "Виктория", date: "19 апреля 2026", rating: 4, text: "Красивая гонка, но система энергии раздражает. Хочешь ещё покататься, а тебе говорят — жди." },
+  { author: "Андрей", date: "2 марта 2026", rating: 4, text: "TouchDrive удобный для игры в транспорте. Одной рукой можно нормально управлять." },
 ]} />

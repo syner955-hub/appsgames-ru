@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 RuStore, российский магазин приложений, созданный VK при поддержке Минцифры. Платформа стала основной альтернативой Google Play для установки приложений российских компаний, удалённых из зарубежных магазинов.
 
@@ -99,6 +100,11 @@ RuStore недоступен на iOS. Apple не позволяет устан�
   { version: "2.4.0", date: "Апрель 2026", changes: ["Обновлён интерфейс карточек приложений", "Исправлены ошибки автообновления"] },
 ]} />
 
+<Comments appName="RuStore" comments={[
+  { author: "Алексей Смирнов", date: "2026-03-05", rating: 4, text: "Наконец-то нормально работает Сбер и Тинькофф. Обновления приходят вовремя." },
+  { author: "Наталья", date: "2026-02-18", rating: 3, text: "Каталог пока маленький, многих приложений нет. Но для банков и госуслуг незаменим." },
+  { author: "Виктор Р.", date: "2026-04-10", rating: 5, text: "Лёгкий, не жрёт батарею, ставится за секунды. Для российских приложений теперь только сюда." },
+]} />
 <FaqAccordion items={[
   {
     question: "RuStore заменяет Google Play?",
@@ -116,4 +122,10 @@ RuStore недоступен на iOS. Apple не позволяет устан�
     question: "Как удалить RuStore?",
     answer: "RuStore удаляется как обычное приложение через настройки Android. На предустановленных устройствах его можно отключить, но не всегда удалить полностью."
   }
+]} />
+
+<Comments appName="RuStore" comments={[
+  { author: "Алексей Смирнов", date: "2026-03-05", rating: 4, text: "Наконец-то нормально работает Сбер и Тинькофф. Обновления приходят вовремя." },
+  { author: "Наталья", date: "2026-02-18", rating: 3, text: "Каталог пока маленький, многих приложений нет. Но для банков и госуслуг незаменим." },
+  { author: "Виктор Р.", date: "2026-04-10", rating: 5, text: "Лёгкий, не жрёт батарею, ставится за секунды. Для российских приложений теперь только сюда." },
 ]} />

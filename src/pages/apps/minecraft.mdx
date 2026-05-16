@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Minecraft, культовая песочница от Mojang Studios, где игроки строят миры из блоков, исследуют пещеры, сражаются с мобами и выживают. Мобильная версия (Bedrock Edition) поддерживает кроссплатформенную игру с консолями и ПК.
 
@@ -119,4 +120,10 @@ Minecraft доступен в App Store по той же цене. Поддер�
     question: "Сколько места нужно для Minecraft?",
     answer: "Базовая установка занимает около 700 МБ. С текстурами, картами и мирами размер может вырасти до нескольких гигабайт."
   }
+]} />
+
+<Comments appName="Minecraft" comments={[
+  { author: "Дмитрий", date: "10 мая 2026", rating: 5, text: "Играю с сыном вместе по сети, оба залипаем на часы. Лучшая покупка на телефон." },
+  { author: "Анна", date: "22 апреля 2026", rating: 4, text: "Всё отлично работает, но управление на экране не самое удобное. Подключила геймпад и стало идеально." },
+  { author: "Сергей", date: "5 марта 2026", rating: 5, text: "Столько контента за разовую покупку — это редкость сейчас. Обновления бесплатные, респект разработчикам." },
 ]} />

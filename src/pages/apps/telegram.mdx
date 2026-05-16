@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Telegram, один из самых популярных мессенджеров в мире с аудиторией более 900 миллионов пользователей. Приложение отличается высокой скоростью работы, надёжным шифрованием и отсутствием ограничений на размер файлов.
 
@@ -117,4 +118,10 @@ Telegram доступен для iOS в App Store. Функциональнос�
     question: "Как перенести чаты с другого мессенджера?",
     answer: "Telegram поддерживает импорт истории из WhatsApp, Line и KakaoTalk. Откройте чат в старом мессенджере, выберите экспорт и укажите Telegram как получателя."
   }
+]} />
+
+<Comments appName="Telegram" comments={[
+  { author: "Дмитрий", date: "10 мая 2026", rating: 5, text: "Пользуюсь уже лет пять, ни разу не подвёл. Скорость доставки сообщений моментальная, файлы любого размера кидаю без проблем." },
+  { author: "Анна", date: "28 апреля 2026", rating: 4, text: "Удобный мессенджер, но хотелось бы видеозвонки получше — иногда подвисают при слабом интернете." },
+  { author: "Сергей", date: "15 марта 2026", rating: 5, text: "Каналы и боты — это то, чего нет ни в одном другом мессенджере. Для работы незаменим." },
 ]} />

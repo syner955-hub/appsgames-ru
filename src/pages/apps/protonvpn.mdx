@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 ProtonVPN создан командой ProtonMail из Швейцарии. Это один из немногих VPN-сервисов с полностью бесплатным тарифом без ограничения трафика. Приложение не содержит рекламы и не продаёт пользовательские данные.
 
@@ -93,6 +94,11 @@ ProtonVPN базируется в Швейцарии, что обеспечив�
   { version: "5.4.0", date: "Апрель 2026", changes: ["Новые серверы в Азии", "Оптимизация расхода батареи"] },
 ]} />
 
+<Comments appName="ProtonVPN" comments={[
+  { author: "Роман Белов", date: "2026-03-18", rating: 5, text: "Лучший бесплатный VPN без рекламы. Безлимитный трафик — это огромный плюс." },
+  { author: "Татьяна В.", date: "2026-02-05", rating: 4, text: "На бесплатном тарифе скорость средняя, но для браузинга хватает. Доверяю швейцарской юрисдикции." },
+  { author: "Андрей Кузнецов", date: "2026-05-08", rating: 4, text: "Открытый код и аудиты внушают доверие. Перешёл с бесплатного на платный — скорость выросла в разы." },
+]} />
 <FaqAccordion items={[
   {
     question: "Действительно ли ProtonVPN бесплатный без ограничений трафика?",

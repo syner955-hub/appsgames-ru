@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 ЮMoney - популярный электронный кошелёк в России, позволяющий оплачивать покупки, переводить деньги и получать кэшбэк. Приложение заменяет физическую карту и работает как полноценный платёжный инструмент.
 
@@ -91,6 +92,11 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
   { version: "5.10.0", date: "Апрель 2026", changes: ["Обновлён дизайн истории операций", "Исправлена ошибка при пополнении кошелька"] },
 ]} />
 
+<Comments appName="ЮMoney" comments={[
+  { author: "Анна Козлова", date: "2026-01-30", rating: 4, text: "Удобный кошелёк для покупок в интернете. Виртуальная карта выпускается за секунду." },
+  { author: "Виктор Л.", date: "2026-04-11", rating: 5, text: "Пользуюсь для оплаты подписок, всё чётко работает. Кэшбэк приятный бонус." },
+  { author: "Марина Соколова", date: "2026-03-25", rating: 3, text: "Комиссия при выводе на карту раздражает. Для онлайн-покупок норм, но как основной кошелёк не подходит." },
+]} />
 <FaqAccordion items={[
   {
     question: "Нужна ли идентификация для использования ЮMoney?",

@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 NordVPN - один из крупнейших VPN-провайдеров с сетью из более чем 6000 серверов. Приложение для Android обеспечивает высокую скорость соединения благодаря собственному протоколу NordLynx на базе WireGuard.
 
@@ -93,6 +94,11 @@ NordVPN принадлежит компании Nord Security из Панамы.
   { version: "6.23.0", date: "Апрель 2026", changes: ["Добавлена защита от угроз", "Улучшен kill switch"] },
 ]} />
 
+<Comments appName="NordVPN" comments={[
+  { author: "Алексей Ш.", date: "2026-02-28", rating: 5, text: "Скорость отличная, NordLynx реально быстрый. Стриминг работает без проблем." },
+  { author: "Кирилл Орлов", date: "2026-04-15", rating: 4, text: "Стабильный VPN, серверов много. Единственный минус — цена, но за качество не жалко." },
+  { author: "Дарья Н.", date: "2026-01-10", rating: 5, text: "Подключаюсь к разным странам для работы, ни разу не было проблем с соединением." },
+]} />
 <FaqAccordion items={[
   {
     question: "Есть ли у NordVPN бесплатная версия?",

@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Windscribe VPN - канадский VPN-сервис с щедрым бесплатным тарифом. Приложение предоставляет 10 ГБ трафика ежемесячно без оплаты и включает встроенный блокировщик рекламы.
 
@@ -93,6 +94,11 @@ Windscribe разработан канадской компанией и отл�
   { version: "3.7.0", date: "Апрель 2026", changes: ["Обновлен протокол WireGuard", "Исправлены утечки DNS"] },
 ]} />
 
+<Comments appName="Windscribe VPN" comments={[
+  { author: "Денис Попов", date: "2026-04-22", rating: 5, text: "10 гигов бесплатно — щедро. R.O.B.E.R.T. блокирует рекламу лучше, чем отдельные блокировщики." },
+  { author: "Юлия Ф.", date: "2026-02-09", rating: 4, text: "Простой интерфейс, подключается быстро. На бесплатном тарифе вечерами бывает медленно." },
+  { author: "Николай Егоров", date: "2026-03-14", rating: 4, text: "Пользуюсь год на платном тарифе. Стабильный, без разрывов, WireGuard летает." },
+]} />
 <FaqAccordion items={[
   {
     question: "Сколько трафика доступно бесплатно?",

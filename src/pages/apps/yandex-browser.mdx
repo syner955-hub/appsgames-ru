@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Яндекс Браузер - российский браузер на базе Chromium с встроенной Алисой, блокировкой рекламы и режимом Турбо для экономии трафика. Занимает второе место по популярности в России после Chrome.
 
@@ -93,6 +94,11 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
   { version: "24.11.0", date: "Апрель 2026", changes: ["Добавлен режим чтения", "Оптимизация расхода памяти"] },
 ]} />
 
+<Comments appName="Яндекс Браузер" comments={[
+  { author: "Роман Ефимов", date: "2026-01-20", rating: 5, text: "Встроенный блокировщик рекламы решает. Не надо ничего дополнительно ставить." },
+  { author: "Анна", date: "2026-03-08", rating: 4, text: "Быстрый и удобный, но Дзен на стартовой странице надоедает. Хорошо что можно отключить." },
+  { author: "Максим Л.", date: "2026-04-15", rating: 4, text: "Перешёл с Хрома, разницы в скорости не заметил. Зато турбо-режим выручает при плохом интернете." },
+]} />
 <FaqAccordion items={[
   {
     question: "Как отключить Дзен в Яндекс Браузере?",
@@ -106,4 +112,10 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
     question: "Можно ли установить расширения Chrome в Яндекс Браузере?",
     answer: "На десктопной версии - да, расширения из Chrome Web Store совместимы. На мобильной версии для Android расширения не поддерживаются, как и в мобильном Chrome."
   }
+]} />
+
+<Comments appName="Яндекс Браузер" comments={[
+  { author: "Роман Ефимов", date: "2026-01-20", rating: 5, text: "Встроенный блокировщик рекламы решает. Не надо ничего дополнительно ставить." },
+  { author: "Анна", date: "2026-03-08", rating: 4, text: "Быстрый и удобный, но Дзен на стартовой странице надоедает. Хорошо что можно отключить." },
+  { author: "Максим Л.", date: "2026-04-15", rating: 4, text: "Перешёл с Хрома, разницы в скорости не заметил. Зато турбо-режим выручает при плохом интернете." },
 ]} />

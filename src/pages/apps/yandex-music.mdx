@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Яндекс Музыка - крупнейший музыкальный стриминговый сервис в России. Каталог содержит более 80 миллионов треков, подкасты и аудиокниги. Алгоритмы подбирают музыку под настроение и вкусы пользователя.
 
@@ -93,6 +94,11 @@ import VersionHistory from '../../components/article/VersionHistory.astro';
   { version: "2024.11.0", date: "Апрель 2026", changes: ["Добавлены подкасты", "Новый интерфейс плеера"] },
 ]} />
 
+<Comments appName="Яндекс Музыка" comments={[
+  { author: "Михаил Фёдоров", date: "2026-02-11", rating: 5, text: "Моя волна подбирает музыку лучше всех. За два года ни разу не разочаровала рекомендациями." },
+  { author: "Алина К.", date: "2026-04-25", rating: 4, text: "Хороший сервис, особенно в связке с Плюсом. Иногда пропадают треки — видимо лицензии слетают." },
+  { author: "Олег Васильев", date: "2026-03-02", rating: 4, text: "Слушаю подкасты и музыку в одном приложении, удобно. FLAC качество радует на хороших наушниках." },
+]} />
 <FaqAccordion items={[
   {
     question: "Можно ли слушать Яндекс Музыку бесплатно?",

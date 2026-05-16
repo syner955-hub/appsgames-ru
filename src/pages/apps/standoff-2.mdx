@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Standoff 2 от Axlebolt - мобильный тактический шутер в стиле Counter-Strike. Две команды сражаются в раундовых матчах на компактных картах. Игра популярна в СНГ благодаря отзывчивому управлению, соревновательному режиму и развитой экономике скинов.
 
@@ -106,4 +107,10 @@ Standoff 2 от Axlebolt - мобильный тактический шутер 
     question: "Как получить ранг?",
     answer: "Нужно сыграть 10 калибровочных матчей в соревновательном режиме. После этого система присвоит начальный ранг на основе ваших результатов."
   }
+]} />
+
+<Comments appName="Standoff 2" comments={[
+  { author: "Сергей", date: "9 мая 2026", rating: 5, text: "Для мобильного шутера стрельба очень точная. Паттерны отдачи реально работают, как в CS." },
+  { author: "Андрей", date: "23 апреля 2026", rating: 4, text: "Нормальная игра, но на низких рангах читеров хватает. На высоких уже получше." },
+  { author: "Екатерина", date: "15 марта 2026", rating: 4, text: "Парень затащил играть, сначала не понравилось, а потом втянулась. Рейтинг качаю потихоньку." },
 ]} />

@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Google Chrome - самый распространённый браузер в мире с долей рынка свыше 60%. Мобильная версия для Android обеспечивает быструю загрузку страниц, синхронизацию с десктопом и встроенную защиту от фишинга. Предустановлен на большинстве Android-устройств.
 
@@ -106,4 +107,10 @@ Chrome для Android построен на движке Blink и оптимиз
     question: "Как перенести данные из другого браузера в Chrome?",
     answer: "При первом запуске Chrome предложит импортировать закладки. Также можно синхронизировать данные через Google-аккаунт: импортируйте закладки в десктопную версию Chrome, и они автоматически появятся на мобильном устройстве."
   }
+]} />
+
+<Comments appName="Google Chrome" comments={[
+  { author: "Николай", date: "13 мая 2026", rating: 5, text: "Синхронизация с компом работает идеально — открыл вкладку на ноуте, продолжил на телефоне." },
+  { author: "Елена", date: "6 апреля 2026", rating: 4, text: "Быстрый и удобный, но оперативку ест как не в себя. При 10+ вкладках телефон начинает тупить." },
+  { author: "Иван", date: "20 марта 2026", rating: 4, text: "Пользуюсь с первого андроида, привык. Переводчик встроенный выручает на иностранных сайтах." },
 ]} />

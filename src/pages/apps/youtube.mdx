@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 YouTube - крупнейшая видеоплатформа в мире с миллиардами часов контента. Мобильное приложение предоставляет доступ к видео, Shorts, прямым трансляциям и музыке. Поддерживает персонализированные рекомендации на основе интересов пользователя.
 
@@ -106,4 +107,10 @@ YouTube - крупнейшая видеоплатформа в мире с ми�
     question: "Сколько трафика потребляет YouTube?",
     answer: "Расход зависит от качества видео. При 480p расходуется около 260 МБ в час, при 720p около 700 МБ, при 1080p до 1.5 ГБ в час. В настройках можно ограничить качество для экономии трафика."
   }
+]} />
+
+<Comments appName="YouTube" comments={[
+  { author: "Иван", date: "11 мая 2026", rating: 4, text: "Контента море, рекомендации попадают в точку. Но реклама по 2 ролика подряд — это перебор." },
+  { author: "Анна", date: "19 апреля 2026", rating: 5, text: "Смотрю обучающие видео каждый день, без ютуба уже не представляю жизнь. Shorts тоже зашли." },
+  { author: "Сергей", date: "5 марта 2026", rating: 4, text: "Всё хорошо, но батарею сажает моментально. Час просмотра — минус 30 процентов." },
 ]} />

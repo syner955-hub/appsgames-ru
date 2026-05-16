@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Discord объединяет текстовые чаты, голосовые каналы и видеосвязь в одной платформе. Изначально созданный для геймеров, сервис стал универсальным инструментом для сообществ любой тематики. Мобильная версия предоставляет полный доступ ко всем функциям серверов.
 
@@ -106,4 +107,10 @@ Discord работает по модели серверов, каждый из �
     question: "Как найти серверы по интересам?",
     answer: "Используйте встроенный каталог серверов через значок компаса в левой панели. Серверы разделены по категориям: игры, образование, музыка, наука и другие."
   }
+]} />
+
+<Comments appName="Discord" comments={[
+  { author: "Алексей", date: "12 мая 2026", rating: 5, text: "Лучшая штука для голосового общения в играх. Качество звука на голову выше любых аналогов." },
+  { author: "Мария", date: "3 апреля 2026", rating: 4, text: "Сижу на нескольких серверах по учёбе — очень удобно делить всё по каналам и темам." },
+  { author: "Николай", date: "18 марта 2026", rating: 4, text: "Жрёт оперативку прилично, но функционал того стоит. На старом телефоне подтормаживал." },
 ]} />

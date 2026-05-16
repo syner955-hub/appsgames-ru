@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Clash Royale от Supercell сочетает элементы коллекционных карточных игр, tower defense и стратегии реального времени. Матчи длятся 3-5 минут, что делает игру удобной для коротких сессий. Миллионы игроков ежедневно соревнуются на аренах по всему миру.
 
@@ -106,4 +107,10 @@ Clash Royale - это PvP-стратегия, где два игрока сра�
     question: "Сколько трафика потребляет один матч?",
     answer: "Один матч расходует около 1-2 МБ мобильного трафика. За час активной игры уходит примерно 20-30 МБ."
   }
+]} />
+
+<Comments appName="Clash Royale" comments={[
+  { author: "Алексей", date: "11 мая 2026", rating: 5, text: "Играю уже три года и не надоедает. Каждый сезон что-то новое, мета меняется." },
+  { author: "Мария", date: "7 апреля 2026", rating: 4, text: "Затягивает, но на высоких аренах без прокачки тяжело. Нужно терпение или кошелёк." },
+  { author: "Иван", date: "20 марта 2026", rating: 4, text: "Короткие матчи — то что надо в метро. Пара партий и уже на работе." },
 ]} />

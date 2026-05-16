@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 ВКонтакте, крупнейшая социальная сеть в России и СНГ с ежемесячной аудиторией более 100 миллионов человек. Платформа объединяет мессенджер, музыку, видео, игры и мини-приложения в одном сервисе.
 
@@ -118,4 +119,10 @@ VK, это экосистема для общения и развлечений.
     question: "VK собирает данные пользователей?",
     answer: "Как и другие соцсети, VK собирает данные для персонализации контента и рекламы. Объём собираемых данных описан в политике конфиденциальности."
   }
+]} />
+
+<Comments appName="ВКонтакте" comments={[
+  { author: "Елена", date: "9 мая 2026", rating: 4, text: "Музыка, видео, общение — всё в одном месте. Других соцсетей мне и не нужно." },
+  { author: "Дмитрий", date: "25 апреля 2026", rating: 5, text: "Клипы затягивают не хуже тиктока. И музыку в фоне слушаю бесплатно, хоть и с рекламой." },
+  { author: "Ольга", date: "30 марта 2026", rating: 3, text: "Приложение стало тяжёлым, на бюджетном телефоне иногда вылетает. Раньше было полегче." },
 ]} />

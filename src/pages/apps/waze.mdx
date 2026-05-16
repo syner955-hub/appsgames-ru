@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Waze строит маршруты на основе данных от миллионов водителей в реальном времени. Приложение автоматически перестраивает путь при появлении пробок или аварий впереди. Сообщество пользователей отмечает камеры, полицию, ямы на дороге и другие препятствия.
 
@@ -93,6 +94,11 @@ Waze принадлежит Google, но работает по другому п
   { version: "4.103.0", date: "Апрель 2026", changes: ["Добавлены маршруты для мотоциклов", "Исправлены ошибки GPS"] },
 ]} />
 
+<Comments appName="Waze" comments={[
+  { author: "Александр Громов", date: "2026-03-10", rating: 5, text: "В Москве без Waze никуда. Объезжает пробки через дворы, экономит по 20-30 минут каждый день." },
+  { author: "Лариса П.", date: "2026-04-18", rating: 4, text: "Камеры показывает точно, маршруты строит хорошо. Батарею жрёт прилично, но это у всех навигаторов." },
+  { author: "Станислав Козырев", date: "2026-02-26", rating: 4, text: "Нравится что сообщество активное — аварии и полицию отмечают моментально. Без интернета не работает, это минус." },
+]} />
 <FaqAccordion items={[
   {
     question: "Чем Waze отличается от Google Maps?",

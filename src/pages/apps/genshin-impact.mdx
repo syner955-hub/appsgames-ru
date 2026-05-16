@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Genshin Impact, масштабная action-RPG с открытым миром от студии HoYoverse. Игра предлагает исследование огромного мира Тейват, систему элементальных реакций и сюжетную кампанию с полной озвучкой. Кроссплатформенная игра между мобильными устройствами, ПК и консолями.
 
@@ -119,4 +120,10 @@ Genshin Impact доступен в App Store. Прогресс синхрони�
     question: "Как перенести прогресс с телефона на ПК?",
     answer: "Привяжите аккаунт HoYoverse к email. После этого войдите в тот же аккаунт на ПК или другом устройстве. Прогресс синхронизируется автоматически."
   }
+]} />
+
+<Comments appName="Genshin Impact" comments={[
+  { author: "Мария", date: "8 мая 2026", rating: 5, text: "Графика на телефоне просто нереальная. Натлан — лучший регион, исследовать одно удовольствие." },
+  { author: "Алексей", date: "15 апреля 2026", rating: 4, text: "Затягивает надолго, но смола бесит. Хочется играть больше, а приходится ждать." },
+  { author: "Екатерина", date: "28 февраля 2026", rating: 3, text: "Телефон греется как печка после получаса игры. На планшете норм, а на смартфоне тяжело." },
 ]} />

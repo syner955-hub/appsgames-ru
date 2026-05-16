@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 KineMaster - один из самых популярных мобильных видеоредакторов для Android. Приложение позволяет создавать ролики профессионального качества прямо на смартфоне. Поддерживает многослойный монтаж, цветокоррекцию и экспорт до 4K.
 
@@ -93,6 +94,11 @@ KineMaster предоставляет полноценную среду для �
   { version: "7.4.0", date: "Апрель 2026", changes: ["Добавлен хромакей для фото", "Оптимизация рендеринга"] },
 ]} />
 
+<Comments appName="KineMaster" comments={[
+  { author: "Григорий Т.", date: "2026-01-25", rating: 4, text: "Серьёзный редактор для телефона. Хромакей работает прилично, многослойность выручает." },
+  { author: "Ирина Лебедева", date: "2026-03-20", rating: 5, text: "Снимаю обучающие видео, KineMaster полностью закрывает мои потребности. Рекомендую." },
+  { author: "Вадим Соловьёв", date: "2026-05-10", rating: 3, text: "Водяной знак в бесплатной версии портит всё. Приходится платить подписку, а она недешёвая." },
+]} />
 <FaqAccordion items={[
   {
     question: "Можно ли убрать водяной знак KineMaster бесплатно?",

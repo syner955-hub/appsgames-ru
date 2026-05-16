@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 VPN Master, бесплатный VPN-сервис для Android с простым интерфейсом и подключением в одно касание. Приложение шифрует интернет-трафик и позволяет обходить географические ограничения на доступ к контенту.
 
@@ -102,6 +103,11 @@ VPN Master доступен в App Store с аналогичной функци�
   { version: "8.3.0", date: "Апрель 2026", changes: ["Обновлён протокол шифрования WireGuard", "Исправлены разрывы при переключении сетей"] },
 ]} />
 
+<Comments appName="VPN Master" comments={[
+  { author: "Владимир С.", date: "2026-03-03", rating: 4, text: "Для простых задач подходит, подключается в одно нажатие. Рекламы многовато в бесплатной версии." },
+  { author: "Екатерина Миронова", date: "2026-01-17", rating: 3, text: "Скорость на бесплатных серверах слабая, видео грузится долго. Для мессенджеров сойдёт." },
+  { author: "Антон Р.", date: "2026-04-28", rating: 4, text: "Работает без регистрации, это удобно. Иногда соединение рвётся, но переподключается быстро." },
+]} />
 <FaqAccordion items={[
   {
     question: "VPN Master бесплатный?",

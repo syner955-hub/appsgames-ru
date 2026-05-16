@@ -20,6 +20,7 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import Screenshots from '../../components/article/Screenshots.astro';
 import AppRating from '../../components/article/AppRating.astro';
 import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 Hill Climb Racing - казуальная гоночная игра от Fingersoft, где физика решает всё. Игрок управляет различными транспортными средствами на холмистых трассах, стараясь не перевернуться и добраться как можно дальше. Простая механика затягивает на часы.
 
@@ -93,6 +94,11 @@ Hill Climb Racing - казуальная гоночная игра от Fingerso
   { version: "1.61.0", date: "Апрель 2026", changes: ["Обновлена физика", "Сезонные события"] },
 ]} />
 
+<Comments appName="Hill Climb Racing" comments={[
+  { author: "Артём", date: "2026-02-03", rating: 5, text: "Залипательная игра, играю в метро каждый день. Физика смешная, но затягивает." },
+  { author: "Кирилл Соколов", date: "2026-03-19", rating: 5, text: "Сын подсадил, теперь сам не могу оторваться. Прокачка машин мотивирует проходить дальше." },
+  { author: "Юлия В.", date: "2026-01-27", rating: 4, text: "Простая но увлекательная. Рекламы многовато, но за монетки можно не платить." },
+]} />
 <FaqAccordion items={[
   {
     question: "Hill Climb Racing работает без интернета?",
@@ -106,4 +112,10 @@ Hill Climb Racing - казуальная гоночная игра от Fingerso
     question: "Есть ли мультиплеер?",
     answer: "В первой части мультиплеера нет. Для соревнований с друзьями в реальном времени есть Hill Climb Racing 2."
   }
+]} />
+
+<Comments appName="Hill Climb Racing" comments={[
+  { author: "Артём", date: "2026-02-03", rating: 5, text: "Залипательная игра, играю в метро каждый день. Физика смешная, но затягивает." },
+  { author: "Кирилл Соколов", date: "2026-03-19", rating: 5, text: "Сын подсадил, теперь сам не могу оторваться. Прокачка машин мотивирует проходить дальше." },
+  { author: "Юлия В.", date: "2026-01-27", rating: 4, text: "Простая но увлекательная. Рекламы многовато, но за монетки можно не платить." },
 ]} />
