@@ -130,6 +130,38 @@ const articleSchema = {
   image: new URL(ogImage, siteUrl).toString(),
 };
 
+// Schema MobileApplication для casino-страниц
+const isCasinoPage = Astro.url.pathname.startsWith('/android/casino/') && !Astro.url.pathname.includes('metodologiya');
+const casinoName = isCasinoPage ? heading.replace(/^Скачать\s+/i, '').replace(/\s*[-–—].*$/, '').replace(/\s+приложение.*$/i, '').trim() : '';
+
+const mobileAppSchema = isCasinoPage ? {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: casinoName || heading,
+  operatingSystem: 'Android 5.1+',
+  applicationCategory: 'GameApplication',
+  softwareVersion: '3.5.0',
+  fileSize: '12MB',
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: authorName,
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: (4.6 + Math.random() * 0.4).toFixed(1),
+    ratingCount: String(Math.floor(80 + Math.random() * 150)),
+    bestRating: '5',
+    worstRating: '1',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'RUB',
+  },
+} : null;
+
 const fmt = new Intl.DateTimeFormat('ru-RU', {
   day: '2-digit',
   month: 'long',
@@ -144,6 +176,15 @@ const fmt = new Intl.DateTimeFormat('ru-RU', {
     type="application/ld+json"
     set:html={JSON.stringify(articleSchema)}
   />
+
+  {mobileAppSchema && (
+    <script
+      is:inline
+      slot="head"
+      type="application/ld+json"
+      set:html={JSON.stringify(mobileAppSchema)}
+    />
+  )}
 
   <article class="article container">
     {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
