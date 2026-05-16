@@ -2,25 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Скачать игры и приложения для Android бесплатно — AppsGames.ru';
-const description = 'Каталог игр и приложений для Android. Скачивайте APK бесплатно: казино, мессенджеры, навигаторы, банковские приложения и утилиты.';
+const description = 'Каталог игр и приложений для Android. Скачивайте APK бесплатно: мессенджеры, навигаторы, банковские приложения, игры и утилиты с обзорами.';
 
 const categories = [
-  { href: '/apps/', name: 'Все приложения', count: 15, icon: '📱' },
+  { href: '/apps/games/', name: 'Игры', count: 29, icon: '🎮' },
+  { href: '/apps/programs/', name: 'Программы', count: 55, icon: '📱' },
+  { href: '/apps/', name: 'Весь каталог', count: 84, icon: '📂' },
+  { href: '/apps/search/', name: 'Поиск', count: 0, icon: '🔍' },
 ];
 
 const apps = [
   { href: '/apps/telegram/', name: 'Telegram', desc: 'Мессенджер с каналами и ботами', image: '/images/apps/telegram.webp', category: 'Мессенджеры' },
   { href: '/apps/whatsapp/', name: 'WhatsApp', desc: 'Звонки и переписка с шифрованием', image: '/images/apps/whatsapp.webp', category: 'Мессенджеры' },
+  { href: '/apps/tiktok/', name: 'TikTok', desc: 'Короткие видео и тренды', image: '/images/apps/tiktok.webp', category: 'Соцсети' },
+  { href: '/apps/instagram/', name: 'Instagram', desc: 'Фото, Stories и Reels', image: '/images/apps/instagram.webp', category: 'Соцсети' },
   { href: '/apps/vk/', name: 'ВКонтакте', desc: 'Соцсеть с музыкой и видео', image: '/images/apps/vk.webp', category: 'Соцсети' },
+  { href: '/apps/youtube/', name: 'YouTube', desc: 'Видеохостинг с миллиардами роликов', image: '/images/apps/youtube.webp', category: 'Мультимедиа' },
+  { href: '/apps/spotify/', name: 'Spotify', desc: 'Стриминг музыки и подкастов', image: '/images/apps/spotify.webp', category: 'Мультимедиа' },
   { href: '/apps/sberbank/', name: 'Сбербанк', desc: 'Переводы, платежи, вклады', image: '/images/apps/sberbank.webp', category: 'Финансы' },
   { href: '/apps/tinkoff/', name: 'Тинькофф', desc: 'Банк с инвестициями и кэшбэком', image: '/images/apps/tinkoff.webp', category: 'Финансы' },
   { href: '/apps/yandex-navigator/', name: 'Яндекс Навигатор', desc: 'Пробки, камеры, маршруты', image: '/images/apps/yandex-navigator.webp', category: 'Навигация' },
-  { href: '/apps/2gis/', name: '2ГИС', desc: 'Карты городов и справочник', image: '/images/apps/2gis.webp', category: 'Навигация' },
-  { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница с открытым миром', image: '/images/apps/minecraft.webp', category: 'Игры' },
+  { href: '/apps/google-maps/', name: 'Google Maps', desc: 'Карты, маршруты и панорамы', image: '/images/apps/google-maps.webp', category: 'Навигация' },
+  { href: '/apps/ozon/', name: 'Ozon', desc: 'Маркетплейс с быстрой доставкой', image: '/images/apps/ozon.webp', category: 'Покупки' },
+  { href: '/apps/wildberries/', name: 'Wildberries', desc: 'Маркетплейс одежды и товаров', image: '/images/apps/wildberries.webp', category: 'Покупки' },
+  { href: '/apps/subway-surfers/', name: 'Subway Surfers', desc: 'Бесконечный раннер', image: '/images/apps/subway-surfers.webp', category: 'Игры' },
   { href: '/apps/brawl-stars/', name: 'Brawl Stars', desc: 'Мультиплеерный шутер 3v3', image: '/images/apps/brawl-stars.webp', category: 'Игры' },
+  { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница с открытым миром', image: '/images/apps/minecraft.webp', category: 'Игры' },
   { href: '/apps/genshin-impact/', name: 'Genshin Impact', desc: 'RPG с открытым миром', image: '/images/apps/genshin-impact.webp', category: 'Игры' },
-  { href: '/apps/spotify/', name: 'Spotify', desc: 'Стриминг музыки и подкастов', image: '/images/apps/spotify.webp', category: 'Музыка' },
-  { href: '/apps/adguard/', name: 'AdGuard', desc: 'Блокировщик рекламы', image: '/images/apps/adguard.webp', category: 'Утилиты' },
+  { href: '/apps/pubg-mobile/', name: 'PUBG Mobile', desc: 'Королевская битва на 100 игроков', image: '/images/apps/pubg-mobile.webp', category: 'Игры' },
+  { href: '/apps/roblox/', name: 'Roblox', desc: 'Платформа с миллионами игр', image: '/images/apps/roblox.webp', category: 'Игры' },
+  { href: '/apps/clash-of-clans/', name: 'Clash of Clans', desc: 'Стройте деревню и атакуйте', image: '/images/apps/clash-of-clans.webp', category: 'Игры' },
 ];
 ---
 
@@ -60,8 +71,8 @@ const apps = [
 
   <section class="home-text container">
     <h2>О каталоге</h2>
-    <p>AppsGames.ru — каталог игр и приложений для Android. Здесь можно скачать APK-файлы мобильных казино, мессенджеров, навигаторов и утилит. Все приложения проверены на работоспособность и совместимость с актуальными версиями Android.</p>
-    <p>Для каждого приложения доступен обзор с описанием функций, системными требованиями, инструкцией по установке и ссылками на официальные источники.</p>
+    <p>AppsGames.ru — каталог игр и приложений для Android. Здесь можно скачать APK-файлы мессенджеров, навигаторов, банковских приложений и утилит. Все приложения проверены на работоспособность и совместимость с актуальными версиями Android.</p>
+    <p>Для каждого приложения доступен обзор с описанием функций, скриншотами, системными требованиями, историей версий и ссылками на официальные источники.</p>
   </section>
 
   <script
