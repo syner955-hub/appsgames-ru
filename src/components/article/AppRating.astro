@@ -1,0 +1,56 @@
+---
+interface Props {
+  rating?: number;
+  votes?: number;
+}
+const { rating = 4.8, votes = 184 } = Astro.props;
+const fullStars = Math.floor(rating);
+const hasHalf = rating - fullStars >= 0.3;
+const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+---
+
+<div class="app-rating">
+  <div class="app-rating__stars" aria-label={`Рейтинг ${rating} из 5`}>
+    {Array(fullStars).fill(0).map(() => <span class="star star--full">★</span>)}
+    {hasHalf && <span class="star star--half">★</span>}
+    {Array(emptyStars).fill(0).map(() => <span class="star star--empty">★</span>)}
+  </div>
+  <span class="app-rating__value">{rating}</span>
+  <span class="app-rating__votes">{votes} голосов</span>
+</div>
+
+<style>
+  .app-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0.8rem 0 1.2rem;
+  }
+  .app-rating__stars {
+    display: flex;
+    gap: 0.1rem;
+  }
+  .star {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+  .star--full {
+    color: #F59E0B;
+  }
+  .star--half {
+    color: #F59E0B;
+    opacity: 0.6;
+  }
+  .star--empty {
+    color: var(--border-strong);
+  }
+  .app-rating__value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+  }
+  .app-rating__votes {
+    font-size: 0.85rem;
+    color: var(--fg-subtle);
+  }
+</style>
