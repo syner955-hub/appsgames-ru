@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /_astro/
+Disallow: /go/
 
 Sitemap: https://appsgames.ru/sitemap-index.xml
 

