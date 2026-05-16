@@ -5,28 +5,27 @@ const title = 'Скачать игры и приложения для Android б
 const description = 'Каталог игр и приложений для Android. Скачивайте APK бесплатно: казино, мессенджеры, навигаторы, банковские приложения и утилиты.';
 
 const categories = [
-  { href: '/android/casino/', name: 'Казино', count: 28, icon: '🎰' },
-  { href: '/apps/', name: 'Приложения', count: 15, icon: '📱' },
-  { href: '/android/', name: 'Android гайды', count: 8, icon: '🤖' },
-  { href: '/ios/', name: 'iOS гайды', count: 11, icon: '🍎' },
-];
-
-const casinoApps = [
-  { href: '/android/casino/7k-casino/', name: '7K Casino', desc: '1000+ слотов, лайв-казино', bonus: '100% + 50 FS', image: '/images/casino/7k-casino-logo.webp' },
-  { href: '/android/casino/vavada/', name: 'Vavada', desc: '5000+ игр, 100 FS без депозита', bonus: '100 FS бездеп', image: '/images/casino/vavada-logo.webp' },
-  { href: '/android/casino/legzo-casino/', name: 'Legzo', desc: '5000+ игр от 60 провайдеров', bonus: '200% + 100 FS', image: '/images/casino/legzo-casino-logo.webp' },
-  { href: '/android/casino/starda-casino/', name: 'Starda', desc: 'Пакет до 500% на 4 депозита', bonus: '200% + 50 FS', image: '/images/casino/starda-casino-logo.webp' },
-  { href: '/android/casino/beef-casino/', name: 'Beef Casino', desc: '4000+ игр, вывод от 5 мин', bonus: '150% + 40 FS', image: '/images/casino/beef-casino-logo.webp' },
-  { href: '/android/casino/kometa-casino/', name: 'Kometa', desc: '4000+ игр, мобильные бонусы', bonus: '100% + 200 FS', image: '/images/casino/kometa-casino-logo.webp' },
+  { href: '/apps/', name: 'Все приложения', count: 15, icon: '📱' },
+  { href: '/android/', name: 'Android', count: 8, icon: '🤖' },
+  { href: '/ios/', name: 'iOS', count: 11, icon: '🍎' },
+  { href: '/obzory/', name: 'Обзоры', count: 10, icon: '⭐' },
+  { href: '/sovety/', name: 'Советы', count: 5, icon: '💡' },
+  { href: '/bezopasnost/', name: 'Безопасность', count: 4, icon: '🔒' },
 ];
 
 const apps = [
-  { href: '/apps/telegram/', name: 'Telegram', desc: 'Мессенджер с каналами и ботами', image: '/images/apps/telegram.webp' },
-  { href: '/apps/whatsapp/', name: 'WhatsApp', desc: 'Звонки и переписка с шифрованием', image: '/images/apps/whatsapp.webp' },
-  { href: '/apps/vk/', name: 'ВКонтакте', desc: 'Соцсеть с музыкой и видео', image: '/images/apps/vk.webp' },
-  { href: '/apps/sberbank/', name: 'Сбербанк', desc: 'Переводы, платежи, вклады', image: '/images/apps/sberbank.webp' },
-  { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница с открытым миром', image: '/images/apps/minecraft.webp' },
-  { href: '/apps/adguard/', name: 'AdGuard', desc: 'Блокировщик рекламы', image: '/images/apps/adguard.webp' },
+  { href: '/apps/telegram/', name: 'Telegram', desc: 'Мессенджер с каналами и ботами', image: '/images/apps/telegram.webp', category: 'Мессенджеры' },
+  { href: '/apps/whatsapp/', name: 'WhatsApp', desc: 'Звонки и переписка с шифрованием', image: '/images/apps/whatsapp.webp', category: 'Мессенджеры' },
+  { href: '/apps/vk/', name: 'ВКонтакте', desc: 'Соцсеть с музыкой и видео', image: '/images/apps/vk.webp', category: 'Соцсети' },
+  { href: '/apps/sberbank/', name: 'Сбербанк', desc: 'Переводы, платежи, вклады', image: '/images/apps/sberbank.webp', category: 'Финансы' },
+  { href: '/apps/tinkoff/', name: 'Тинькофф', desc: 'Банк с инвестициями и кэшбэком', image: '/images/apps/tinkoff.webp', category: 'Финансы' },
+  { href: '/apps/yandex-navigator/', name: 'Яндекс Навигатор', desc: 'Пробки, камеры, маршруты', image: '/images/apps/yandex-navigator.webp', category: 'Навигация' },
+  { href: '/apps/2gis/', name: '2ГИС', desc: 'Карты городов и справочник', image: '/images/apps/2gis.webp', category: 'Навигация' },
+  { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница с открытым миром', image: '/images/apps/minecraft.webp', category: 'Игры' },
+  { href: '/apps/brawl-stars/', name: 'Brawl Stars', desc: 'Мультиплеерный шутер 3v3', image: '/images/apps/brawl-stars.webp', category: 'Игры' },
+  { href: '/apps/genshin-impact/', name: 'Genshin Impact', desc: 'RPG с открытым миром', image: '/images/apps/genshin-impact.webp', category: 'Игры' },
+  { href: '/apps/spotify/', name: 'Spotify', desc: 'Стриминг музыки и подкастов', image: '/images/apps/spotify.webp', category: 'Музыка' },
+  { href: '/apps/adguard/', name: 'AdGuard', desc: 'Блокировщик рекламы', image: '/images/apps/adguard.webp', category: 'Утилиты' },
 ];
 ---
 
@@ -47,26 +46,7 @@ const apps = [
 
   <section class="home-section container">
     <header class="section-head">
-      <h2>Казино на Android</h2>
-      <a href="/android/casino/" class="section-head__link">Все казино →</a>
-    </header>
-    <div class="apps-grid">
-      {casinoApps.map((app) => (
-        <a href={app.href} class="app-item">
-          <img src={app.image} alt={app.name} width="48" height="48" loading="lazy" class="app-item__icon" />
-          <div class="app-item__body">
-            <span class="app-item__name">{app.name}</span>
-            <span class="app-item__desc">{app.desc}</span>
-          </div>
-          <span class="app-item__badge">{app.bonus}</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="home-section container">
-    <header class="section-head">
-      <h2>Приложения</h2>
+      <h2>Популярные приложения</h2>
       <a href="/apps/" class="section-head__link">Все приложения →</a>
     </header>
     <div class="apps-grid">
@@ -77,7 +57,7 @@ const apps = [
             <span class="app-item__name">{app.name}</span>
             <span class="app-item__desc">{app.desc}</span>
           </div>
-          <span class="app-item__btn">Скачать</span>
+          <span class="app-item__badge">{app.category}</span>
         </a>
       ))}
     </div>
