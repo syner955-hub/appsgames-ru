@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Plague Inc. ставит перед игроком необычную задачу: создать патоген и уничтожить человечество до того, как ученые разработают лекарство. Игра сочетает стратегическое планирование с реалистичной моделью распространения болезней. Разработчики консультировались с эпидемиологами при создании игровых механик.
+
+<AppRating appName="Plague Inc." rating="4.4" count="51000" />
+
+<Screenshots slug="plague-inc" appName="Plague Inc." />
 
 ## Описание Plague Inc.
 
@@ -80,6 +87,11 @@ Plague Inc. ставит перед игроком необычную задач
 - Интерфейс мелковат на небольших экранах
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "1.19.17", date: "Май 2026", changes: ["Новый сценарий: Космическая чума", "Балансировка сложности"] },
+  { version: "1.19.10", date: "Апрель 2026", changes: ["Добавлены мутации", "Обновлена карта мира"] },
+]} />
 
 <FaqAccordion items={[
   {

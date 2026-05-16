@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 KineMaster - один из самых популярных мобильных видеоредакторов для Android. Приложение позволяет создавать ролики профессионального качества прямо на смартфоне. Поддерживает многослойный монтаж, цветокоррекцию и экспорт до 4K.
+
+<AppRating appName="KineMaster" rating="4.2" count="38000" />
+
+<Screenshots slug="kinemaster" appName="KineMaster" />
 
 ## Описание KineMaster
 
@@ -80,6 +87,11 @@ KineMaster предоставляет полноценную среду для �
 - На слабых устройствах возможны подтормаживания при работе с 4K
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "7.5.8", date: "Май 2026", changes: ["Новые переходы и эффекты", "Улучшен экспорт в 4K"] },
+  { version: "7.4.0", date: "Апрель 2026", changes: ["Добавлен хромакей для фото", "Оптимизация рендеринга"] },
+]} />
 
 <FaqAccordion items={[
   {

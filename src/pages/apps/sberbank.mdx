@@ -17,8 +17,13 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Сбербанк Онлайн, мобильное приложение крупнейшего банка России для управления счетами, картами и финансами. Через приложение доступны переводы, платежи, кредиты, вклады и инвестиции без посещения отделения.
+
+<AppRating appName="Сбербанк Онлайн" rating="4.2" count="95000" />
 
 ## Описание Сбербанк Онлайн
 
@@ -89,6 +94,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 Приложение доступно в App Store для российских аккаунтов. Функциональность идентична Android-версии.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "15.5.0", date: "Май 2026", changes: ["Обновлён интерфейс главного экрана", "Ускорены переводы через СБП"] },
+  { version: "15.4.0", date: "Апрель 2026", changes: ["Добавлена оплата по QR-коду в новых категориях", "Исправлены ошибки авторизации по биометрии"] },
+]} />
 
 <FaqAccordion items={[
   {

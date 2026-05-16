@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Hill Climb Racing - казуальная гоночная игра от Fingersoft, где физика решает всё. Игрок управляет различными транспортными средствами на холмистых трассах, стараясь не перевернуться и добраться как можно дальше. Простая механика затягивает на часы.
+
+<AppRating appName="Hill Climb Racing" rating="4.5" count="95000" />
+
+<Screenshots slug="hill-climb-racing" appName="Hill Climb Racing" />
 
 ## Описание Hill Climb Racing
 
@@ -80,6 +87,11 @@ Hill Climb Racing - казуальная гоночная игра от Fingerso
 - Реклама появляется между заездами
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "1.62.0", date: "Май 2026", changes: ["Новая трасса: Вулкан", "Добавлен транспорт"] },
+  { version: "1.61.0", date: "Апрель 2026", changes: ["Обновлена физика", "Сезонные события"] },
+]} />
 
 <FaqAccordion items={[
   {

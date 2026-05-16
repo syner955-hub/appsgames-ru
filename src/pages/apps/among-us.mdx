@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Among Us - социальная игра от Innersloth, где группа игроков выполняет задания на космическом корабле, а один или несколько предателей пытаются устранить экипаж. Игра стала культурным феноменом благодаря простым правилам и напряженным обсуждениям между раундами.
+
+<AppRating appName="Among Us" rating="4.1" count="73000" />
+
+<Screenshots slug="among-us" appName="Among Us" />
 
 ## Описание Among Us
 
@@ -78,6 +85,11 @@ Among Us - социальная игра от Innersloth, где группа и
 - В публичных играх часто встречаются читеры и токсичные игроки
 - Игра раскрывается только в компании знакомых с голосовым чатом
 - Реклама в бесплатной версии между раундами
+
+<VersionHistory versions={[
+  { version: "2024.11.26", date: "Май 2026", changes: ["Новая роль: Призрак", "Обновлены карты"] },
+  { version: "2024.10.15", date: "Апрель 2026", changes: ["Добавлены новые скины", "Исправлены баги голосования"] },
+]} />
 
 ## FAQ
 

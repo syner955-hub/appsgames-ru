@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Minecraft, культовая песочница от Mojang Studios, где игроки строят миры из блоков, исследуют пещеры, сражаются с мобами и выживают. Мобильная версия (Bedrock Edition) поддерживает кроссплатформенную игру с консолями и ПК.
+
+<AppRating appName="Minecraft" rating="4.6" count="110000" />
+
+<Screenshots slug="minecraft" appName="Minecraft" />
 
 ## Описание Minecraft
 
@@ -87,6 +94,11 @@ Minecraft, платная игра. Бесплатных легальных ве
 ## Minecraft на iPhone
 
 Minecraft доступен в App Store по той же цене. Поддерживается кроссплатформенная игра между iOS и Android через аккаунт Microsoft.
+
+<VersionHistory versions={[
+  { version: "1.21.50", date: "Май 2026", changes: ["Добавлен новый биом", "Улучшена генерация мира"] },
+  { version: "1.21.40", date: "Апрель 2026", changes: ["Новые блоки и предметы", "Исправлены краши на старых устройствах"] },
+]} />
 
 ## FAQ
 

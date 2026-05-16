@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 WPS Office - бесплатный офисный пакет, совместимый с форматами Microsoft Office. Приложение объединяет текстовый редактор, таблицы, презентации и PDF-ридер в одном компактном пакете. Более 500 миллионов установок на Android.
+
+<AppRating appName="WPS Office" rating="4.3" count="45000" />
+
+<Screenshots slug="wps-office" appName="WPS Office" />
 
 ## Описание WPS Office
 
@@ -80,6 +87,11 @@ WPS Office разработан китайской компанией Kingsoft �
 - Сложные макросы Excel могут работать некорректно
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "18.9.2", date: "Май 2026", changes: ["Улучшена совместимость с DOCX", "Новые шаблоны презентаций"] },
+  { version: "18.8.0", date: "Апрель 2026", changes: ["Добавлен ИИ-помощник", "Исправлены ошибки форматирования"] },
+]} />
 
 <FaqAccordion items={[
   {

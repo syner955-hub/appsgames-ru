@@ -1,56 +1,66 @@
 ---
 interface Props {
-  rating?: number;
-  votes?: number;
+  appName: string;
+  rating: string;
+  count: string;
 }
-const { rating = 4.8, votes = 184 } = Astro.props;
-const fullStars = Math.floor(rating);
-const hasHalf = rating - fullStars >= 0.3;
+const { appName, rating, count } = Astro.props;
+
+const ratingNum = parseFloat(rating);
+const fullStars = Math.floor(ratingNum);
+const hasHalf = ratingNum - fullStars >= 0.3;
 const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
 ---
 
 <div class="app-rating">
   <div class="app-rating__stars" aria-label={`Рейтинг ${rating} из 5`}>
-    {Array(fullStars).fill(0).map(() => <span class="star star--full">★</span>)}
+    {Array.from({ length: fullStars }).map(() => (
+      <span class="star star--full">★</span>
+    ))}
     {hasHalf && <span class="star star--half">★</span>}
-    {Array(emptyStars).fill(0).map(() => <span class="star star--empty">★</span>)}
+    {Array.from({ length: emptyStars }).map(() => (
+      <span class="star star--empty">★</span>
+    ))}
   </div>
   <span class="app-rating__value">{rating}</span>
-  <span class="app-rating__votes">{votes} голосов</span>
+  <span class="app-rating__count">({count} оценок)</span>
 </div>
 
 <style>
   .app-rating {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    margin: 0.8rem 0 1.2rem;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
   }
   .app-rating__stars {
     display: flex;
     gap: 0.1rem;
   }
   .star {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1;
   }
   .star--full {
-    color: #F59E0B;
+    color: #f5a623;
   }
   .star--half {
-    color: #F59E0B;
+    color: #f5a623;
     opacity: 0.6;
   }
   .star--empty {
-    color: var(--border-strong);
+    color: var(--border);
   }
   .app-rating__value {
-    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--fg);
+    font-size: 1.05rem;
   }
-  .app-rating__votes {
+  .app-rating__count {
     font-size: 0.85rem;
-    color: var(--fg-subtle);
+    color: var(--fg-muted);
   }
 </style>

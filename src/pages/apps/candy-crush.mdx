@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Candy Crush Saga от King - головоломка в жанре "три в ряд", покорившая сотни миллионов игроков. Игра предлагает тысячи уровней с разнообразными целями и механиками. Простой принцип "собери три одинаковых" дополняется десятками усложнений и бонусов.
+
+<AppRating appName="Candy Crush Saga" rating="4.3" count="105000" />
+
+<Screenshots slug="candy-crush" appName="Candy Crush Saga" />
 
 ## Описание Candy Crush Saga
 
@@ -80,6 +87,11 @@ Candy Crush Saga - это классическая match-3 головоломк�
 - Навязчивые предложения о покупках внутри игры
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "1.275.0", date: "Май 2026", changes: ["Добавлены 30 новых уровней", "Новый бустер"] },
+  { version: "1.272.0", date: "Апрель 2026", changes: ["Обновлены сезонные события", "Исправлены баги прогресса"] },
+]} />
 
 <FaqAccordion items={[
   {

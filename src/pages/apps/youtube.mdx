@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 YouTube - крупнейшая видеоплатформа в мире с миллиардами часов контента. Мобильное приложение предоставляет доступ к видео, Shorts, прямым трансляциям и музыке. Поддерживает персонализированные рекомендации на основе интересов пользователя.
+
+<AppRating appName="YouTube" rating="4.2" count="120000" />
+
+<Screenshots slug="youtube" appName="YouTube" />
 
 ## Описание YouTube
 
@@ -78,6 +85,11 @@ YouTube - крупнейшая видеоплатформа в мире с ми�
 - Реклама в бесплатной версии перед и во время видео
 - Фоновое воспроизведение только в Premium-подписке
 - Высокое потребление трафика при просмотре в высоком качестве
+
+<VersionHistory versions={[
+  { version: "19.50.40", date: "Май 2026", changes: ["Обновлен плеер Shorts", "Улучшены субтитры"] },
+  { version: "19.48.0", date: "Апрель 2026", changes: ["Новый дизайн комментариев", "Оптимизация буферизации"] },
+]} />
 
 ## FAQ
 

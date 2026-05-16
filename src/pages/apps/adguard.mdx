@@ -17,8 +17,13 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 AdGuard, блокировщик рекламы для Android, который фильтрует рекламу во всех приложениях и браузерах без root-доступа. Приложение также защищает от фишинга, трекеров и вредоносных сайтов.
+
+<AppRating appName="AdGuard" rating="4.5" count="28000" />
 
 ## Описание AdGuard
 
@@ -90,6 +95,11 @@ AdGuard отсутствует в Google Play из-за политики Google 
 AdGuard доступен в App Store, но на iOS работает только в Safari из-за ограничений системы. Для системной DNS-фильтрации есть отдельное приложение AdGuard DNS.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "4.7.0", date: "Май 2026", changes: ["Обновлены фильтры блокировки для новых рекламных сетей", "Добавлена поддержка DNS-over-QUIC"] },
+  { version: "4.6.0", date: "Апрель 2026", changes: ["Улучшена совместимость с Android 15", "Исправлены ложные срабатывания на некоторых сайтах"] },
+]} />
 
 <FaqAccordion items={[
   {

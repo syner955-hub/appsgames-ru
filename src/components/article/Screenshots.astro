@@ -1,0 +1,66 @@
+---
+interface Props {
+  slug: string;
+  appName: string;
+  count?: number;
+}
+const { slug, appName, count = 4 } = Astro.props;
+
+const images = Array.from({ length: count }, (_, i) => ({
+  src: `/images/screenshots/${slug}-${i + 1}.webp`,
+  alt: `${appName} скриншот ${i + 1}`,
+}));
+---
+
+<section class="screenshots">
+  <h2>Скриншоты</h2>
+  <div class="screenshots__scroll">
+    {images.map((img) => (
+      <img
+        src={img.src}
+        alt={img.alt}
+        width="208"
+        height="396"
+        loading="lazy"
+        class="screenshots__img"
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .screenshots {
+    margin: 2rem 0;
+  }
+  .screenshots h2 {
+    margin-bottom: 1rem;
+  }
+  .screenshots__scroll {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+  .screenshots__scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+  .screenshots__scroll::-webkit-scrollbar-track {
+    background: var(--bg-soft);
+    border-radius: 3px;
+  }
+  .screenshots__scroll::-webkit-scrollbar-thumb {
+    background: var(--border-strong, var(--border));
+    border-radius: 3px;
+  }
+  .screenshots__img {
+    flex-shrink: 0;
+    width: 208px;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    scroll-snap-align: start;
+    object-fit: cover;
+  }
+</style>

@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Discord объединяет текстовые чаты, голосовые каналы и видеосвязь в одной платформе. Изначально созданный для геймеров, сервис стал универсальным инструментом для сообществ любой тематики. Мобильная версия предоставляет полный доступ ко всем функциям серверов.
+
+<AppRating appName="Discord" rating="4.2" count="42000" />
+
+<Screenshots slug="discord" appName="Discord" />
 
 ## Описание Discord
 
@@ -80,6 +87,11 @@ Discord работает по модели серверов, каждый из �
 - Nitro-подписка нужна для HD-стриминга и больших файлов
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "236.21", date: "Май 2026", changes: ["Новый интерфейс голосовых каналов", "Улучшена работа ботов"] },
+  { version: "235.10", date: "Апрель 2026", changes: ["Добавлены темы серверов", "Оптимизация для слабых устройств"] },
+]} />
 
 <FaqAccordion items={[
   {

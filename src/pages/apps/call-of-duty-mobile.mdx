@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Call of Duty: Mobile переносит опыт консольного шутера на мобильные устройства. Игра объединяет карты, оружие и персонажей из разных частей серии в одном проекте. Доступны классический мультиплеер, королевская битва и зомби-режим.
+
+<AppRating appName="Call of Duty: Mobile" rating="4.3" count="78000" />
+
+<Screenshots slug="call-of-duty-mobile" appName="Call of Duty: Mobile" />
 
 ## Описание Call of Duty: Mobile
 
@@ -80,6 +87,11 @@ Activision выпустила мобильную версию франшизы �
 - Матчмейкинг иногда подбирает игроков разного уровня
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "1.0.45", date: "Май 2026", changes: ["Новый сезон с картой Terminal и боевым пропуском", "Добавлено оружие из Modern Warfare III"] },
+  { version: "1.0.42", date: "Апрель 2026", changes: ["Обновлён режим королевской битвы с новыми точками интереса", "Улучшена оптимизация для устройств с 3 ГБ ОЗУ"] },
+]} />
 
 <FaqAccordion items={[
   {

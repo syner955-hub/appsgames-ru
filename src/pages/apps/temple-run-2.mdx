@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Temple Run 2 от Imangi Studios - продолжение легендарного раннера, задавшего стандарты жанра на мобильных устройствах. Вторая часть получила улучшенную графику, новые механики и разнообразные маршруты. Игрок убегает по руинам древнего храма от гигантской обезьяны-демона.
+
+<AppRating appName="Temple Run 2" rating="4.2" count="62000" />
+
+<Screenshots slug="temple-run-2" appName="Temple Run 2" />
 
 ## Описание Temple Run 2
 
@@ -80,6 +87,11 @@ Temple Run 2 развивает формулу оригинала. Герой б
 - Геймплей может наскучить без соревновательного элемента
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "1.108.0", date: "Май 2026", changes: ["Новая локация: Ледяной храм", "Добавлен персонаж"] },
+  { version: "1.106.0", date: "Апрель 2026", changes: ["Обновлены ежедневные задания", "Улучшена графика"] },
+]} />
 
 <FaqAccordion items={[
   {

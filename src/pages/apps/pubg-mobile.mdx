@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 PUBG Mobile - мобильная версия PlayerUnknown's Battlegrounds, одной из главных игр в жанре королевской битвы. 100 игроков высаживаются на остров, собирают оружие и снаряжение, сражаются в сужающейся зоне. Побеждает последний выживший. Игра от Tencent Games сохраняет механики оригинала на ПК.
+
+<AppRating appName="PUBG Mobile" rating="4.3" count="95000" />
+
+<Screenshots slug="pubg-mobile" appName="PUBG Mobile" />
 
 ## Описание PUBG Mobile
 
@@ -80,6 +87,11 @@ PUBG Mobile - мобильная версия PlayerUnknown's Battlegrounds, о�
 - Преимущество у игроков с планшетами и триггерами
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "3.5.0", date: "Май 2026", changes: ["Новая карта 8x8", "Обновлена система античита"] },
+  { version: "3.4.0", date: "Апрель 2026", changes: ["Добавлено новое оружие", "Оптимизация графики на слабых устройствах"] },
+]} />
 
 <FaqAccordion items={[
   {

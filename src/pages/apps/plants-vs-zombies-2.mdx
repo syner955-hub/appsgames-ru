@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Plants vs. Zombies 2 переносит сражения растений и зомби в разные исторические эпохи. Игрок путешествует от Древнего Египта до далекого будущего, собирая уникальные растения для защиты. Продолжение получило сотни новых уровней и регулярные обновления контента.
+
+<AppRating appName="Plants vs. Zombies 2" rating="4.3" count="58000" />
+
+<Screenshots slug="plants-vs-zombies-2" appName="Plants vs. Zombies 2" />
 
 ## Описание Plants vs. Zombies 2
 
@@ -80,6 +87,11 @@ Plants vs. Zombies 2 переносит сражения растений и з�
 - На поздних уровнях сложность резко возрастает без прокачки
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "11.5.1", date: "Май 2026", changes: ["Новое растение: Ледяной горох", "Обновлен мир Египта"] },
+  { version: "11.4.0", date: "Апрель 2026", changes: ["Добавлен режим Арена", "Балансировка зомби"] },
+]} />
 
 <FaqAccordion items={[
   {

@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Яндекс Навигатор, бесплатное приложение для автомобильной навигации с учётом пробок в реальном времени. Сервис строит оптимальные маршруты по России и странам СНГ, используя данные миллионов водителей.
+
+<AppRating appName="Яндекс Навигатор" rating="4.4" count="85000" />
+
+<Screenshots slug="yandex-navigator" appName="Яндекс Навигатор" />
 
 ## Описание Яндекс Навигатор
 
@@ -88,6 +95,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 Приложение доступно в App Store. Функциональность на iOS идентична Android-версии, включая Алису и офлайн-карты.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "20.5.0", date: "Май 2026", changes: ["Обновлены карты регионов", "Улучшено построение маршрутов"] },
+  { version: "20.4.0", date: "Апрель 2026", changes: ["Добавлены голосовые подсказки", "Исправлены ошибки навигации"] },
+]} />
 
 <FaqAccordion items={[
   {

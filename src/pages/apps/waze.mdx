@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Waze строит маршруты на основе данных от миллионов водителей в реальном времени. Приложение автоматически перестраивает путь при появлении пробок или аварий впереди. Сообщество пользователей отмечает камеры, полицию, ямы на дороге и другие препятствия.
+
+<AppRating appName="Waze" rating="4.3" count="41000" />
+
+<Screenshots slug="waze" appName="Waze" />
 
 ## Описание Waze
 
@@ -80,6 +87,11 @@ Waze принадлежит Google, но работает по другому п
 - Менее детальные карты по сравнению с Google Maps
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "4.105.0", date: "Май 2026", changes: ["Улучшены данные о пробках", "Обновлен интерфейс отчетов"] },
+  { version: "4.103.0", date: "Апрель 2026", changes: ["Добавлены маршруты для мотоциклов", "Исправлены ошибки GPS"] },
+]} />
 
 <FaqAccordion items={[
   {

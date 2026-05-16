@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 CapCut - бесплатный видеоредактор от создателей TikTok. Приложение сочетает простоту использования с продвинутыми инструментами на базе ИИ. Экспорт без водяных знаков доступен всем пользователям без подписки.
+
+<AppRating appName="CapCut" rating="4.5" count="67000" />
+
+<Screenshots slug="capcut" appName="CapCut" />
 
 ## Описание CapCut
 
@@ -80,6 +87,11 @@ CapCut разработан компанией ByteDance и тесно инте�
 - На устройствах с 2 ГБ ОЗУ возможны вылеты при сложном монтаже
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "13.5.0", date: "Май 2026", changes: ["Новые ИИ-фильтры", "Улучшено удаление фона"] },
+  { version: "13.3.0", date: "Апрель 2026", changes: ["Добавлены шаблоны для Reels", "Ускорен экспорт видео"] },
+]} />
 
 <FaqAccordion items={[
   {

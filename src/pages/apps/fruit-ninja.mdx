@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Fruit Ninja остается одной из самых узнаваемых мобильных аркад. Механика проста: проводите пальцем по экрану, разрезая подброшенные фрукты и избегая бомб. За простотой скрывается затягивающий геймплей с системой комбо и рекордов.
+
+<AppRating appName="Fruit Ninja" rating="4.1" count="42000" />
+
+<Screenshots slug="fruit-ninja" appName="Fruit Ninja" />
 
 ## Описание Fruit Ninja
 
@@ -80,6 +87,11 @@ Halfbrick Studios выпустила Fruit Ninja в 2010 году, и с тех 
 - Онлайн-режим иногда страдает от задержек соединения
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "3.64.0", date: "Май 2026", changes: ["Новый режим: Турнир", "Добавлены клинки"] },
+  { version: "3.62.0", date: "Апрель 2026", changes: ["Обновлены сезонные фрукты", "Исправлены баги мультиплеера"] },
+]} />
 
 <FaqAccordion items={[
   {

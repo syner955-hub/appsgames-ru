@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 2ГИС, это городской справочник и навигатор с детализированными картами зданий, этажей и дворов. Приложение работает офлайн и содержит актуальную информацию об организациях, маршрутах транспорта и дорожной обстановке.
+
+<AppRating appName="2ГИС" rating="4.6" count="92000" />
+
+<Screenshots slug="2gis" appName="2ГИС" />
 
 ## Описание 2ГИС
 
@@ -88,6 +95,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 2ГИС доступен в App Store с полной функциональностью, включая офлайн-карты и справочник организаций.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "7.5.0", date: "Май 2026", changes: ["Обновлен справочник организаций", "Улучшен поиск по карте"] },
+  { version: "7.4.0", date: "Апрель 2026", changes: ["Добавлены 3D-здания", "Оптимизация офлайн-карт"] },
+]} />
 
 <FaqAccordion items={[
   {

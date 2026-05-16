@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Поиск приложений для Android';
+const description = 'Найдите нужное приложение или игру для Android в каталоге AppsGames.ru';
+
+const apps = [
+  { slug: 'telegram', name: 'Telegram', category: 'Мессенджеры', desc: 'Быстрый мессенджер с каналами и ботами' },
+  { slug: 'whatsapp', name: 'WhatsApp', category: 'Мессенджеры', desc: 'Звонки и переписка с шифрованием' },
+  { slug: 'viber', name: 'Viber', category: 'Мессенджеры', desc: 'Звонки, чаты и сообщества' },
+  { slug: 'signal', name: 'Signal', category: 'Мессенджеры', desc: 'Приватный мессенджер с шифрованием' },
+  { slug: 'discord', name: 'Discord', category: 'Мессенджеры', desc: 'Голосовые каналы и чаты для сообществ' },
+  { slug: 'vk', name: 'ВКонтакте', category: 'Соцсети', desc: 'Соцсеть с музыкой, видео и мессенджером' },
+  { slug: 'yandex-navigator', name: 'Яндекс Навигатор', category: 'Навигация', desc: 'Пробки, камеры, голосовое управление' },
+  { slug: '2gis', name: '2ГИС', category: 'Навигация', desc: 'Карты городов и справочник организаций' },
+  { slug: 'google-maps', name: 'Google Maps', category: 'Навигация', desc: 'Карты, маршруты и панорамы улиц' },
+  { slug: 'waze', name: 'Waze', category: 'Навигация', desc: 'Навигатор с данными от водителей' },
+  { slug: 'sberbank', name: 'Сбербанк Онлайн', category: 'Финансы', desc: 'Переводы, платежи, вклады, кредиты' },
+  { slug: 'tinkoff', name: 'Тинькофф', category: 'Финансы', desc: 'Банк с инвестициями и кэшбэком' },
+  { slug: 'alfa-bank', name: 'Альфа-Банк', category: 'Финансы', desc: 'Переводы, счета, кредиты и кэшбэк' },
+  { slug: 'yumoney', name: 'ЮMoney', category: 'Финансы', desc: 'Электронный кошелек и платежи' },
+  { slug: 'vpn-master', name: 'VPN Master', category: 'VPN', desc: 'Бесплатный VPN для обхода блокировок' },
+  { slug: 'windscribe', name: 'Windscribe VPN', category: 'VPN', desc: 'VPN с 10 ГБ бесплатного трафика' },
+  { slug: 'protonvpn', name: 'ProtonVPN', category: 'VPN', desc: 'Безлимитный VPN от создателей ProtonMail' },
+  { slug: 'nordvpn', name: 'NordVPN', category: 'VPN', desc: 'Быстрый VPN с серверами в 60 странах' },
+  { slug: 'spotify', name: 'Spotify', category: 'Мультимедиа', desc: 'Стриминг музыки и подкастов' },
+  { slug: 'shazam', name: 'Shazam', category: 'Мультимедиа', desc: 'Распознавание музыки за секунды' },
+  { slug: 'youtube', name: 'YouTube', category: 'Мультимедиа', desc: 'Видеохостинг с миллиардами роликов' },
+  { slug: 'vlc', name: 'VLC', category: 'Мультимедиа', desc: 'Универсальный плеер для любых форматов' },
+  { slug: 'kinemaster', name: 'KineMaster', category: 'Мультимедиа', desc: 'Видеоредактор с многослойным монтажом' },
+  { slug: 'capcut', name: 'CapCut', category: 'Мультимедиа', desc: 'Бесплатный видеоредактор с эффектами' },
+  { slug: 'yandex-music', name: 'Яндекс Музыка', category: 'Мультимедиа', desc: 'Стриминг музыки и подкасты' },
+  { slug: 'google-chrome', name: 'Google Chrome', category: 'Браузеры', desc: 'Быстрый браузер с синхронизацией' },
+  { slug: 'yandex-browser', name: 'Яндекс Браузер', category: 'Браузеры', desc: 'Браузер с Алисой и защитой Protect' },
+  { slug: 'wps-office', name: 'WPS Office', category: 'Офис', desc: 'Документы, таблицы и презентации' },
+  { slug: 'camscanner', name: 'CamScanner', category: 'Офис', desc: 'Сканер документов с OCR' },
+  { slug: 'rustore', name: 'RuStore', category: 'Утилиты', desc: 'Российский магазин приложений' },
+  { slug: 'adguard', name: 'AdGuard', category: 'Утилиты', desc: 'Блокировщик рекламы' },
+  { slug: 'subway-surfers', name: 'Subway Surfers', category: 'Аркады', desc: 'Бесконечный раннер по железным путям' },
+  { slug: 'temple-run-2', name: 'Temple Run 2', category: 'Аркады', desc: 'Раннер с препятствиями в храме' },
+  { slug: 'candy-crush', name: 'Candy Crush Saga', category: 'Аркады', desc: 'Головоломка три в ряд с конфетами' },
+  { slug: 'fruit-ninja', name: 'Fruit Ninja', category: 'Аркады', desc: 'Разрезайте фрукты одним движением' },
+  { slug: 'among-us', name: 'Among Us', category: 'Аркады', desc: 'Социальная игра на вычисление предателя' },
+  { slug: 'asphalt-9', name: 'Asphalt 9: Legends', category: 'Гонки', desc: 'Аркадные гонки на суперкарах' },
+  { slug: 'hill-climb-racing', name: 'Hill Climb Racing', category: 'Гонки', desc: 'Физическая гоночная аркада' },
+  { slug: 'real-racing-3', name: 'Real Racing 3', category: 'Гонки', desc: 'Реалистичный гоночный симулятор' },
+  { slug: 'clash-of-clans', name: 'Clash of Clans', category: 'Стратегии', desc: 'Стройте деревню и атакуйте врагов' },
+  { slug: 'clash-royale', name: 'Clash Royale', category: 'Стратегии', desc: 'Карточные бои в реальном времени' },
+  { slug: 'plants-vs-zombies-2', name: 'Plants vs. Zombies 2', category: 'Стратегии', desc: 'Tower defense с растениями' },
+  { slug: 'plague-inc', name: 'Plague Inc.', category: 'Стратегии', desc: 'Стратегия распространения патогена' },
+  { slug: 'brawl-stars', name: 'Brawl Stars', category: 'Экшен', desc: 'Мультиплеерный шутер 3v3' },
+  { slug: 'pubg-mobile', name: 'PUBG Mobile', category: 'Экшен', desc: 'Королевская битва на 100 игроков' },
+  { slug: 'standoff-2', name: 'Standoff 2', category: 'Экшен', desc: 'Тактический шутер 5 на 5' },
+  { slug: 'call-of-duty-mobile', name: 'Call of Duty: Mobile', category: 'Экшен', desc: 'Шутер с мультиплеером' },
+  { slug: 'shadow-fight-3', name: 'Shadow Fight 3', category: 'Экшен', desc: 'Файтинг с RPG-элементами' },
+  { slug: 'genshin-impact', name: 'Genshin Impact', category: 'RPG', desc: 'RPG с открытым миром' },
+  { slug: 'minecraft', name: 'Minecraft', category: 'RPG', desc: 'Песочница: стройте и выживайте' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="search-page container">
+    <h1>Поиск приложений</h1>
+    <div class="search-box">
+      <input
+        type="search"
+        id="app-search"
+        placeholder="Введите название приложения..."
+        autocomplete="off"
+        aria-label="Поиск приложений"
+      />
+    </div>
+    <div class="search-results" id="search-results">
+      {apps.map((app) => (
+        <a href={`/apps/${app.slug}/`} class="search-card" data-name={app.name.toLowerCase()} data-cat={app.category.toLowerCase()} data-desc={app.desc.toLowerCase()}>
+          <img src={`/images/apps/${app.slug}.webp`} alt={app.name} width="44" height="44" loading="lazy" class="search-card__icon" />
+          <div class="search-card__body">
+            <span class="search-card__name">{app.name}</span>
+            <span class="search-card__meta">{app.category} · {app.desc}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p class="search-empty" id="search-empty" style="display:none">Ничего не найдено. Попробуйте другой запрос.</p>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+(function() {
+  const input = document.getElementById('app-search');
+  const results = document.getElementById('search-results');
+  const empty = document.getElementById('search-empty');
+  const cards = results.querySelectorAll('.search-card');
+
+  input.addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    let visible = 0;
+
+    cards.forEach(function(card) {
+      const name = card.dataset.name;
+      const cat = card.dataset.cat;
+      const desc = card.dataset.desc;
+      const match = !q || name.includes(q) || cat.includes(q) || desc.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    empty.style.display = visible === 0 ? '' : 'none';
+  });
+})();
+</script>
+
+<style>
+  .search-page {
+    max-width: 700px;
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: clamp(3rem, 5vw, 4rem);
+  }
+  .search-page h1 {
+    margin: 0 0 1.2rem;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  }
+  .search-box {
+    margin-bottom: 1.5rem;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    color: var(--fg);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  .search-box input:focus {
+    border-color: var(--accent);
+  }
+  .search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .search-card {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .search-card:hover {
+    border-color: var(--accent);
+    background: var(--bg-soft);
+    text-decoration: none;
+  }
+  .search-card__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .search-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .search-card__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .search-card__meta {
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .search-empty {
+    text-align: center;
+    color: var(--fg-muted);
+    padding: 2rem 0;
+  }
+</style>

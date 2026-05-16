@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Яндекс Браузер - российский браузер на базе Chromium с встроенной Алисой, блокировкой рекламы и режимом Турбо для экономии трафика. Занимает второе место по популярности в России после Chrome.
+
+<AppRating appName="Яндекс Браузер" rating="4.3" count="72000" />
+
+<Screenshots slug="yandex-browser" appName="Яндекс Браузер" />
 
 ## Описание Яндекс Браузер
 
@@ -80,6 +87,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 - Некоторые функции привязаны к экосистеме Яндекса и не работают без аккаунта
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "24.12.5", date: "Май 2026", changes: ["Обновлена Алиса", "Улучшена блокировка рекламы"] },
+  { version: "24.11.0", date: "Апрель 2026", changes: ["Добавлен режим чтения", "Оптимизация расхода памяти"] },
+]} />
 
 <FaqAccordion items={[
   {

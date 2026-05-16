@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Subway Surfers остается одним из самых популярных мобильных раннеров в мире. Игра предлагает бесконечный забег по железнодорожным путям с препятствиями, поездами и бонусами. Каждый месяц разработчики обновляют локации, добавляя новые города и персонажей.
+
+<AppRating appName="Subway Surfers" rating="4.4" count="89000" />
+
+<Screenshots slug="subway-surfers" appName="Subway Surfers" />
 
 ## Описание Subway Surfers
 
@@ -80,6 +87,11 @@ Subway Surfers - аркадный раннер от студии SYBO Games. И�
 - Некоторые персонажи доступны только за реальные деньги
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "3.35.0", date: "Май 2026", changes: ["Новая карта: Токио", "Добавлен сезонный персонаж"] },
+  { version: "3.34.0", date: "Апрель 2026", changes: ["Обновлены ежедневные задания", "Исправлены графические артефакты"] },
+]} />
 
 <FaqAccordion items={[
   {

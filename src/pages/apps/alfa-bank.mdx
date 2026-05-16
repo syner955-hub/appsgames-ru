@@ -17,8 +17,13 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Мобильное приложение Альфа-Банка заменяет визит в отделение для большинства банковских операций. Переводы, платежи, открытие счетов и вкладов доступны в несколько касаний. Приложение также включает инвестиционные инструменты и кэшбэк-программу.
+
+<AppRating appName="Альфа-Банк" rating="4.1" count="52000" />
 
 ## Описание Альфа-Банк
 
@@ -80,6 +85,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 - Некоторые операции требуют подтверждения в отделении
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "13.8.0", date: "Май 2026", changes: ["Обновлён раздел кэшбэка с новыми партнёрами", "Улучшена стабильность биометрической авторизации"] },
+  { version: "13.6.0", date: "Апрель 2026", changes: ["Добавлены виджеты для главного экрана Android", "Исправлена ошибка при открытии вкладов"] },
+]} />
 
 <FaqAccordion items={[
   {

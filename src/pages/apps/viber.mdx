@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Viber позволяет бесплатно звонить и обмениваться сообщениями с пользователями по всему миру. Приложение работает через интернет и не требует оплаты за международные вызовы. Мессенджер поддерживает групповые чаты, видеозвонки и обмен медиафайлами.
+
+<AppRating appName="Viber" rating="4.1" count="31000" />
+
+<Screenshots slug="viber" appName="Viber" />
 
 ## Описание Viber
 
@@ -80,6 +87,11 @@ Viber - один из самых популярных мессенджеров �
 - Некоторые стикерпаки платные
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "22.5.1", date: "Май 2026", changes: ["Обновлен дизайн чатов", "Улучшена стабильность звонков"] },
+  { version: "22.4.0", date: "Апрель 2026", changes: ["Новые стикерпаки", "Оптимизация расхода батареи"] },
+]} />
 
 <FaqAccordion items={[
   {

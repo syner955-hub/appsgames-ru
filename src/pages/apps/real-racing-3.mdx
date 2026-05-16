@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Real Racing 3 от Electronic Arts - гоночный симулятор с акцентом на реализм. Игра включает реальные трассы (Silverstone, Le Mans, Nürburgring), лицензированные автомобили и продвинутую физическую модель. Это один из самых серьёзных гоночных проектов на мобильных устройствах.
+
+<AppRating appName="Real Racing 3" rating="4.3" count="48000" />
+
+<Screenshots slug="real-racing-3" appName="Real Racing 3" />
 
 ## Описание Real Racing 3
 
@@ -80,6 +87,11 @@ Real Racing 3 от Electronic Arts - гоночный симулятор с ак
 - Высокие цены на внутриигровую валюту
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "12.6.2", date: "Май 2026", changes: ["Добавлены новые автомобили Porsche и Lamborghini", "Улучшена физика на мокрой трассе"] },
+  { version: "12.5.0", date: "Апрель 2026", changes: ["Новая трасса Circuit de Barcelona-Catalunya", "Оптимизирована производительность на средних устройствах"] },
+]} />
 
 <FaqAccordion items={[
   {

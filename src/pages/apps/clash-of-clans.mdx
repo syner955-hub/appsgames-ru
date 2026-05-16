@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Clash of Clans - стратегия от Supercell, которая не теряет популярности с 2012 года. Игроки строят деревню, развивают оборону и собирают армию для атак на базы других игроков. Клановая система объединяет людей для совместных войн и рейдов.
+
+<AppRating appName="Clash of Clans" rating="4.5" count="72000" />
+
+<Screenshots slug="clash-of-clans" appName="Clash of Clans" />
 
 ## Описание Clash of Clans
 
@@ -80,6 +87,11 @@ Clash of Clans - стратегия от Supercell, которая не теря
 - Потеря ресурсов при атаках других игроков может расстраивать
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "16.0.25", date: "Май 2026", changes: ["Новый уровень ратуши", "Балансировка войск"] },
+  { version: "16.0.10", date: "Апрель 2026", changes: ["Добавлен клановый рейд", "Улучшен ИИ обороны"] },
+]} />
 
 <FaqAccordion items={[
   {

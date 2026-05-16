@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Standoff 2 от Axlebolt - мобильный тактический шутер в стиле Counter-Strike. Две команды сражаются в раундовых матчах на компактных картах. Игра популярна в СНГ благодаря отзывчивому управлению, соревновательному режиму и развитой экономике скинов.
+
+<AppRating appName="Standoff 2" rating="4.4" count="45000" />
+
+<Screenshots slug="standoff-2" appName="Standoff 2" />
 
 ## Описание Standoff 2
 
@@ -78,6 +85,11 @@ Standoff 2 от Axlebolt - мобильный тактический шутер 
 - Встречаются читеры на низких рангах
 - Токсичное поведение части игроков в голосовом чате
 - Ограниченный выбор карт по сравнению с ПК-аналогами
+
+<VersionHistory versions={[
+  { version: "0.28.5", date: "Май 2026", changes: ["Новая карта для соревновательного режима", "Обновлен античит"] },
+  { version: "0.28.0", date: "Апрель 2026", changes: ["Добавлено новое оружие", "Улучшена оптимизация сетевого кода"] },
+]} />
 
 ## FAQ
 

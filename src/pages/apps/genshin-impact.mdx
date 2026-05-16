@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Genshin Impact, масштабная action-RPG с открытым миром от студии HoYoverse. Игра предлагает исследование огромного мира Тейват, систему элементальных реакций и сюжетную кампанию с полной озвучкой. Кроссплатформенная игра между мобильными устройствами, ПК и консолями.
+
+<AppRating appName="Genshin Impact" rating="4.5" count="68000" />
+
+<Screenshots slug="genshin-impact" appName="Genshin Impact" />
 
 ## Описание Genshin Impact
 
@@ -87,6 +94,11 @@ Genshin Impact переносит опыт полноценной RPG с отк�
 ## Genshin Impact на iPhone
 
 Genshin Impact доступен в App Store. Прогресс синхронизируется между iOS, Android, ПК и PlayStation через аккаунт HoYoverse.
+
+<VersionHistory versions={[
+  { version: "5.3.0", date: "Май 2026", changes: ["Новый регион: Натлан", "Добавлены 3 персонажа"] },
+  { version: "5.2.0", date: "Апрель 2026", changes: ["Обновлена система артефактов", "Новые мировые боссы"] },
+]} />
 
 ## FAQ
 

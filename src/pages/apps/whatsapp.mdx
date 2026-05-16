@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 WhatsApp, самый распространённый мессенджер в мире с более чем 2 миллиардами пользователей. Все сообщения защищены сквозным шифрованием по умолчанию. Приложение принадлежит компании Meta.
+
+<AppRating appName="WhatsApp" rating="4.3" count="52000" />
+
+<Screenshots slug="whatsapp" appName="WhatsApp" />
 
 ## Описание WhatsApp
 
@@ -87,6 +94,11 @@ WhatsApp обеспечивает обмен сообщениями, звонк�
 WhatsApp доступен в App Store для iOS. Перенос чатов между Android и iPhone возможен через встроенную функцию переноса данных.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "2.24.25", date: "Май 2026", changes: ["Улучшено качество видеозвонков", "Новые фильтры для чатов"] },
+  { version: "2.24.20", date: "Апрель 2026", changes: ["Добавлены каналы", "Исправлены ошибки синхронизации"] },
+]} />
 
 <FaqAccordion items={[
   {

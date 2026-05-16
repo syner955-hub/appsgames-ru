@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Google Maps предоставляет детальные карты более 220 стран с навигацией для автомобилей, общественного транспорта и пешеходов. Приложение показывает пробки в реальном времени и предлагает альтернативные маршруты. Встроенный поиск помогает находить рестораны, магазины и достопримечательности поблизости.
+
+<AppRating appName="Google Maps" rating="4.3" count="78000" />
+
+<Screenshots slug="google-maps" appName="Google Maps" />
 
 ## Описание Google Maps
 
@@ -78,6 +85,11 @@ Google Maps остаётся самым полным картографичес�
 - Высокий расход заряда батареи при навигации
 - Офлайн-карты занимают много места в памяти
 - Сбор данных о перемещениях пользователя
+
+<VersionHistory versions={[
+  { version: "11.128.0", date: "Май 2026", changes: ["Улучшена навигация в зданиях", "Обновлены спутниковые снимки"] },
+  { version: "11.125.0", date: "Апрель 2026", changes: ["Добавлены маршруты для электросамокатов", "Исправлены ошибки офлайн-карт"] },
+]} />
 
 ## FAQ
 

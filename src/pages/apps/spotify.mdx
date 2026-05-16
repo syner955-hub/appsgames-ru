@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Spotify, крупнейший музыкальный стриминговый сервис в мире с каталогом более 100 миллионов треков и 6 миллионов подкастов. Платформа предлагает персонализированные рекомендации на основе алгоритмов машинного обучения.
+
+<AppRating appName="Spotify" rating="4.4" count="55000" />
+
+<Screenshots slug="spotify" appName="Spotify" />
 
 ## Описание Spotify
 
@@ -90,6 +97,11 @@ Spotify даёт доступ к огромной библиотеке музы�
 Spotify доступен в App Store. Функциональность идентична Android-версии, прогресс и библиотека синхронизируются через аккаунт.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "8.9.84", date: "Май 2026", changes: ["Улучшены рекомендации на основе ИИ", "Новый интерфейс плейлистов"] },
+  { version: "8.9.70", date: "Апрель 2026", changes: ["Добавлены тексты песен в реальном времени", "Исправлены проблемы с офлайн-режимом"] },
+]} />
 
 <FaqAccordion items={[
   {

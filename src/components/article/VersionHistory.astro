@@ -1,0 +1,77 @@
+---
+interface VersionEntry {
+  version: string;
+  date: string;
+  changes: string[];
+}
+interface Props {
+  versions: VersionEntry[];
+}
+const { versions } = Astro.props;
+---
+
+<section class="version-history">
+  <h2>История версий</h2>
+  {versions.map((v, idx) => (
+    <details class="version-history__item" open={idx === 0}>
+      <summary>
+        <span class="version-history__ver">v{v.version}</span>
+        <span class="version-history__date">{v.date}</span>
+      </summary>
+      <ul class="version-history__changes">
+        {v.changes.map((change) => (
+          <li>{change}</li>
+        ))}
+      </ul>
+    </details>
+  ))}
+</section>
+
+<style>
+  .version-history {
+    margin: 2rem 0;
+  }
+  .version-history h2 {
+    margin-bottom: 1rem;
+  }
+  .version-history__item {
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 0;
+  }
+  .version-history__item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+  .version-history__item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+  }
+  .version-history__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .version-history__ver {
+    font-weight: 700;
+    font-family: var(--font-sans);
+    background: var(--bg-soft);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+  .version-history__date {
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+  }
+  .version-history__changes {
+    margin: 0.6rem 0 0;
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+  }
+  .version-history__changes li {
+    margin-bottom: 0.2rem;
+  }
+</style>

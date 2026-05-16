@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Shadow Fight 3 от Nekki - файтинг с видом сбоку, сочетающий боевые искусства и RPG-прогрессию. Третья часть серии перешла от силуэтной графики к полноценным 3D-моделям. Игрок выбирает один из трёх боевых стилей и проходит сюжетную кампанию, собирая снаряжение и изучая приёмы.
+
+<AppRating appName="Shadow Fight 3" rating="4.4" count="55000" />
+
+<Screenshots slug="shadow-fight-3" appName="Shadow Fight 3" />
 
 ## Описание Shadow Fight 3
 
@@ -80,6 +87,11 @@ Shadow Fight 3 от Nekki - файтинг с видом сбоку, сочет�
 - PvP-баланс зависит от уровня снаряжения
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "1.37.2", date: "Май 2026", changes: ["Добавлена новая глава сюжетной кампании", "Новое легендарное оружие фракции Наследников"] },
+  { version: "1.36.0", date: "Апрель 2026", changes: ["Обновлён баланс PvP-арены", "Исправлены зависания при загрузке боёв"] },
+]} />
 
 <FaqAccordion items={[
   {

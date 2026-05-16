@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Clash Royale от Supercell сочетает элементы коллекционных карточных игр, tower defense и стратегии реального времени. Матчи длятся 3-5 минут, что делает игру удобной для коротких сессий. Миллионы игроков ежедневно соревнуются на аренах по всему миру.
+
+<AppRating appName="Clash Royale" rating="4.2" count="61000" />
+
+<Screenshots slug="clash-royale" appName="Clash Royale" />
 
 ## Описание Clash Royale
 
@@ -78,6 +85,11 @@ Clash Royale - это PvP-стратегия, где два игрока сра�
 - Прокачка карт до максимума занимает месяцы
 - На высоких аренах преимущество у платящих игроков
 - Требуется стабильное интернет-соединение
+
+<VersionHistory versions={[
+  { version: "3.3024.4", date: "Май 2026", changes: ["Новая карта: Электро-дракон", "Обновлена система кланов"] },
+  { version: "3.3020.0", date: "Апрель 2026", changes: ["Балансировка карт", "Новый сезонный контент"] },
+]} />
 
 ## FAQ
 

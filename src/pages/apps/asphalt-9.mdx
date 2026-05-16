@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Asphalt 9: Legends - флагманская аркадная гонка от Gameloft с коллекцией из более чем 100 лицензированных автомобилей. Игра предлагает зрелищные трассы по всему миру и динамичный онлайн-режим. Графика выполнена на уровне консольных проектов.
+
+<AppRating appName="Asphalt 9" rating="4.4" count="58000" />
+
+<Screenshots slug="asphalt-9" appName="Asphalt 9" />
 
 ## Описание Asphalt 9: Legends
 
@@ -78,6 +85,11 @@ Asphalt 9: Legends - флагманская аркадная гонка от Gam
 - Большой размер установки занимает много памяти
 - Система энергии ограничивает количество гонок подряд
 - Прогресс без доната замедляется на поздних этапах
+
+<VersionHistory versions={[
+  { version: "4.6.0", date: "Май 2026", changes: ["Добавлены новые суперкары", "Обновлена трасса в Токио"] },
+  { version: "4.5.0", date: "Апрель 2026", changes: ["Новый сезон мультиплеера", "Улучшена физика столкновений"] },
+]} />
 
 ## FAQ
 

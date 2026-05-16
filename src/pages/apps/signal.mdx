@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Signal считается эталоном безопасности среди мессенджеров. Приложение использует собственный протокол шифрования, который применяют даже конкуренты. Здесь нет рекламы, трекеров и сбора данных о пользователях.
+
+<AppRating appName="Signal" rating="4.4" count="18000" />
+
+<Screenshots slug="signal" appName="Signal" />
 
 ## Описание Signal
 
@@ -80,6 +87,11 @@ Signal разработан некоммерческой организацие�
 - Ограниченный выбор стикеров
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "7.14.5", date: "Май 2026", changes: ["Улучшено шифрование групповых звонков", "Исправлены баги уведомлений"] },
+  { version: "7.13.0", date: "Апрель 2026", changes: ["Добавлены пользовательские обои", "Ускорена отправка медиа"] },
+]} />
 
 <FaqAccordion items={[
   {

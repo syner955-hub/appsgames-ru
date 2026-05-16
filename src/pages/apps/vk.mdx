@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 ВКонтакте, крупнейшая социальная сеть в России и СНГ с ежемесячной аудиторией более 100 миллионов человек. Платформа объединяет мессенджер, музыку, видео, игры и мини-приложения в одном сервисе.
+
+<AppRating appName="ВКонтакте" rating="4.0" count="65000" />
+
+<Screenshots slug="vk" appName="ВКонтакте" />
 
 ## Описание ВКонтакте
 
@@ -88,6 +95,11 @@ VK, это экосистема для общения и развлечений.
 Приложение VK доступно в App Store. Функциональность аналогична Android-версии, включая музыку, видео и мини-приложения.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "8.92", date: "Май 2026", changes: ["Обновлена лента рекомендаций", "Улучшен видеоплеер"] },
+  { version: "8.88", date: "Апрель 2026", changes: ["Новые реакции в сообщениях", "Исправлены вылеты при загрузке фото"] },
+]} />
 
 <FaqAccordion items={[
   {

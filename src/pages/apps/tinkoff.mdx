@@ -17,8 +17,13 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Тинькофф, мобильное приложение одноимённого банка, который работает полностью онлайн без физических отделений. Приложение объединяет банкинг, инвестиции, страхование, путешествия и развлечения в единой экосистеме.
+
+<AppRating appName="Тинькофф" rating="4.4" count="88000" />
 
 ## Описание Тинькофф
 
@@ -89,6 +94,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 Приложение доступно в App Store для российских аккаунтов. Все функции, включая инвестиции и Tinkoff Pay, работают на iOS.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "6.45.0", date: "Май 2026", changes: ["Новый дизайн раздела инвестиций", "Улучшена скорость загрузки приложения"] },
+  { version: "6.42.0", date: "Апрель 2026", changes: ["Добавлена функция автоплатежей по расписанию", "Исправлены ошибки в push-уведомлениях"] },
+]} />
 
 <FaqAccordion items={[
   {

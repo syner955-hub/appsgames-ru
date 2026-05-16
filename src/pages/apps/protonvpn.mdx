@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 ProtonVPN создан командой ProtonMail из Швейцарии. Это один из немногих VPN-сервисов с полностью бесплатным тарифом без ограничения трафика. Приложение не содержит рекламы и не продаёт пользовательские данные.
+
+<AppRating appName="ProtonVPN" rating="4.4" count="22000" />
+
+<Screenshots slug="protonvpn" appName="ProtonVPN" />
 
 ## Описание ProtonVPN
 
@@ -80,6 +87,11 @@ ProtonVPN базируется в Швейцарии, что обеспечив�
 - Нет раздельного туннелирования на бесплатном плане
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "5.5.0", date: "Май 2026", changes: ["Добавлен Stealth-протокол", "Улучшена стабильность соединения"] },
+  { version: "5.4.0", date: "Апрель 2026", changes: ["Новые серверы в Азии", "Оптимизация расхода батареи"] },
+]} />
 
 <FaqAccordion items={[
   {

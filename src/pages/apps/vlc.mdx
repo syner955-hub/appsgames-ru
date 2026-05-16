@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 VLC - свободный медиаплеер от VideoLAN, способный воспроизводить практически любой формат без дополнительных кодеков. Приложение полностью бесплатно, не содержит рекламы и не собирает данные пользователей.
+
+<AppRating appName="VLC" rating="4.3" count="28000" />
+
+<Screenshots slug="vlc" appName="VLC" />
 
 ## Описание VLC
 
@@ -80,6 +87,11 @@ VLC Media Player для Android является мобильной версие
 - Отсутствует встроенный онлайн-каталог контента
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "3.6.4", date: "Май 2026", changes: ["Улучшена поддержка AV1", "Исправлены проблемы с субтитрами"] },
+  { version: "3.6.0", date: "Апрель 2026", changes: ["Обновлен интерфейс плеера", "Добавлена поддержка Chromecast"] },
+]} />
 
 <FaqAccordion items={[
   {

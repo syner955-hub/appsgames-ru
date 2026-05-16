@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Telegram, один из самых популярных мессенджеров в мире с аудиторией более 900 миллионов пользователей. Приложение отличается высокой скоростью работы, надёжным шифрованием и отсутствием ограничений на размер файлов.
+
+<AppRating appName="Telegram" rating="4.5" count="48000" />
+
+<Screenshots slug="telegram" appName="Telegram" />
 
 ## Описание Telegram
 
@@ -87,6 +94,11 @@ Telegram, это облачный мессенджер с фокусом на с
 Telegram доступен для iOS в App Store. Функциональность идентична Android-версии, включая синхронизацию всех данных между устройствами.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "11.6.2", date: "Май 2026", changes: ["Улучшена производительность звонков", "Новые стикеры и эмодзи"] },
+  { version: "11.5.0", date: "Апрель 2026", changes: ["Добавлены бизнес-функции", "Обновлен интерфейс каналов"] },
+]} />
 
 <FaqAccordion items={[
   {

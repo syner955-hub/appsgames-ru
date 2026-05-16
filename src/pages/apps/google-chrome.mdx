@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Google Chrome - самый распространённый браузер в мире с долей рынка свыше 60%. Мобильная версия для Android обеспечивает быструю загрузку страниц, синхронизацию с десктопом и встроенную защиту от фишинга. Предустановлен на большинстве Android-устройств.
+
+<AppRating appName="Google Chrome" rating="4.3" count="95000" />
+
+<Screenshots slug="google-chrome" appName="Google Chrome" />
 
 ## Описание Google Chrome
 
@@ -78,6 +85,11 @@ Chrome для Android построен на движке Blink и оптимиз
 - Высокое потребление оперативной памяти при множестве вкладок
 - Ограниченные возможности блокировки рекламы без расширений
 - Сбор данных о пользователе для персонализации рекламы Google
+
+<VersionHistory versions={[
+  { version: "131.0.6778", date: "Май 2026", changes: ["Улучшена защита от фишинга", "Ускорена загрузка страниц"] },
+  { version: "130.0.6723", date: "Апрель 2026", changes: ["Добавлен режим чтения", "Обновлен менеджер паролей"] },
+]} />
 
 ## FAQ
 

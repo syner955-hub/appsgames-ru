@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 Яндекс Музыка - крупнейший музыкальный стриминговый сервис в России. Каталог содержит более 80 миллионов треков, подкасты и аудиокниги. Алгоритмы подбирают музыку под настроение и вкусы пользователя.
+
+<AppRating appName="Яндекс Музыка" rating="4.1" count="48000" />
+
+<Screenshots slug="yandex-music" appName="Яндекс Музыка" />
 
 ## Описание Яндекс Музыка
 
@@ -80,6 +87,11 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 - Периодически пропадают треки из-за лицензионных ограничений
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "2024.12.2", date: "Май 2026", changes: ["Обновлены персональные рекомендации", "Улучшено качество звука"] },
+  { version: "2024.11.0", date: "Апрель 2026", changes: ["Добавлены подкасты", "Новый интерфейс плеера"] },
+]} />
 
 <FaqAccordion items={[
   {

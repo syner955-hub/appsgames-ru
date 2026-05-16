@@ -17,8 +17,13 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 RuStore, российский магазин приложений, созданный VK при поддержке Минцифры. Платформа стала основной альтернативой Google Play для установки приложений российских компаний, удалённых из зарубежных магазинов.
+
+<AppRating appName="RuStore" rating="4.1" count="35000" />
 
 ## Описание RuStore
 
@@ -88,6 +93,11 @@ RuStore предоставляет доступ к приложениям рос
 RuStore недоступен на iOS. Apple не позволяет устанавливать сторонние магазины приложений на iPhone в России.
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "2.5.0", date: "Май 2026", changes: ["Добавлен раздел с подборками приложений", "Ускорена загрузка и установка приложений"] },
+  { version: "2.4.0", date: "Апрель 2026", changes: ["Обновлён интерфейс карточек приложений", "Исправлены ошибки автообновления"] },
+]} />
 
 <FaqAccordion items={[
   {

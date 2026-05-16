@@ -17,8 +17,15 @@ breadcrumbs:
 ---
 
 import FaqAccordion from '../../components/article/FaqAccordion.astro';
+import Screenshots from '../../components/article/Screenshots.astro';
+import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
 
 CamScanner позволяет сканировать документы камерой телефона и сохранять их в формате PDF или JPEG. Приложение используют более 750 миллионов человек по всему миру. Подходит для работы с договорами, чеками, визитками и рукописными заметками.
+
+<AppRating appName="CamScanner" rating="4.2" count="38000" />
+
+<Screenshots slug="camscanner" appName="CamScanner" />
 
 ## Описание CamScanner
 
@@ -80,6 +87,11 @@ CamScanner автоматически определяет границы док
 - OCR иногда ошибается на рукописном тексте
 
 ## FAQ
+
+<VersionHistory versions={[
+  { version: "7.0.5", date: "Май 2026", changes: ["Улучшено распознавание текста", "Новые фильтры для документов"] },
+  { version: "6.9.0", date: "Апрель 2026", changes: ["Добавлен пакетный скан", "Оптимизация размера PDF"] },
+]} />
 
 <FaqAccordion items={[
   {
