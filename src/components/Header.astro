@@ -4,50 +4,14 @@ import ThemeToggle from './ThemeToggle.astro';
 const navItems = [
   { href: '/ios/', label: 'iOS', slug: 'ios', color: '#0a7cff' },
   { href: '/android/', label: 'Android', slug: 'android', color: '#0f8a4a' },
-  { href: '/novosti/', label: 'Новости', slug: 'novosti', color: '#d97813' },
+  { href: '/apps/', label: 'Приложения', slug: 'apps', color: '#d97813' },
   { href: '/obzory/', label: 'Обзоры', slug: 'obzory', color: '#c3651a' },
   { href: '/sovety/', label: 'Советы', slug: 'sovety', color: '#0f7988' },
   { href: '/bezopasnost/', label: 'Безопасность', slug: 'bezopasnost', color: '#c32e3b' },
 ];
 
-// Для блока "Свежие новости" в мобильном drawer — берём топ-3 из /novosti/.
-// Используем тот же import.meta.glob, что и index.astro, чтобы статьи
-// автоматически обновлялись с каждой публикацией (cron auto-publish).
-type Fm = {
-  title: string;
-  pubDate: string | Date;
-  hero?: string;
-  heroAlt?: string;
-};
-const newsModules = import.meta.glob<{ frontmatter: Fm; url?: string }>(
-  '../pages/novosti/*.mdx',
-  { eager: true },
-);
-const recentNews = Object.entries(newsModules)
-  .map(([file, m]) => {
-    const fm = m.frontmatter;
-    const url =
-      m.url ??
-      '/' +
-        file
-          .replace(/^.*?pages\//, '')
-          .replace(/\/index\.mdx$/, '/')
-          .replace(/\.mdx$/, '/');
-    return {
-      title: fm.title,
-      hero: fm.hero,
-      heroAlt: fm.heroAlt,
-      pubDate: new Date(fm.pubDate ?? '2026-01-01'),
-      url,
-      fileKey: file,
-    };
-  })
-  .sort((a, b) => {
-    const dt = b.pubDate.getTime() - a.pubDate.getTime();
-    if (dt !== 0) return dt;
-    return b.fileKey.localeCompare(a.fileKey);
-  })
-  .slice(0, 3);
+// Пустой массив вместо новостей (drawer больше не показывает новости)
+const recentNews: Array<{ title: string; hero?: string; heroAlt?: string; pubDate: Date; url: string }> = [];
 
 const dateFmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' });
 ---
@@ -132,7 +96,7 @@ const dateFmt = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long'
               </a>
             ))}
           </div>
-          <a class="mobile-menu__see-all" href="/novosti/" data-mobile-menu-close>
+          <a class="mobile-menu__see-all" href="/apps/" data-mobile-menu-close>
             Все новости →
           </a>
         </>
