@@ -93,3 +93,39 @@
   border: 0;
   border-top: 1px solid var(--border);
 }
+
+/* Download block */
+.prose .download-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+}
+.prose .download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.prose .download-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: #fff;
+}
+.prose .download-meta {
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+}

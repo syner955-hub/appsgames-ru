@@ -10,6 +10,9 @@ const categories = [
     apps: [
       { href: '/apps/telegram/', name: 'Telegram', desc: 'Быстрый мессенджер с каналами и ботами', icon: '/images/apps/telegram.webp' },
       { href: '/apps/whatsapp/', name: 'WhatsApp', desc: 'Звонки и переписка с шифрованием', icon: '/images/apps/whatsapp.webp' },
+      { href: '/apps/viber/', name: 'Viber', desc: 'Звонки, чаты и сообщества', icon: '/images/apps/viber.webp' },
+      { href: '/apps/signal/', name: 'Signal', desc: 'Приватный мессенджер с шифрованием', icon: '/images/apps/signal.webp' },
+      { href: '/apps/discord/', name: 'Discord', desc: 'Голосовые каналы и чаты для сообществ', icon: '/images/apps/discord.webp' },
     ],
   },
   {
@@ -23,6 +26,8 @@ const categories = [
     apps: [
       { href: '/apps/yandex-navigator/', name: 'Яндекс Навигатор', desc: 'Пробки, камеры, голосовое управление', icon: '/images/apps/yandex-navigator.webp' },
       { href: '/apps/2gis/', name: '2ГИС', desc: 'Карты городов и справочник организаций', icon: '/images/apps/2gis.webp' },
+      { href: '/apps/google-maps/', name: 'Google Maps', desc: 'Карты, маршруты и панорамы улиц', icon: '/images/apps/google-maps.webp' },
+      { href: '/apps/waze/', name: 'Waze', desc: 'Навигатор с данными от водителей', icon: '/images/apps/waze.webp' },
     ],
   },
   {
@@ -30,6 +35,43 @@ const categories = [
     apps: [
       { href: '/apps/sberbank/', name: 'Сбербанк Онлайн', desc: 'Переводы, платежи, вклады, кредиты', icon: '/images/apps/sberbank.webp' },
       { href: '/apps/tinkoff/', name: 'Тинькофф', desc: 'Банк с инвестициями и кэшбэком', icon: '/images/apps/tinkoff.webp' },
+      { href: '/apps/alfa-bank/', name: 'Альфа-Банк', desc: 'Переводы, счета, кредиты и кэшбэк', icon: '/images/apps/alfa-bank.webp' },
+      { href: '/apps/yumoney/', name: 'ЮMoney', desc: 'Электронный кошелек и платежи', icon: '/images/apps/yumoney.webp' },
+    ],
+  },
+  {
+    name: 'VPN',
+    apps: [
+      { href: '/apps/vpn-master/', name: 'VPN Master', desc: 'Бесплатный VPN для обхода блокировок', icon: '/images/apps/vpn-master.webp' },
+      { href: '/apps/windscribe/', name: 'Windscribe', desc: 'VPN с 10 ГБ бесплатного трафика', icon: '/images/apps/windscribe.webp' },
+      { href: '/apps/protonvpn/', name: 'ProtonVPN', desc: 'Безлимитный VPN от создателей ProtonMail', icon: '/images/apps/protonvpn.webp' },
+      { href: '/apps/nordvpn/', name: 'NordVPN', desc: 'Быстрый VPN с серверами в 60 странах', icon: '/images/apps/nordvpn.webp' },
+    ],
+  },
+  {
+    name: 'Мультимедиа',
+    apps: [
+      { href: '/apps/spotify/', name: 'Spotify', desc: 'Стриминг музыки и подкастов', icon: '/images/apps/spotify.webp' },
+      { href: '/apps/shazam/', name: 'Shazam', desc: 'Распознавание музыки за секунды', icon: '/images/apps/shazam.webp' },
+      { href: '/apps/youtube/', name: 'YouTube', desc: 'Видеохостинг с миллиардами роликов', icon: '/images/apps/youtube.webp' },
+      { href: '/apps/vlc/', name: 'VLC', desc: 'Универсальный плеер для любых форматов', icon: '/images/apps/vlc.webp' },
+      { href: '/apps/kinemaster/', name: 'KineMaster', desc: 'Видеоредактор с многослойным монтажом', icon: '/images/apps/kinemaster.webp' },
+      { href: '/apps/capcut/', name: 'CapCut', desc: 'Бесплатный видеоредактор с эффектами', icon: '/images/apps/capcut.webp' },
+      { href: '/apps/yandex-music/', name: 'Яндекс Музыка', desc: 'Стриминг музыки и подкасты', icon: '/images/apps/yandex-music.webp' },
+    ],
+  },
+  {
+    name: 'Браузеры',
+    apps: [
+      { href: '/apps/google-chrome/', name: 'Google Chrome', desc: 'Быстрый браузер с синхронизацией', icon: '/images/apps/google-chrome.webp' },
+      { href: '/apps/yandex-browser/', name: 'Яндекс Браузер', desc: 'Браузер с Алисой и защитой Protect', icon: '/images/apps/yandex-browser.webp' },
+    ],
+  },
+  {
+    name: 'Офис',
+    apps: [
+      { href: '/apps/wps-office/', name: 'WPS Office', desc: 'Документы, таблицы и презентации', icon: '/images/apps/wps-office.webp' },
+      { href: '/apps/camscanner/', name: 'CamScanner', desc: 'Сканер документов с OCR', icon: '/images/apps/camscanner.webp' },
     ],
   },
   {
@@ -37,22 +79,50 @@ const categories = [
     apps: [
       { href: '/apps/rustore/', name: 'RuStore', desc: 'Российский магазин приложений', icon: '/images/apps/rustore.webp' },
       { href: '/apps/adguard/', name: 'AdGuard', desc: 'Блокировщик рекламы в браузерах и приложениях', icon: '/images/apps/adguard.webp' },
-      { href: '/apps/vpn-master/', name: 'VPN Master', desc: 'Бесплатный VPN для обхода блокировок', icon: '/images/apps/vpn-master.webp' },
     ],
   },
   {
-    name: 'Музыка',
+    name: 'Аркады',
     apps: [
-      { href: '/apps/spotify/', name: 'Spotify', desc: 'Стриминг музыки и подкастов', icon: '/images/apps/spotify.webp' },
-      { href: '/apps/shazam/', name: 'Shazam', desc: 'Распознавание музыки за секунды', icon: '/images/apps/shazam.webp' },
+      { href: '/apps/subway-surfers/', name: 'Subway Surfers', desc: 'Бесконечный раннер по железным путям', icon: '/images/apps/subway-surfers.webp' },
+      { href: '/apps/temple-run-2/', name: 'Temple Run 2', desc: 'Раннер с препятствиями в храме', icon: '/images/apps/temple-run-2.webp' },
+      { href: '/apps/candy-crush/', name: 'Candy Crush Saga', desc: 'Головоломка «три в ряд» с конфетами', icon: '/images/apps/candy-crush.webp' },
+      { href: '/apps/fruit-ninja/', name: 'Fruit Ninja', desc: 'Разрезайте фрукты одним движением', icon: '/images/apps/fruit-ninja.webp' },
+      { href: '/apps/among-us/', name: 'Among Us', desc: 'Социальная игра на вычисление предателя', icon: '/images/apps/among-us.webp' },
     ],
   },
   {
-    name: 'Игры',
+    name: 'Гонки',
     apps: [
-      { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница: стройте, выживайте, исследуйте', icon: '/images/apps/minecraft.webp' },
+      { href: '/apps/asphalt-9/', name: 'Asphalt 9: Legends', desc: 'Аркадные гонки на суперкарах', icon: '/images/apps/asphalt-9.webp' },
+      { href: '/apps/hill-climb-racing/', name: 'Hill Climb Racing', desc: 'Физическая гоночная аркада', icon: '/images/apps/hill-climb-racing.webp' },
+      { href: '/apps/real-racing-3/', name: 'Real Racing 3', desc: 'Реалистичный гоночный симулятор', icon: '/images/apps/real-racing-3.webp' },
+    ],
+  },
+  {
+    name: 'Стратегии',
+    apps: [
+      { href: '/apps/clash-of-clans/', name: 'Clash of Clans', desc: 'Стройте деревню и атакуйте врагов', icon: '/images/apps/clash-of-clans.webp' },
+      { href: '/apps/clash-royale/', name: 'Clash Royale', desc: 'Карточные бои в реальном времени', icon: '/images/apps/clash-royale.webp' },
+      { href: '/apps/plants-vs-zombies-2/', name: 'Plants vs. Zombies 2', desc: 'Tower defense с растениями против зомби', icon: '/images/apps/plants-vs-zombies-2.webp' },
+      { href: '/apps/plague-inc/', name: 'Plague Inc.', desc: 'Стратегия распространения патогена', icon: '/images/apps/plague-inc.webp' },
+    ],
+  },
+  {
+    name: 'Экшен и шутеры',
+    apps: [
       { href: '/apps/brawl-stars/', name: 'Brawl Stars', desc: 'Мультиплеерный шутер 3v3', icon: '/images/apps/brawl-stars.webp' },
+      { href: '/apps/pubg-mobile/', name: 'PUBG Mobile', desc: 'Королевская битва на 100 игроков', icon: '/images/apps/pubg-mobile.webp' },
+      { href: '/apps/standoff-2/', name: 'Standoff 2', desc: 'Тактический шутер 5 на 5', icon: '/images/apps/standoff-2.webp' },
+      { href: '/apps/call-of-duty-mobile/', name: 'Call of Duty: Mobile', desc: 'Шутер с мультиплеером и королевской битвой', icon: '/images/apps/call-of-duty-mobile.webp' },
+      { href: '/apps/shadow-fight-3/', name: 'Shadow Fight 3', desc: 'Файтинг с RPG-элементами', icon: '/images/apps/shadow-fight-3.webp' },
+    ],
+  },
+  {
+    name: 'RPG',
+    apps: [
       { href: '/apps/genshin-impact/', name: 'Genshin Impact', desc: 'RPG с открытым миром и элементами', icon: '/images/apps/genshin-impact.webp' },
+      { href: '/apps/minecraft/', name: 'Minecraft', desc: 'Песочница: стройте, выживайте, исследуйте', icon: '/images/apps/minecraft.webp' },
     ],
   },
 ];
