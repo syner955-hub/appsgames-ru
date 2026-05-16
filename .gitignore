@@ -28,3 +28,4 @@ pnpm-debug.log*
 
 # misc
 *.log
+public/downloads/
