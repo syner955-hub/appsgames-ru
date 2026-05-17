@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const slugs = [
+    '7k-casino', 'babos-casino', 'banda-casino', 'beef-casino', 'bui-casino',
+    'fresh-casino', 'gizbo-casino', 'grizzly-casino', 'hype-casino',
+    'irwin-casino', 'kent-casino', 'kometa-casino', 'kush-casino',
+    'leebet', 'legzo-casino', 'lev-casino', 'martin-casino', 'maxslots',
+    'metodologiya', 'monroe-casino', 'motor-casino', 'pharaon-casino',
+    'r7-casino', 'ra-casino', 'slotozal', 'starda-casino', 'vavada',
+    'vodka-casino', 'vulkan',
+  ];
+  return slugs.map((slug) => ({ params: { slug } }));
+};
+
+const { slug } = Astro.params;
+return Astro.redirect(`/casino/${slug}/`, 301);
+---

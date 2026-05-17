@@ -131,7 +131,7 @@ const articleSchema = {
 };
 
 // Schema MobileApplication для casino-страниц
-const isCasinoPage = Astro.url.pathname.startsWith('/android/casino/') && !Astro.url.pathname.includes('metodologiya');
+const isCasinoPage = (Astro.url.pathname.startsWith('/casino/') || Astro.url.pathname.startsWith('/android/casino/')) && !Astro.url.pathname.includes('metodologiya');
 const casinoName = isCasinoPage ? heading.replace(/^Скачать\s+/i, '').replace(/\s*[-–—].*$/, '').replace(/\s+приложение.*$/i, '').trim() : '';
 
 const mobileAppSchema = isCasinoPage ? {
