@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/babos-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Babos Casino уведомляет о новых версиях при запус
 
 <CtaButton href="/go/babos-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.5.0", date: "Май 2026", changes: ["Добавлен раздел ставок на виртуальный спорт", "Обновлён виджет баланса на главном экране"] },
+  { version: "1.4.0", date: "Март 2026", changes: ["Подключены слоты от Hacksaw Gaming", "Исправлена ошибка с отображением бонусного таймера"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Babos Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл." },
   { q: "Какой бонус за установку Babos?", a: "80 фриспинов на Gates of Olympus после установки APK и регистрации. Вейджер x30." },
   { q: "Какой минимальный депозит в Babos Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через банковские карты." },
   { q: "Работает ли Babos на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как быстро выводят деньги в Babos?", a: "Криптовалюта, до 30 минут. СБП, до 1 часа. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Babos Casino" comments={[
+  { author: "Евгений Т.", date: "08.05.2026", rating: 5, text: "Дерзкий дизайн, мне зашёл. Пополнил через СБП за 5 секунд, вывод тоже быстрый. Играю в Gates of Olympus." },
+  { author: "Юлия К.", date: "20.04.2026", rating: 4, text: "80 фриспинов за установку — приятно. Отыграла вейджер x30 за пару дней. Каталог хороший, есть все популярные слоты." },
+  { author: "Станислав О.", date: "06.03.2026", rating: 3, text: "Приложение нормальное, но вывод на карту ждал 11 часов. Через крипту быстрее. Поддержка отвечает медленно." },
 ]} />

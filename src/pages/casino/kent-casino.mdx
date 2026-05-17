@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/kent-casino/" label="Перейти на сайт казино" />
 
@@ -142,10 +144,21 @@ Kent Casino уведомляет о новых версиях при запус�
 
 <CtaButton href="/go/kent-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.3.0", date: "Май 2026", changes: ["Добавлены Game Shows от Evolution: Funky Time и Lightning Storm", "Обновлён дизайн раздела бонусов и промокодов"] },
+  { version: "2.2.0", date: "Март 2026", changes: ["Исправлен баг с push-уведомлениями на Android 14", "Добавлена поддержка оплаты через криптокошелёк TON"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Kent Casino на Андроид?", a: "Нажмите кнопку скачивания на этой странице, разрешите установку из неизвестных источников и установите APK." },
   { q: "Сколько весит приложение Kent?", a: "APK-файл занимает около 14 МБ. После установки приложение использует до 50 МБ с кэшем." },
   { q: "Какой бонус за установку Kent Casino?", a: "70 фриспинов после установки и регистрации. Вейджер x35, срок отыгрыша 7 дней." },
   { q: "Можно ли играть в Kent без депозита?", a: "Да, демо-режим доступен для всех слотов без регистрации и пополнения счёта." },
   { q: "Как быстро выводят деньги в Kent?", a: "Через СБП, до 1 часа. Карты МИР, до 12 часов. Криптовалюта, до 30 минут." }
+]} />
+
+<Comments appName="Kent Casino" comments={[
+  { author: "Роман", date: "15.05.2026", rating: 5, text: "70 фриспинов за установку — отличный старт. Отыграл вейджер за два дня." },
+  { author: "Светлана М.", date: "02.05.2026", rating: 4, text: "Нравится релоад по пятницам, каждую неделю получаю бонус. Приложение работает без сбоев." },
+  { author: "Кирилл", date: "19.04.2026", rating: 5, text: "Вывод через СБП пришёл за 20 минут. Каталог игр большой, Hacksaw и Nolimit City в наличии." },
 ]} />

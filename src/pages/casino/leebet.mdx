@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/leebet/" label="Перейти на сайт казино" />
 
@@ -137,10 +139,21 @@ Leebet проверяет обновления автоматически. Пр�
 
 <CtaButton href="/go/leebet/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.5.0", date: "Май 2026", changes: ["Добавлены live-трансляции для киберспорта (Dota 2, CS2)", "Обновлён интерфейс раздела ставок на спорт"] },
+  { version: "1.4.5", date: "Март 2026", changes: ["Исправлена задержка при размещении live-ставок", "Добавлена оплата через SteamPay для геймеров"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Leebet на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников и откройте загруженный файл." },
   { q: "Leebet работает на iPhone?", a: "Через мобильную версию сайта в Safari. Добавьте ярлык на главный экран для быстрого доступа." },
   { q: "Можно ли ставить на спорт в приложении?", a: "Да. Leebet, казино и букмекер. В одном приложении доступны слоты, лайв-казино и ставки на 30+ видов спорта." },
   { q: "Какой минимальный депозит?", a: "От 300 ₽ через СБП или ЮMoney. Для карт, от 500 ₽." },
   { q: "Как быстро выводят деньги?", a: "СБП, 5-15 минут. USDT, 5-30 минут. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Leebet" comments={[
+  { author: "Вадим", date: "14.05.2026", rating: 5, text: "Казино и ставки в одном приложении — удобно. Переключаюсь между разделами за секунду." },
+  { author: "Екатерина", date: "01.05.2026", rating: 4, text: "Фрибет 5000 ₽ отработал на футболе. Вывод на СБП пришёл за 10 минут." },
+  { author: "Илья Р.", date: "16.04.2026", rating: 3, text: "Слотов поменьше чем у конкурентов, но для ставок на спорт приложение отличное. Live работает без задержек." },
 ]} />

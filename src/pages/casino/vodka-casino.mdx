@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/vodka-casino/" label="Перейти на сайт казино" />
 
@@ -140,10 +142,21 @@ Vodka Casino проверяет версию при запуске. Скачай
 
 <CtaButton href="/go/vodka-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.4.0", date: "Май 2026", changes: ["Добавлены слоты от провайдера Titan Gaming", "Обновлён интерфейс личного кабинета"] },
+  { version: "2.3.0", date: "Март 2026", changes: ["Подключена оплата через Т-Банк", "Исправлена ошибка с зависанием при запуске лайв-игр"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Vodka Casino на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников и откройте файл." },
   { q: "Vodka Casino работает на iPhone?", a: "Через мобильную версию в Safari. Добавьте ярлык на главный экран для полноэкранного режима." },
   { q: "Какой приветственный бонус?", a: "200% на первый депозит до 80 000 ₽ + 60 фриспинов за установку APK. Суммарно до 160 000 ₽ на три депозита." },
   { q: "Как быстро выводят?", a: "СБП, 5-15 минут. USDT, 5-20 минут. Карты, до 8 часов. Комиссия 0%." },
   { q: "Сколько игр в Vodka Casino?", a: "3000+ слотов от 30+ провайдеров, лайв-казино, crash-игры, настольные. Демо без регистрации." }
+]} />
+
+<Comments appName="Vodka Casino" comments={[
+  { author: "Дмитрий К.", date: "12.05.2026", rating: 5, text: "Вывод через СБП пришёл за 8 минут. Раньше в других казино ждал сутки. Тут реально быстро." },
+  { author: "Анна С.", date: "03.04.2026", rating: 4, text: "Приложение не тормозит, слоты грузятся моментально. Единственное — хотелось бы больше фильтров в каталоге." },
+  { author: "Максим Р.", date: "18.03.2026", rating: 5, text: "Бонус 200% отыграл за неделю. Интерфейс удобный, всё на русском. Пользуюсь полгода уже." },
 ]} />

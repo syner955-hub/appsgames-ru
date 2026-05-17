@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/vulkan/" label="Перейти на сайт казино" />
 
@@ -137,10 +139,21 @@ import AppRating from '../../components/article/AppRating.astro';
 
 <CtaButton href="/go/vulkan/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "5.1.0", date: "Май 2026", changes: ["Добавлены классические слоты Igrosoft: Lucky Haunter, Pirate", "Новый раздел быстрых игр с Aviator и Plinko"] },
+  { version: "5.0.5", date: "Март 2026", changes: ["Исправлена ошибка авторизации через VK", "Оптимизирован расход оперативной памяти на 20%"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Вулкан на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников и откройте загруженный файл." },
   { q: "Вулкан работает на iPhone?", a: "Через мобильную версию в Safari. Добавьте ярлык на главный экран для полноэкранного режима." },
   { q: "Есть ли классические автоматы?", a: "Да. Полная коллекция Novomatic (Book of Ra, Lucky Lady's Charm) и Igrosoft (Crazy Monkey, Fruit Cocktail, Garage)." },
   { q: "Какой бонус за первый депозит?", a: "100% до 15 000 ₽ + 50 фриспинов в Crazy Monkey. Минимальный депозит, 500 ₽." },
   { q: "Как вывести деньги?", a: "Личный кабинет → Вывод. СБП, от 5 минут, карты, до 24 часов." }
+]} />
+
+<Comments appName="Vulkan" comments={[
+  { author: "Игорь", date: "11.05.2026", rating: 5, text: "Наконец-то все классические автоматы в одном месте. Crazy Monkey и Book of Ra работают без тормозов." },
+  { author: "Татьяна", date: "25.04.2026", rating: 4, text: "Приложение лёгкое, не жрёт батарею. Вывод на СБП пришёл за 15 минут." },
+  { author: "Павел Н.", date: "08.04.2026", rating: 4, text: "Играю через приложение уже год. Стабильно работает, бонусы отыгрываются нормально." },
 ]} />

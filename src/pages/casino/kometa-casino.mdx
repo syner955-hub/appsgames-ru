@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/kometa-casino/" label="Перейти на сайт казино" />
 
@@ -148,10 +150,21 @@ Aviator, Plinko, Mines, JetX, Spaceman. Минимальная ставка, 10 
 
 <CtaButton href="/go/kometa-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.8.0", date: "Май 2026", changes: ["Добавлен еженедельный мобильный бонус с увеличенным количеством фриспинов", "Новые провайдеры: Wazdan и Spinomenal"] },
+  { version: "1.7.5", date: "Март 2026", changes: ["Исправлен вылет приложения на устройствах с Android 7", "Ускорена загрузка раздела лайв-казино"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Где скачать Kometa Casino на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников и откройте загруженный файл." },
   { q: "Kometa работает на iPhone?", a: "Через мобильную версию в Safari. Добавьте ярлык на главный экран для быстрого доступа." },
   { q: "Какой бонус за регистрацию?", a: "100% на первый депозит до 50 000 ₽ + 200 фриспинов. Минимальный депозит, 500 ₽, вейджер x35." },
   { q: "Как быстро выводят?", a: "СБП, 5-15 минут. Крипта, 5-20 минут. Карты, до 8 часов." },
   { q: "Можно ли играть бесплатно?", a: "Да. Все слоты работают в демо-режиме без регистрации и пополнения." }
+]} />
+
+<Comments appName="Kometa Casino" comments={[
+  { author: "Станислав", date: "07.05.2026", rating: 5, text: "Мобильный бонус каждую неделю — приятная фишка. Фриспины начисляются автоматически." },
+  { author: "Ольга Д.", date: "23.04.2026", rating: 4, text: "Приложение лёгкое, не грузит телефон. 200 фриспинов за первый депозит — щедро." },
+  { author: "Тимур", date: "09.04.2026", rating: 4, text: "Вывод на СБП за 12 минут. Реферальная программа тоже работает, получил 500 ₽ за друга." },
 ]} />

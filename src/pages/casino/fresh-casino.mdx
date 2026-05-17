@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/fresh-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Fresh Casino присылает уведомление при выходе об�
 
 <CtaButton href="/go/fresh-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "3.0.0", date: "Май 2026", changes: ["Полностью переработан интерфейс: новая навигация и тёмная тема", "Добавлены 150+ слотов от Red Tiger и Wazdan"] },
+  { version: "2.9.5", date: "Март 2026", changes: ["Исправлена ошибка при регистрации через email", "Оптимизирован расход трафика при загрузке слотов"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Fresh Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников в настройках телефона и установите файл." },
   { q: "Сколько фриспинов дают за установку Fresh?", a: "100 бесплатных вращений на Sweet Bonanza после установки APK и регистрации. Вейджер x30." },
   { q: "Какой минимальный депозит в Fresh Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через карты и электронные кошельки." },
   { q: "Работает ли Fresh Casino на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как долго выводят деньги в Fresh?", a: "СБП, до 2 часов. Криптовалюта, до 1 часа. Банковские карты, до 24 часов." }
+]} />
+
+<Comments appName="Fresh Casino" comments={[
+  { author: "Евгений", date: "16.05.2026", rating: 5, text: "После обновления до 3.0 приложение стало выглядеть современно. Тёмная тема — огонь." },
+  { author: "Юлия", date: "29.04.2026", rating: 4, text: "100 фриспинов на Sweet Bonanza — хороший бонус. Вейджер x30 вполне реально отыграть." },
+  { author: "Григорий А.", date: "10.04.2026", rating: 3, text: "Вывод на карту ждал 18 часов, долговато. Но через СБП быстрее, за час пришло." },
 ]} />

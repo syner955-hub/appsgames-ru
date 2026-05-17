@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/irwin-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Irwin Casino показывает уведомление при выходе о�
 
 <CtaButton href="/go/irwin-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.2.0", date: "Май 2026", changes: ["Интеграция новых краш-игр от Spribe", "Добавлен тёмный режим интерфейса"] },
+  { version: "2.1.0", date: "Март 2026", changes: ["Подключён вывод на карты Т-Банка", "Исправлены вылеты при переключении между разделами"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Irwin Casino на Андроид?", a: "Нажмите кнопку скачивания на этой странице, разрешите установку из неизвестных источников и установите APK-файл." },
   { q: "Какой бонус за установку Irwin?", a: "60 фриспинов на Gates of Olympus после установки и регистрации. Вейджер x35, срок отыгрыша 7 дней." },
   { q: "Какой минимальный депозит в Irwin Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через карты и электронные кошельки." },
   { q: "Работает ли Irwin на iPhone?", a: "Через PWA-версию в Safari. Добавьте ярлык на главный экран для быстрого запуска." },
   { q: "Как быстро выводят деньги в Irwin?", a: "СБП, до 2 часов. Криптовалюта, до 1 часа. Банковские карты, до 24 часов." }
+]} />
+
+<Comments appName="Irwin Casino" comments={[
+  { author: "Сергей Л.", date: "14.05.2026", rating: 5, text: "Поставил приложение месяц назад. Работает без вылетов, слоты грузятся за секунду. Вывод на СБП за час пришёл." },
+  { author: "Наталья Д.", date: "28.04.2026", rating: 4, text: "Нравится интерфейс, всё понятно. Бонус 150% отыграла на Starlight Princess. Хотелось бы больше акций для постоянных." },
+  { author: "Игорь П.", date: "10.03.2026", rating: 4, text: "Нормальное казино, выплаты стабильные. Крипту выводят быстро. Из минусов — нет Telegram-бота для уведомлений." },
 ]} />

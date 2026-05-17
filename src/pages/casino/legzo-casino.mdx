@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/legzo-casino/" label="Перейти на сайт казино" />
 
@@ -147,10 +149,21 @@ Legzo уведомляет о новых версиях при запуске. �
 
 <CtaButton href="/go/legzo-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "3.1.0", date: "Май 2026", changes: ["Добавлены слоты от Push Gaming и Thunderkick", "Новый раздел лотерей с ежедневными розыгрышами"] },
+  { version: "3.0.5", date: "Март 2026", changes: ["Исправлен баг с отображением фриспинов в личном кабинете", "Ускорена работа лайв-чата поддержки"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Legzo Casino на Андроид?", a: "Скачайте APK-файл с этой страницы. Разрешите установку из неизвестных источников в настройках и запустите файл." },
   { q: "Работает ли Legzo на iPhone?", a: "Через мобильную версию сайта в Safari. Добавьте ярлык на главный экран, получите полноэкранный режим и быстрый доступ." },
   { q: "Какой приветственный бонус?", a: "200% на первый депозит до 100 000 ₽ + 100 фриспинов за установку APK. Минимальный депозит, 500 ₽." },
   { q: "Как быстро выводят деньги?", a: "Через СБП, от 5 минут. Крипта (USDT), 5-20 минут. Карты, до 6 часов." },
   { q: "Legzo Casino легальное?", a: "Казино работает по лицензии Curaçao. Данные защищены SSL-шифрованием, платежи проходят через сертифицированных операторов." }
+]} />
+
+<Comments appName="Legzo Casino" comments={[
+  { author: "Николай", date: "13.05.2026", rating: 5, text: "Бонус 200% реально щедрый. Отыграл за неделю, вывел без проблем на карту." },
+  { author: "Ирина С.", date: "30.04.2026", rating: 4, text: "Приложение работает стабильно, ни разу не вылетело. Каталог игр огромный." },
+  { author: "Денис", date: "12.04.2026", rating: 4, text: "Вывод через USDT за 7 минут, это топ. Интерфейс удобный, всё на русском." },
 ]} />

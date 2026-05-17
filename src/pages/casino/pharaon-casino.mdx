@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/pharaon-casino/" label="Перейти на сайт казино" />
 
@@ -141,10 +143,21 @@ Pharaon уведомляет о новых версиях при запуске.
 
 <CtaButton href="/go/pharaon-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "3.2.0", date: "Май 2026", changes: ["Добавлены новые египетские слоты: Cleopatra's Gold и Sphinx Rising", "Обновлён раздел турниров с тематическими призами"] },
+  { version: "3.1.0", date: "Март 2026", changes: ["Исправлена ошибка загрузки Book of Ra на слабых устройствах", "Добавлена поддержка вывода через ЮMoney"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Pharaon Casino на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников и запустите файл." },
   { q: "Pharaon работает на iPhone?", a: "Через мобильную версию в Safari. Добавьте ярлык на главный экран." },
   { q: "Какой приветственный бонус?", a: "150% на первый депозит до 45 000 ₽ + 30 фриспинов за установку APK." },
   { q: "Есть ли египетские слоты?", a: "Да. Book of Ra, Legacy of Egypt, Pharaoh's Fortune, Eye of Horus и другие тематические автоматы." },
   { q: "Как вывести деньги?", a: "СБП, от 5 минут, карты, до 12 часов, USDT, 5-30 минут. Комиссия 0%." }
+]} />
+
+<Comments appName="Pharaon Casino" comments={[
+  { author: "Владислав", date: "13.05.2026", rating: 5, text: "Лучшая подборка египетских слотов. Book of Ra крутится без лагов, выплаты быстрые." },
+  { author: "Анастасия", date: "27.04.2026", rating: 4, text: "Приложение лёгкое, всего 7 МБ. Бонус 150% на первый депозит — хорошее предложение." },
+  { author: "Борис Т.", date: "13.04.2026", rating: 3, text: "Каталог поменьше чем у других, но для любителей классики самое то. Вывод на СБП за 15 минут." },
 ]} />

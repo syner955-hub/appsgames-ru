@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/ra-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Ra Casino уведомляет о новых версиях при запуск�
 
 <CtaButton href="/go/ra-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.1.0", date: "Май 2026", changes: ["Добавлены классические слоты от Amatic Industries", "Реализован поиск игр по названию и провайдеру"] },
+  { version: "2.0.0", date: "Март 2026", changes: ["Переработан дизайн в обновлённой египетской стилистике", "Исправлена ошибка с зависанием демо-режима"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Ra Casino на Андроид?", a: "Нажмите кнопку скачивания на этой странице, разрешите установку из неизвестных источников и установите APK-файл." },
   { q: "Какой бонус за установку Ra Casino?", a: "50 фриспинов на Book of Ra Deluxe после установки и регистрации. Вейджер x40, срок отыгрыша 7 дней." },
   { q: "Есть ли слоты Novomatic в Ra Casino?", a: "Да, доступны Book of Ra Deluxe, Book of Ra 6, Sizzling Hot, Lucky Lady's Charm и другие классические слоты Novomatic." },
   { q: "Работает ли Ra Casino на iPhone?", a: "Через PWA-версию в Safari. Добавьте ярлык на главный экран для быстрого запуска." },
   { q: "Как быстро выводят деньги в Ra Casino?", a: "Криптовалюта, до 2 часов. СБП, до 3 часов. Карты, до 24 часов." }
+]} />
+
+<Comments appName="Ra Casino" comments={[
+  { author: "Фёдор Л.", date: "10.05.2026", rating: 5, text: "Для фанатов Book of Ra — идеальное место. Все версии слота есть. Приложение лёгкое, на старом телефоне работает." },
+  { author: "Марина Ж.", date: "18.04.2026", rating: 4, text: "Египетская тема красивая. Бонус 100% нормальный, вейджер x35 отыгрывается. Вывод через СБП за 2 часа." },
+  { author: "Константин Р.", date: "02.03.2026", rating: 3, text: "Каталог поменьше чем у других, но классика Novomatic вся на месте. Вывод на карту долгий — почти сутки ждал." },
 ]} />

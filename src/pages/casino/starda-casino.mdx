@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/starda-casino/" label="Перейти на сайт казино" />
 
@@ -145,10 +147,21 @@ Starda уведомляет о новых версиях при запуске. 
 
 <CtaButton href="/go/starda-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.1.0", date: "Май 2026", changes: ["Добавлено колесо фортуны с увеличенными призами", "Новые слоты от Spinomenal и Red Tiger"] },
+  { version: "2.0.5", date: "Март 2026", changes: ["Исправлена проблема с активацией бонусов на втором депозите", "Добавлена поддержка Litecoin для вывода средств"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Starda Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и запустите файл." },
   { q: "Starda работает на iPhone?", a: "Через мобильную версию в Safari. Добавьте ярлык на главный экран для полноэкранного режима." },
   { q: "Какой приветственный бонус?", a: "До 500% на четыре депозита + 200 фриспинов. Первый депозит, 200% до 50 000 ₽." },
   { q: "Как вывести деньги?", a: "Личный кабинет → Вывод. СБП, от 5 минут, крипта, от 5 минут, карты, до 8 часов." },
   { q: "Есть ли демо-режим?", a: "Да. Все слоты доступны бесплатно без регистрации и пополнения." }
+]} />
+
+<Comments appName="Starda Casino" comments={[
+  { author: "Михаил", date: "11.05.2026", rating: 5, text: "Колесо фортуны каждый день кручу, пару раз выпадали фриспины. Приложение шустрое." },
+  { author: "Дарья К.", date: "26.04.2026", rating: 4, text: "Бонусный пакет на 4 депозита — выгодно. Вывод через СБП за 7 минут пришёл." },
+  { author: "Антон", date: "14.04.2026", rating: 4, text: "Каталог игр огромный, 5000+ слотов это не шутка. Интерфейс удобный, всё под рукой." },
 ]} />

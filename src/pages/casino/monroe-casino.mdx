@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/monroe-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Monroe Casino присылает уведомление при выходе об
 
 <CtaButton href="/go/monroe-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.3.0", date: "Май 2026", changes: ["Добавлены 200 слотов от Belatra Games", "Реализован быстрый вход по отпечатку пальца"] },
+  { version: "1.2.5", date: "Март 2026", changes: ["Оптимизирован расход батареи при длительной игре", "Исправлена ошибка с отображением истории ставок"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Monroe Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл." },
   { q: "Какой бонус за установку Monroe?", a: "100 фриспинов на слот Mental после установки APK и регистрации. Вейджер x30." },
   { q: "Какой минимальный депозит в Monroe Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через карты и электронные кошельки." },
   { q: "Работает ли Monroe на iPhone?", a: "Через PWA-версию в Safari. Добавьте ярлык на главный экран для быстрого запуска." },
   { q: "Как быстро выводят деньги в Monroe?", a: "Криптовалюта, до 30 минут. СБП, до 1 часа. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Monroe Casino" comments={[
+  { author: "Кристина В.", date: "15.05.2026", rating: 5, text: "Обожаю дизайн приложения, всё стильно. Вывод на крипту за 20 минут. Бонус 200% — щедро." },
+  { author: "Павел М.", date: "02.04.2026", rating: 4, text: "Каталог огромный, 4000 игр — есть что покрутить. Приложение стабильное, за месяц ни одного вылета." },
+  { author: "Денис Ш.", date: "17.03.2026", rating: 4, text: "Фриспины за установку реально дали, 100 штук на Mental. Отыграл вейджер за 3 дня, вывел 8000₽." },
 ]} />

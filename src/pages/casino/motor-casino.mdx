@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/motor-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Motor Casino уведомляет о новых версиях при запус
 
 <CtaButton href="/go/motor-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.6.0", date: "Май 2026", changes: ["Добавлены гонки-турниры с призовым фондом 500 000 ₽", "Реализован предпросмотр слотов без загрузки"] },
+  { version: "1.5.0", date: "Март 2026", changes: ["Подключены провайдеры Elk Studios и Iron Dog Studio", "Исправлена ошибка с некорректным отображением истории транзакций"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Motor Casino на Андроид?", a: "Нажмите кнопку скачивания на этой странице, разрешите установку из неизвестных источников и установите APK-файл." },
   { q: "Какой бонус за установку Motor?", a: "70 фриспинов на Wild West Gold Megaways после установки и регистрации. Вейджер x35." },
   { q: "Какой минимальный депозит в Motor Casino?", a: "От 200 ₽ через СБП, от 300 ₽ через карты МИР." },
   { q: "Работает ли Motor на iPhone?", a: "Через PWA-версию в Safari. Добавьте ярлык на главный экран для быстрого запуска." },
   { q: "Как быстро выводят деньги в Motor?", a: "Криптовалюта, до 30 минут. СБП, до 1 часа. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Motor Casino" comments={[
+  { author: "Кирилл Н.", date: "14.05.2026", rating: 5, text: "Автомобильная тема — прикольно. Турниры-гонки затягивают. Вывел 22000₽ через крипту за 25 минут." },
+  { author: "Елена Б.", date: "01.05.2026", rating: 4, text: "Приложение быстрое, Wild West Gold Megaways крутится без задержек. Бонус 150% нормальный, вейджер x30 реально отыграть." },
+  { author: "Григорий Х.", date: "15.03.2026", rating: 4, text: "Минимальный депозит 200₽ через СБП — удобно для тестов. Каталог большой, Red Tiger порадовал." },
 ]} />

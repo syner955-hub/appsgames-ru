@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/hype-casino/" label="Перейти на сайт казино" />
 
@@ -144,10 +146,21 @@ Hype Casino присылает уведомление при выходе обн
 
 <CtaButton href="/go/hype-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.8.0", date: "Май 2026", changes: ["Добавлены 300 слотов от Print Studios и Armadillo Studios", "Реализована система достижений с наградами"] },
+  { version: "1.7.0", date: "Март 2026", changes: ["Переработан раздел лайв-казино с новыми фильтрами", "Исправлены лаги при прокрутке каталога на слабых устройствах"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Hype Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл. Процесс занимает меньше минуты." },
   { q: "Какой бонус за установку Hype?", a: "120 фриспинов на Wanted Dead or a Wild после установки APK и регистрации. Вейджер x30." },
   { q: "Сколько игр в Hype Casino?", a: "Более 5000 игр от 50+ провайдеров, включая Pragmatic Play, Hacksaw Gaming и Nolimit City." },
   { q: "Работает ли Hype на iPhone?", a: "Через PWA-версию в Safari. Добавьте ярлык на главный экран для быстрого запуска." },
   { q: "Как быстро выводят деньги в Hype?", a: "Криптовалюта, до 15 минут. СБП, до 30 минут. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Hype Casino" comments={[
+  { author: "Руслан Ф.", date: "16.05.2026", rating: 5, text: "Самый большой каталог из всех казино, что пробовал. 5000 игр — это серьёзно. Вывод на USDT за 10 минут." },
+  { author: "Ирина Л.", date: "29.04.2026", rating: 4, text: "120 фриспинов за установку — щедро. Wanted Dead or a Wild зашёл. Приложение чуть тяжеловатое, но работает стабильно." },
+  { author: "Николай Д.", date: "12.03.2026", rating: 4, text: "Кэшбэк 20% — топ. Интерфейс красивый, но на старом телефоне подлагивает. На новом всё летает." },
 ]} />

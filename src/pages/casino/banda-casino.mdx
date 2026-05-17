@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/banda-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Banda Casino присылает уведомление при выходе об�
 
 <CtaButton href="/go/banda-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.9.0", date: "Май 2026", changes: ["Добавлены эксклюзивные слоты с бай-ин бонусом", "Обновлена система VIP-уровней с новыми привилегиями"] },
+  { version: "1.8.0", date: "Март 2026", changes: ["Подключён вывод через Систему быстрых платежей 2.0", "Исправлены проблемы с авторизацией на Android 14"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Banda Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл. Процесс занимает 30 секунд." },
   { q: "Какой бонус за установку Banda?", a: "100 фриспинов на San Quentin xWays после установки APK и регистрации. Вейджер x30." },
   { q: "Сколько игр в Banda Casino?", a: "Более 4000 игр от 40+ провайдеров, включая Pragmatic Play, Nolimit City и Push Gaming." },
   { q: "Работает ли Banda на iPhone?", a: "Через PWA-версию в Safari. Добавьте ярлык на главный экран для быстрого запуска." },
   { q: "Как быстро выводят деньги в Banda?", a: "Криптовалюта, до 20 минут. СБП, до 1 часа. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Banda Casino" comments={[
+  { author: "Михаил З.", date: "12.05.2026", rating: 5, text: "Вывод на USDT за 15 минут — рекорд. Каталог 4000 игр, Nolimit City все слоты на месте. Доволен." },
+  { author: "Валерия П.", date: "27.04.2026", rating: 4, text: "100 фриспинов за установку — щедро. San Quentin дал x200 на бонусных. Интерфейс агрессивный, но удобный." },
+  { author: "Антон Ю.", date: "20.03.2026", rating: 4, text: "Играю тут два месяца. Кэшбэк 15% реально приходит. Из минусов — иногда долго грузится лайв-раздел." },
 ]} />

@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/bui-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Bui Casino уведомляет о новых версиях при запуск
 
 <CtaButton href="/go/bui-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.6.0", date: "Май 2026", changes: ["Добавлен раздел с мини-играми и моментальными выигрышами", "Обновлены анимации переходов между экранами"] },
+  { version: "2.5.0", date: "Март 2026", changes: ["Подключены новые провайдеры: Evoplay и Thunderkick", "Исправлен баг с двойным списанием при депозите"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Bui Casino на Андроид?", a: "Нажмите кнопку скачивания на этой странице, разрешите установку из неизвестных источников и установите APK." },
   { q: "Какой бонус за установку Bui?", a: "75 фриспинов на Elvis Frog in Vegas после установки и регистрации. Вейджер x30, срок отыгрыша 7 дней." },
   { q: "Какой минимальный депозит в Bui Casino?", a: "От 200 ₽ через СБП, от 500 ₽ через карты и криптовалюту." },
   { q: "Работает ли Bui на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как быстро выводят деньги в Bui?", a: "Криптовалюта, до 1 часа. СБП, до 2 часов. Карты МИР, до 24 часов." }
+]} />
+
+<Comments appName="Bui Casino" comments={[
+  { author: "Андрей К.", date: "10.05.2026", rating: 5, text: "Морская тема прикольная, приложение шустрое. Вывел 15000₽ через СБП за полтора часа. Всё чётко." },
+  { author: "Ольга Р.", date: "25.04.2026", rating: 4, text: "75 фриспинов за установку — приятный старт. Elvis Frog понравился. Интерфейс удобный, разобралась сразу." },
+  { author: "Тимур Б.", date: "08.03.2026", rating: 4, text: "Играю тут третий месяц. Кэшбэк 12% реально приходит. Из минусов — обновления приходится ставить вручную." },
 ]} />

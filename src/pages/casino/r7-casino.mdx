@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/r7-casino/" label="Перейти на сайт казино" />
 
@@ -150,10 +152,21 @@ R7 проверяет версию при запуске. Если доступ�
 
 <CtaButton href="/go/r7-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.0.0", date: "Май 2026", changes: ["Полностью переработана система регистрации через Telegram", "Добавлены турниры с призовым фондом от 1 000 000 ₽"] },
+  { version: "1.9.5", date: "Март 2026", changes: ["Исправлена ошибка отображения истории ставок", "Добавлена поддержка вывода на карты Газпромбанка"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать R7 Casino на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников, скачайте и откройте файл." },
   { q: "R7 Casino работает на iPhone?", a: "Через мобильную версию сайта в Safari. Добавьте ярлык на главный экран, работает как полноценное приложение." },
   { q: "Какой приветственный бонус?", a: "200% на первый депозит до 50 000 ₽ + 50 фриспинов за установку APK. Минимальный депозит, 500 ₽." },
   { q: "Как быстро выводят деньги?", a: "СБП, 5-10 минут. USDT, 5-20 минут. Карты, до 12 часов." },
   { q: "Есть ли демо-режим?", a: "Да. Все слоты доступны бесплатно без регистрации. Лайв-казино, только на реальные деньги." }
+]} />
+
+<Comments appName="R7 Casino" comments={[
+  { author: "Константин", date: "10.05.2026", rating: 5, text: "Регистрация через Telegram за 20 секунд — это гениально. Приложение работает быстро." },
+  { author: "Валерия", date: "24.04.2026", rating: 4, text: "Бонус 200% на первый депозит отыграла за 5 дней. Вывод на СБП без задержек." },
+  { author: "Фёдор Л.", date: "07.04.2026", rating: 4, text: "Турниры с хорошими призами, участвую каждую неделю. Приложение стабильное, не вылетает." },
 ]} />

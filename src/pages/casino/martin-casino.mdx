@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/martin-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Martin Casino уведомляет о новых версиях при запу�
 
 <CtaButton href="/go/martin-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.4.0", date: "Май 2026", changes: ["Добавлены турниры с ежечасными розыгрышами", "Обновлён дизайн главного экрана"] },
+  { version: "1.3.5", date: "Март 2026", changes: ["Исправлена проблема с push-уведомлениями на Android 14", "Добавлена поддержка оплаты через СБП по QR-коду"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Martin Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников в настройках и установите файл." },
   { q: "Какой бонус за установку Martin?", a: "50 фриспинов на Starburst после установки APK и регистрации. Вейджер x40." },
   { q: "Какой минимальный депозит в Martin Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через банковские карты." },
   { q: "Работает ли Martin на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как быстро выводят деньги в Martin?", a: "СБП, до 3 часов. Криптовалюта, до 2 часов. Карты, до 24 часов." }
+]} />
+
+<Comments appName="Martin Casino" comments={[
+  { author: "Виктор А.", date: "11.05.2026", rating: 5, text: "Элегантный дизайн, приятно пользоваться. Вывод через СБП пришёл за 40 минут. Рекомендую." },
+  { author: "Мария Т.", date: "19.04.2026", rating: 4, text: "Хороший выбор слотов от NetEnt. Приложение лёгкое, не жрёт батарею. Бонус по средам — приятный плюс." },
+  { author: "Алексей Г.", date: "05.03.2026", rating: 3, text: "Вывод на карту ждал почти сутки. Через крипту быстрее, но лимит от 2000₽ высоковат для мелких сумм." },
 ]} />

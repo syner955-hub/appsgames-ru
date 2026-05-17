@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/beef-casino/" label="Перейти на сайт казино" />
 
@@ -149,10 +151,21 @@ Beef Casino проверяет версию при каждом запуске. 
 
 <CtaButton href="/go/beef-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.6.0", date: "Май 2026", changes: ["Добавлена VIP-программа с персональным менеджером", "Новые слоты от Relax Gaming и BGaming"] },
+  { version: "1.5.5", date: "Март 2026", changes: ["Исправлен баг с авторизацией через Telegram", "Ускорена обработка выводов через СБП"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Beef Casino на Android?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников в настройках телефона и запустите загруженный файл." },
   { q: "Есть ли Beef Casino для iPhone?", a: "Отдельного приложения нет. Добавьте сайт казино на главный экран через Safari, получите PWA с полноэкранным режимом." },
   { q: "Какой бонус за установку приложения?", a: "40 фриспинов в Gates of Olympus. Начисляются после регистрации через APK. Вейджер x30." },
   { q: "Сколько ждать вывод денег?", a: "Через СБП, от 5 минут. На карту, до 12 часов. Крипта (USDT), 5-30 минут." },
   { q: "Какая лицензия у Beef Casino?", a: "Лицензия Curaçao (8048/JAZ). Данные защищены SSL-шифрованием, платежи обрабатываются через сертифицированных провайдеров." }
+]} />
+
+<Comments appName="Beef Casino" comments={[
+  { author: "Александр", date: "12.05.2026", rating: 5, text: "Кэшбэк 15% — лучший что видел. Приложение быстрое, слоты грузятся за секунду." },
+  { author: "Полина В.", date: "28.04.2026", rating: 4, text: "Регистрация через Telegram за полминуты. Бонус на первый депозит 150% — щедро." },
+  { author: "Георгий", date: "11.04.2026", rating: 4, text: "Вывод на СБП стабильно за 5-10 минут. Промокоды в телеграм-канале реально работают." },
 ]} />

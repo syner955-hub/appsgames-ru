@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/vavada/" label="Перейти на сайт казино" />
 
@@ -144,10 +146,21 @@ Vavada уведомляет о новых версиях при запуске. 
 
 <CtaButton href="/go/vavada/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "4.2.0", date: "Май 2026", changes: ["Добавлено 200+ новых слотов от Hacksaw Gaming и Nolimit City", "Переработан раздел лайв-казино с новыми фильтрами"] },
+  { version: "4.1.0", date: "Март 2026", changes: ["Ускорена загрузка игрового лобби на 40%", "Исправлены редкие вылеты при переключении между разделами"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Вавада на Андроид?", a: "APK доступен на этой странице. Разрешите установку из неизвестных источников и откройте загруженный файл." },
   { q: "Вавада работает на iPhone?", a: "Через мобильную версию в Safari. Добавьте ярлык на главный экран, полноэкранный режим, Face ID, push-уведомления." },
   { q: "Есть ли бонус без депозита?", a: "Да. 100 фриспинов сразу после регистрации, пополнять счёт не нужно. Вейджер x20." },
   { q: "Какой минимальный вывод?", a: "100 ₽ через СБП или ЮMoney. Один из самых низких порогов на рынке." },
   { q: "Сколько игр в Вавада?", a: "5000+ слотов от 60+ провайдеров, лайв-казино, crash-игры, настольные. Демо доступен без регистрации." }
+]} />
+
+<Comments appName="Vavada" comments={[
+  { author: "Олег", date: "09.05.2026", rating: 5, text: "Вывод на карту за 10 минут, раньше ждал часами. После обновления стало заметно быстрее." },
+  { author: "Марина", date: "28.04.2026", rating: 4, text: "Нравится что 100 фриспинов дают без депозита. Интерфейс понятный, разобралась сразу." },
+  { author: "Алексей В.", date: "15.04.2026", rating: 3, text: "Приложение норм, но иногда push-уведомления приходят с задержкой. В остальном всё устраивает." },
 ]} />

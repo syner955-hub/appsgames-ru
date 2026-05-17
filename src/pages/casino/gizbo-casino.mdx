@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/gizbo-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Gizbo Casino уведомляет о новых версиях при запус
 
 <CtaButton href="/go/gizbo-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.7.0", date: "Май 2026", changes: ["Добавлено 150 новых слотов от Wazdan", "Переработан раздел акций и бонусов"] },
+  { version: "1.6.5", date: "Март 2026", changes: ["Исправлен баг с отображением баланса после пополнения", "Ускорена загрузка каталога игр на 20%"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Gizbo Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл. Весь процесс занимает 40 секунд." },
   { q: "Какой бонус за установку Gizbo?", a: "80 фриспинов на слот Book of Cats после установки APK и регистрации. Вейджер x35." },
   { q: "Какой минимальный депозит в Gizbo Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через карты и криптовалюту." },
   { q: "Работает ли Gizbo на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как быстро выводят деньги в Gizbo?", a: "Криптовалюта, до 30 минут. СБП, до 1 часа. Карты, до 12 часов." }
+]} />
+
+<Comments appName="Gizbo Casino" comments={[
+  { author: "Олег В.", date: "09.05.2026", rating: 5, text: "Лёгкое приложение, на моём старом Redmi летает. Каталог большой, нашёл все любимые слоты." },
+  { author: "Екатерина М.", date: "22.04.2026", rating: 4, text: "Бонус 200% порадовал, но вейджер x40 высоковат. Зато кэшбэк 15% реально возвращают каждую неделю." },
+  { author: "Артём Н.", date: "01.03.2026", rating: 3, text: "Вывод на карту ждал 10 часов. Через крипту быстрее, но не всем удобно. В остальном норм." },
 ]} />

@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/maxslots/" label="Перейти на сайт казино" />
 
@@ -140,10 +142,21 @@ MaxSlots работает с провайдерами:
 
 <CtaButton href="/go/maxslots/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.9.0", date: "Май 2026", changes: ["Добавлены crash-игры: Lucky Jet и Spaceman", "Обновлён дизайн главного экрана и навигации"] },
+  { version: "1.8.5", date: "Март 2026", changes: ["Исправлен баг с отображением баланса после пополнения", "Добавлена поддержка биометрической авторизации"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Где скачать MaxSlots на Андроид?", a: "APK-файл доступен на этой странице. Разрешите установку из неизвестных источников и откройте загруженный файл." },
   { q: "MaxSlots работает на iPhone?", a: "Через Safari, добавьте сайт на главный экран как PWA. Отдельного приложения в App Store нет." },
   { q: "Какой бонус за установку?", a: "30 фриспинов в слоте Book of Dead. Начисляются после регистрации через APK. Вейджер x35." },
   { q: "Как вывести выигрыш?", a: "Личный кабинет → Вывод → выберите метод. Минимум от 500 ₽ через СБП, от 1000 ₽ на карту. Срок, от 15 минут." },
   { q: "Безопасно ли приложение?", a: "MaxSlots использует 256-bit SSL шифрование. Данные карт не хранятся на серверах казино, обработка через платёжных провайдеров." }
+]} />
+
+<Comments appName="MaxSlots" comments={[
+  { author: "Андрей", date: "14.05.2026", rating: 5, text: "Огромный выбор слотов, нашёл тут всё что искал. Приложение не тормозит даже на старом телефоне." },
+  { author: "Ксения", date: "01.05.2026", rating: 4, text: "Бонус за установку отыграла за вечер. Вывод на ЮMoney пришёл через 3 часа." },
+  { author: "Максим Р.", date: "17.04.2026", rating: 4, text: "Пользуюсь пару месяцев. Нравится что комиссии нет, и пополнение через СБП проходит за секунды." },
 ]} />

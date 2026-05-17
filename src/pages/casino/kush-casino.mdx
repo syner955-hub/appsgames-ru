@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/kush-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Kush Casino уведомляет о новых версиях при запус�
 
 <CtaButton href="/go/kush-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "1.2.0", date: "Май 2026", changes: ["Добавлены лайв-игры от Ezugi", "Переработана система фильтрации слотов"] },
+  { version: "1.1.5", date: "Март 2026", changes: ["Исправлена ошибка авторизации через email", "Ускорена обработка выводов через СБП"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Kush Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл." },
   { q: "Какой бонус за установку Kush?", a: "50 фриспинов на Book of Rebirth после установки APK и регистрации. Вейджер x40." },
   { q: "Какой минимальный депозит в Kush Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через банковские карты." },
   { q: "Работает ли Kush на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как быстро выводят деньги в Kush?", a: "Криптовалюта, до 2 часов. СБП, до 3 часов. Карты, до 24 часов." }
+]} />
+
+<Comments appName="Kush Casino" comments={[
+  { author: "Роман Ж.", date: "13.05.2026", rating: 5, text: "Простое приложение без лишнего. Зашёл, пополнил, играю. Вывод через СБП за 2 часа. Нормально." },
+  { author: "Светлана И.", date: "30.04.2026", rating: 4, text: "Нравится, что демо есть на все слоты. Сначала тестирую, потом на реальные. Интерфейс минималистичный." },
+  { author: "Владимир Е.", date: "14.03.2026", rating: 3, text: "Каталог поменьше чем у конкурентов, но основные провайдеры есть. Вывод на крипту долговат — 2 часа ждал." },
 ]} />

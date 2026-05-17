@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/grizzly-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Grizzly Casino показывает уведомление при выходе �
 
 <CtaButton href="/go/grizzly-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.0.0", date: "Май 2026", changes: ["Полностью переработан интерфейс приложения", "Добавлена поддержка вывода на криптокошельки TON"] },
+  { version: "1.9.0", date: "Март 2026", changes: ["Добавлены 180 слотов от Relax Gaming", "Исправлен краш при открытии push-уведомлений"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Grizzly Casino на Андроид?", a: "Скачайте APK с этой страницы, разрешите установку из неизвестных источников и установите файл." },
   { q: "Какой бонус за установку Grizzly?", a: "60 фриспинов на Gonzo's Quest после установки APK и регистрации. Вейджер x40." },
   { q: "Какой минимальный депозит в Grizzly Casino?", a: "От 300 ₽ через СБП, от 500 ₽ через банковские карты." },
   { q: "Работает ли Grizzly на iPhone?", a: "Через PWA-версию в Safari. Добавьте сайт на главный экран для быстрого доступа." },
   { q: "Как быстро выводят деньги в Grizzly?", a: "Криптовалюта, до 2 часов. СБП, до 3 часов. Карты, до 24 часов." }
+]} />
+
+<Comments appName="Grizzly Casino" comments={[
+  { author: "Александр Ч.", date: "11.05.2026", rating: 5, text: "Новый интерфейс после обновления 2.0 — огонь. Всё стало быстрее и удобнее. Mega Moolah крутил, пока не выиграл." },
+  { author: "Татьяна Г.", date: "24.04.2026", rating: 4, text: "Стабильное приложение, за 4 месяца ни разу не вылетело. Кэшбэк приходит каждый понедельник. Нравится." },
+  { author: "Вадим С.", date: "09.03.2026", rating: 3, text: "Вывод через СБП ждал 3 часа — долговато. У конкурентов быстрее. Но каталог игр хороший, Gonzo's Quest тут есть." },
 ]} />

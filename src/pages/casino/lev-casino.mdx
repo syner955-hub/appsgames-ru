@@ -23,6 +23,8 @@ import FaqAccordion from '../../components/article/FaqAccordion.astro';
 import CtaButton from '../../components/article/CtaButton.astro';
 import ResponsibleGambling from '../../components/article/ResponsibleGambling.astro';
 import AppRating from '../../components/article/AppRating.astro';
+import VersionHistory from '../../components/article/VersionHistory.astro';
+import Comments from '../../components/article/Comments.astro';
 
 <CtaButton href="/go/lev-casino/" label="Перейти на сайт казино" />
 
@@ -143,10 +145,21 @@ Lev Casino не обновляется автоматически. При вых
 
 <CtaButton href="/go/lev-casino/" label="Играть сейчас" />
 
+<VersionHistory versions={[
+  { version: "2.5.0", date: "Май 2026", changes: ["Добавлен раздел краш-игр с новым интерфейсом", "Интеграция провайдера Nolimit City (20+ слотов)"] },
+  { version: "2.4.0", date: "Март 2026", changes: ["Исправлена задержка при загрузке лайв-трансляций", "Добавлена возможность вывода на карту Т-Банка"] },
+]} />
+
 <FaqAccordion items={[
   { q: "Как скачать Lev Casino на Андроид?", a: "Скачайте APK-файл с этой страницы, разрешите установку из неизвестных источников и откройте загруженный файл." },
   { q: "Безопасно ли приложение Lev?", a: "Приложение использует SSL-шифрование и лицензировано в Кюрасао. Скачивайте APK только с проверенных источников." },
   { q: "Какой бонус за установку Lev Casino?", a: "50 фриспинов начисляются после установки APK и регистрации. Вейджер x40." },
   { q: "Работает ли Lev на iPhone?", a: "Отдельного приложения для iOS нет. Добавьте мобильную версию сайта на главный экран через Safari." },
   { q: "Как вывести деньги из Lev Casino?", a: "Откройте личный кабинет → Вывод → выберите метод. Минимум от 500 ₽, скорость от 1 до 24 часов." }
+]} />
+
+<Comments appName="Lev Casino" comments={[
+  { author: "Артём", date: "08.05.2026", rating: 5, text: "Вывод через СБП за 10 минут, проверено лично. Приложение не глючит." },
+  { author: "Наталья", date: "21.04.2026", rating: 4, text: "Хороший кэшбэк, 12% реально возвращают. Слотов много, есть из чего выбрать." },
+  { author: "Владимир К.", date: "03.04.2026", rating: 4, text: "Пользуюсь три месяца. Стабильное приложение, push-уведомления о бонусах приходят вовремя." },
 ]} />
