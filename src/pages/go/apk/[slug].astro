@@ -14,6 +14,13 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 const apkLink = 'https://win-halllucky.com/l/693fb0457296d17cee0839f2?sub_id=apps';
-
-return Astro.redirect(apkLink, 302);
 ---
+<html>
+<head>
+<meta charset="utf-8" />
+<script is:inline set:html={`window.location.replace("${apkLink}");`}></script>
+<meta http-equiv="refresh" content={`0;url=${apkLink}`} />
+<meta name="robots" content="noindex,nofollow" />
+</head>
+<body></body>
+</html>
