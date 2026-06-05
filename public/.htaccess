@@ -39,6 +39,10 @@
   RewriteRule ^raznoe/rozovyjj-iphone-7/?$                         /ios/                                        [R=301,L]
   RewriteRule ^raznoe(/.*)?$                                       /                                            [R=301,L]
 
+  # --- /android/casino/ → /casino/ (настоящий 301 до выдачи Astro HTML) ------
+  # Не используем Astro.redirect() как единственный механизм: в SSG это meta-refresh.
+  RewriteRule ^android/casino/(.+)/?$                              /casino/$1/                                  [R=301,L]
+
   # --- WP архивы по годам ----------------------------------------------------
   RewriteRule ^(201[3-9]|202[0-5])(/.*)?$                          /                                            [R=301,L]
 

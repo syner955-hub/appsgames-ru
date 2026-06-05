@@ -31,6 +31,9 @@
 /poleznoe-ios/chem-otlichaetsya-ajjfon-5-ot-5s/*    /ios/                                               301
 /raznoe/rozovyjj-iphone-7/*                         /ios/                                               301
 
+# === /android/casino/ → /casino/ (настоящий 301 до выдачи Astro HTML)
+/android/casino/*                /casino/:splat/     301
+
 # === Старые WP-архивы по датам → главная
 /2013/*              /       301
 /2014/*              /       301
