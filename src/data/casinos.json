@@ -126,7 +126,7 @@
   },
   "88-casino": {
     "nameRu": "88",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -146,13 +146,13 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "888stars-casino": {
     "nameRu": "888старс",
-    "bonus": "180% + 250 FS",
-    "bonusDetail": "до 45 000 ₽",
+    "bonus": "200% + 250 FS",
+    "bonusDetail": "до 185 000 ₽",
     "license": "Curaçao",
     "pros": [
       "Android-приложение с быстрым входом",
@@ -161,7 +161,7 @@
     ],
     "image": "/images/casino/888stars-casino-logo.webp",
     "affiliate": "/go/888stars-casino/",
-    "wager": "x40",
+    "wager": "x35",
     "minDeposit": "1 000 ₽",
     "withdrawal": null,
     "providers": [],
@@ -170,14 +170,14 @@
     "votes": null,
     "updated": "2026-06-10",
     "source": "hub-import",
-    "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusSource": "casino.ru",
+    "bonusPct": 200,
     "freespins": 250
   },
   "admiral-x-casino": {
     "nameRu": "Адмирал Икс",
-    "bonus": "180% + 250 FS",
-    "bonusDetail": "до 45 000 ₽",
+    "bonus": "850% + 850 FS",
+    "bonusDetail": "до 1 250 000 ₽",
     "license": "Curaçao",
     "pros": [
       "Android-приложение с быстрым входом",
@@ -186,7 +186,7 @@
     ],
     "image": "/images/casino/admiral-x-casino-logo.webp",
     "affiliate": "/go/admiral-x-casino/",
-    "wager": "x40",
+    "wager": "x35",
     "minDeposit": "1 000 ₽",
     "withdrawal": null,
     "providers": [],
@@ -195,9 +195,9 @@
     "votes": null,
     "updated": "2026-06-10",
     "source": "hub-import",
-    "bonusSource": "median",
-    "bonusPct": 180,
-    "freespins": 250
+    "bonusSource": "casino.ru",
+    "bonusPct": 850,
+    "freespins": 850
   },
   "argo-casino": {
     "nameRu": "Арго",
@@ -326,7 +326,7 @@
   },
   "avocado-casino": {
     "nameRu": "Авокадо",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -346,7 +346,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "azartmania-casino": {
@@ -426,8 +426,8 @@
   },
   "babos-casino": {
     "nameRu": "Бабос",
-    "bonus": "180% + 250 FS",
-    "bonusDetail": "до 45 000 ₽",
+    "bonus": "550% + 350 FS",
+    "bonusDetail": "до 400 000 ₽",
     "license": "Curaçao",
     "pros": [
       "Android-приложение с быстрым входом",
@@ -436,7 +436,7 @@
     ],
     "image": "/images/casino/babos-casino-logo.webp",
     "affiliate": "/go/babos-casino/",
-    "wager": "x40",
+    "wager": "x45",
     "minDeposit": "1 000 ₽",
     "withdrawal": null,
     "providers": [],
@@ -445,9 +445,9 @@
     "votes": null,
     "updated": "2026-06-10",
     "source": "hub-import",
-    "bonusSource": "median",
-    "bonusPct": 180,
-    "freespins": 250
+    "bonusSource": "casino.ru",
+    "bonusPct": 550,
+    "freespins": 350
   },
   "banda-casino": {
     "nameRu": "Банда",
@@ -626,7 +626,7 @@
   },
   "bitzamo-casino": {
     "nameRu": "Битзамо",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -646,12 +646,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "blitz-casino": {
     "nameRu": "Блиц",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -671,7 +671,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "bob-casino": {
@@ -726,7 +726,7 @@
   },
   "bondibet-casino": {
     "nameRu": "Бонди Бет",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -746,7 +746,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "bonsai-casino": {
@@ -776,7 +776,7 @@
   },
   "bounty-casino": {
     "nameRu": "Баунти",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -796,12 +796,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "briliks-casino": {
     "nameRu": "Бриликс",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -821,12 +821,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "bui-casino": {
     "nameRu": "Буй",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -846,12 +846,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "calypso-casino": {
     "nameRu": "Калипсо",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -871,13 +871,13 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "casino-x": {
     "nameRu": "Казино Икс",
-    "bonus": "180% + 250 FS",
-    "bonusDetail": "до 45 000 ₽",
+    "bonus": "400% + 250 FS",
+    "bonusDetail": "до 4 000 000 ₽",
     "license": "Curaçao",
     "pros": [
       "Android-приложение с быстрым входом",
@@ -886,7 +886,7 @@
     ],
     "image": "/images/casino/casino-x-logo.webp",
     "affiliate": "/go/casino-x/",
-    "wager": "x40",
+    "wager": "x30",
     "minDeposit": "1 000 ₽",
     "withdrawal": null,
     "providers": [],
@@ -895,8 +895,8 @@
     "votes": null,
     "updated": "2026-06-10",
     "source": "hub-import",
-    "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusSource": "casino.ru",
+    "bonusPct": 400,
     "freespins": 250
   },
   "cat-casino": {
@@ -926,7 +926,7 @@
   },
   "champion-casino": {
     "nameRu": "Чемпион",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -946,7 +946,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "club-vulkan-casino": {
@@ -1001,7 +1001,7 @@
   },
   "columbus-casino": {
     "nameRu": "Колумбус",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1021,7 +1021,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "cryptoboss-casino": {
@@ -1076,7 +1076,7 @@
   },
   "docryptobet-casino": {
     "nameRu": "ДоКриптоБет",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1096,12 +1096,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "dragon-money-casino": {
     "nameRu": "Драгон Мани",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1121,7 +1121,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "drift-casino": {
@@ -1276,7 +1276,7 @@
   },
   "ets-casino": {
     "nameRu": "ЕТС",
-    "bonus": "180% + 250 FS",
+    "bonus": "200 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1295,13 +1295,13 @@
     "votes": null,
     "updated": "2026-06-10",
     "source": "hub-import",
-    "bonusSource": "median",
-    "bonusPct": 180,
-    "freespins": 250
+    "bonusSource": "casino.ru",
+    "bonusPct": null,
+    "freespins": 200
   },
   "eurogame-casino": {
     "nameRu": "ЕвроГейм Клуб",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1321,7 +1321,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "everum-casino": {
@@ -1401,7 +1401,7 @@
   },
   "fatboss-casino": {
     "nameRu": "Фатбосс",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1421,7 +1421,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "flagman-casino": {
@@ -1451,7 +1451,7 @@
   },
   "flip-casino": {
     "nameRu": "Флип",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1471,12 +1471,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "fontan-casino": {
     "nameRu": "Фонтан",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1496,7 +1496,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "frank-casino": {
@@ -1551,7 +1551,7 @@
   },
   "friends-casino": {
     "nameRu": "Френдс",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1571,7 +1571,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "fruity-casa-casino": {
@@ -1626,7 +1626,7 @@
   },
   "funpari-casino": {
     "nameRu": "Фанпари",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1646,7 +1646,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "gama-casino": {
@@ -1701,7 +1701,7 @@
   },
   "ginobet-casino": {
     "nameRu": "ДжиноБэт",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1721,7 +1721,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "gizbo-casino": {
@@ -1876,7 +1876,7 @@
   },
   "graf-casino": {
     "nameRu": "Граф",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -1896,7 +1896,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "grizzly-casino": {
@@ -2051,7 +2051,7 @@
   },
   "jetton-casino": {
     "nameRu": "Джеттон",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2071,7 +2071,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "joy-casino": {
@@ -2451,7 +2451,7 @@
   },
   "libet-casino": {
     "nameRu": "Либет",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2471,7 +2471,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "longbao-casino": {
@@ -2501,7 +2501,7 @@
   },
   "ltc-casino": {
     "nameRu": "ЛТС",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2521,7 +2521,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "lucky-bear-casino": {
@@ -2601,7 +2601,7 @@
   },
   "lutran-casino": {
     "nameRu": "Лутран",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2621,7 +2621,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "magicwin-casino": {
@@ -2726,7 +2726,7 @@
   },
   "maxbet-casino": {
     "nameRu": "Максбет",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2746,7 +2746,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "maxslots": {
@@ -2801,7 +2801,7 @@
   },
   "mellstroy-casino": {
     "nameRu": "Меллстрой",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2821,12 +2821,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "mers-casino": {
     "nameRu": "Мерс",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -2846,7 +2846,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "million-casino": {
@@ -3076,7 +3076,7 @@
   },
   "on-x-casino": {
     "nameRu": "Он Икс",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3096,7 +3096,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "onion-casino": {
@@ -3376,7 +3376,7 @@
   },
   "retro-casino": {
     "nameRu": "Ретро",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3396,7 +3396,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "richy-casino": {
@@ -3476,7 +3476,7 @@
   },
   "selector-casino": {
     "nameRu": "Селектор",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3496,7 +3496,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "shot-casino": {
@@ -3701,7 +3701,7 @@
   },
   "starvegas-casino": {
     "nameRu": "Старвегас",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3721,7 +3721,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "sykaaa-casino": {
@@ -3776,7 +3776,7 @@
   },
   "trix-casino": {
     "nameRu": "Трикс",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3796,12 +3796,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "turbo-casino": {
     "nameRu": "Турбо",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3821,7 +3821,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "twin-casino": {
@@ -3901,8 +3901,8 @@
   },
   "vagonbet-casino": {
     "nameRu": "Вагонбет",
-    "bonus": "180% + 250 FS",
-    "bonusDetail": "до 45 000 ₽",
+    "bonus": "100%",
+    "bonusDetail": "до 12 500 ₽",
     "license": "Curaçao",
     "pros": [
       "Android-приложение с быстрым входом",
@@ -3912,7 +3912,7 @@
     "image": "/images/casino/vagonbet-casino-logo.webp",
     "affiliate": "/go/vagonbet-casino/",
     "wager": "x40",
-    "minDeposit": "1 000 ₽",
+    "minDeposit": "650 ₽",
     "withdrawal": null,
     "providers": [],
     "payments": [],
@@ -3920,9 +3920,9 @@
     "votes": null,
     "updated": "2026-06-10",
     "source": "hub-import",
-    "bonusSource": "median",
-    "bonusPct": 180,
-    "freespins": 250
+    "bonusSource": "casino.ru",
+    "bonusPct": 100,
+    "freespins": null
   },
   "vavada": {
     "nameRu": "Vavada",
@@ -3951,7 +3951,7 @@
   },
   "vega-casino": {
     "nameRu": "Вега",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3971,12 +3971,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "vegasy-casino": {
     "nameRu": "Вегаси",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -3996,12 +3996,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "vibe-casino": {
     "nameRu": "Вайб",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -4021,12 +4021,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "vivaro-casino": {
     "nameRu": "Виваро",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -4046,12 +4046,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "vivi-casino": {
     "nameRu": "Виви",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -4071,7 +4071,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "vodka-casino": {
@@ -4351,7 +4351,7 @@
   },
   "wai-casino": {
     "nameRu": "Вай",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -4371,12 +4371,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "xplaybet-casino": {
     "nameRu": "Иксплейбет",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -4396,12 +4396,12 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   },
   "zooma-casino": {
     "nameRu": "Зума",
-    "bonus": "180% + 250 FS",
+    "bonus": "200% + 250 FS",
     "bonusDetail": "до 45 000 ₽",
     "license": "Curaçao",
     "pros": [
@@ -4421,7 +4421,7 @@
     "updated": "2026-06-10",
     "source": "hub-import",
     "bonusSource": "median",
-    "bonusPct": 180,
+    "bonusPct": 200,
     "freespins": 250
   }
 }
