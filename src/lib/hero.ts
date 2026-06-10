@@ -10,6 +10,7 @@ export type HeroCategory =
   | 'obzory'
   | 'sovety'
   | 'bezopasnost'
+  | 'casino'
   | 'default';
 
 export type HeroIcon =
@@ -31,6 +32,7 @@ export type HeroIcon =
 
 export function resolveCategory(pathname: string): HeroCategory {
   const p = pathname.toLowerCase();
+  if (p.startsWith('/casino/') || p.startsWith('/android/casino/')) return 'casino';
   if (p.startsWith('/ios/') || p.startsWith('/poleznoe-ios/') || p.startsWith('/uroki-po-ios/') || p.startsWith('/rabota-s-itunes/')) return 'ios';
   if (p.startsWith('/android/') || p.startsWith('/poleznoe-dlya-android/')) return 'android';
   if (p.startsWith('/obzory/') || p.startsWith('/dopolnitelnyjj-soft/')) return 'obzory';
@@ -78,6 +80,7 @@ export function resolveIcon(pathname: string, category: HeroCategory): HeroIcon 
   if (category === 'obzory') return 'star';
   if (category === 'sovety') return 'bulb';
   if (category === 'bezopasnost') return 'shield';
+  if (category === 'casino') return 'star';
   return 'bolt';
 }
 
@@ -89,6 +92,7 @@ export function resolveCategoryLabel(category: HeroCategory): string {
     obzory: 'Обзоры',
     sovety: 'Советы',
     bezopasnost: 'Безопасность',
+    casino: 'Казино',
     default: 'AppsGames',
   };
   return map[category];

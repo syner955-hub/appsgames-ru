@@ -14,6 +14,7 @@ interface Props {
     | 'obzory'
     | 'sovety'
     | 'bezopasnost'
+    | 'casino'
     | 'default';
   /** Подсказывает тему иконки независимо от категории */
   icon?:
@@ -91,6 +92,13 @@ const themes: Record<string, Theme> = {
     accent: '#ffe8e8',
     label: 'Безопасность',
     defaultIcon: 'shield',
+  },
+  casino: {
+    a: '#f59e0b',
+    b: '#7c2d12',
+    accent: '#fff4e0',
+    label: 'Казино',
+    defaultIcon: 'star',
   },
   default: {
     a: '#334155',

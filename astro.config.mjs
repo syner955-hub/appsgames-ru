@@ -26,6 +26,9 @@ export default defineConfig({
         const path = page.replace('https://appsgames.ru', '');
         if (servicePages.some((p) => path === p)) return false;
         if (legacySections.some((p) => path.startsWith(p))) return false;
+        // /go/ — партнёрские редиректы: noindex + Disallow в robots.txt.
+        // В sitemap им не место (иначе в GSC ошибка "Submitted URL blocked by robots.txt").
+        if (path.startsWith('/go/')) return false;
         if (page.includes('/draft/')) return false;
         return true;
       },
