@@ -32,3 +32,9 @@ public/downloads/
 
 # SEO-инструменты: промежуточные отчёты (не нужны в репозитории)
 reports/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
