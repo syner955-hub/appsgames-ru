@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import { affiliateFor } from '../../lib/affiliate';
 
 export const getStaticPaths: GetStaticPaths = () => {
   const brands = [
@@ -43,7 +44,8 @@ export const getStaticPaths: GetStaticPaths = () => {
   return brands.map((slug) => ({ params: { slug } }));
 };
 
-const mainLink = 'https://win-halllucky.com/l/69d4bae2d788d3223f0a2a02?sub_id=apps';
+const { slug } = Astro.params;
+const mainLink = affiliateFor(String(slug));
 ---
 <html>
 <head>
