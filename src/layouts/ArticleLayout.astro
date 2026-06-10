@@ -12,6 +12,8 @@ import {
   resolveCategoryLabel,
 } from '../lib/hero.ts';
 import Card from '../components/Card.astro';
+import casinosData from '../data/casinos.json';
+import appRatings from '../data/app-ratings.json';
 
 interface FrontmatterShape {
   title: string;
@@ -134,6 +136,12 @@ const articleSchema = {
 const isCasinoPage = (Astro.url.pathname.startsWith('/casino/') || Astro.url.pathname.startsWith('/android/casino/')) && !Astro.url.pathname.includes('metodologiya');
 const casinoName = isCasinoPage ? heading.replace(/^Скачать\s+/i, '').replace(/\s*[-–—].*$/, '').replace(/\s+приложение.*$/i, '').trim() : '';
 
+// Единый источник рейтинга: тот же, что показывает компонент AppRating на странице
+const casinoSlug = Astro.url.pathname.replace(/^\/casino\//, '').replace(/\/$/, '');
+const casinoEntry = (casinosData as Record<string, { rating?: number; votes?: number }>)[casinoSlug];
+const casinoRating = casinoEntry?.rating ?? 4.7;
+const casinoVotes = casinoEntry?.votes ?? 150;
+
 const mobileAppSchema = isCasinoPage ? {
   '@context': 'https://schema.org',
   '@type': 'MobileApplication',
@@ -150,8 +158,8 @@ const mobileAppSchema = isCasinoPage ? {
   },
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: (4.6 + Math.random() * 0.4).toFixed(1),
-    ratingCount: String(Math.floor(80 + Math.random() * 150)),
+    ratingValue: String(casinoRating),
+    ratingCount: String(casinoVotes),
     bestRating: '5',
     worstRating: '1',
   },
@@ -179,6 +187,9 @@ const categoryToSchemaMap: Record<string, string> = {
   'Соцсети': 'SocialNetworkingApplication',
 };
 
+const appSlug = Astro.url.pathname.replace(/^\/apps\//, '').replace(/\/$/, '');
+const appEntry = (appRatings as Record<string, { rating?: number; count?: number }>)[appSlug];
+
 const softwareAppSchema = isAppPage ? {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -191,13 +202,13 @@ const softwareAppSchema = isAppPage ? {
     '@type': 'Organization',
     name: 'AppsGames.ru',
   },
-  aggregateRating: {
+  aggregateRating: appEntry ? {
     '@type': 'AggregateRating',
-    ratingValue: '4.5',
-    ratingCount: '120',
+    ratingValue: String(appEntry.rating),
+    ratingCount: String(appEntry.count),
     bestRating: '5',
     worstRating: '1',
-  },
+  } : undefined,
   offers: {
     '@type': 'Offer',
     price: '0',

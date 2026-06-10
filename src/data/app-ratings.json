@@ -1,0 +1,338 @@
+{
+  "2gis": {
+    "rating": 4.6,
+    "count": 92000
+  },
+  "adguard": {
+    "rating": 4.5,
+    "count": 28000
+  },
+  "alfa-bank": {
+    "rating": 4.1,
+    "count": 52000
+  },
+  "aliexpress": {
+    "rating": 4.3,
+    "count": 2156789
+  },
+  "among-us": {
+    "rating": 4.1,
+    "count": 73000
+  },
+  "angry-birds-2": {
+    "rating": 4.3,
+    "count": 12600000
+  },
+  "asphalt-9": {
+    "rating": 4.4,
+    "count": 58000
+  },
+  "avito": {
+    "rating": 4.4,
+    "count": 4521890
+  },
+  "brawl-stars": {
+    "rating": 4.3,
+    "count": 82000
+  },
+  "call-of-duty-mobile": {
+    "rating": 4.3,
+    "count": 78000
+  },
+  "camscanner": {
+    "rating": 4.2,
+    "count": 38000
+  },
+  "candy-crush": {
+    "rating": 4.3,
+    "count": 105000
+  },
+  "capcut": {
+    "rating": 4.5,
+    "count": 67000
+  },
+  "clash-mini": {
+    "rating": 4.2,
+    "count": 5400000
+  },
+  "clash-of-clans": {
+    "rating": 4.5,
+    "count": 72000
+  },
+  "clash-royale": {
+    "rating": 4.2,
+    "count": 61000
+  },
+  "clean-master": {
+    "rating": 4.2,
+    "count": 1245678
+  },
+  "discord": {
+    "rating": 4.2,
+    "count": 42000
+  },
+  "duolingo": {
+    "rating": 4.6,
+    "count": 2876543
+  },
+  "fifa-mobile": {
+    "rating": 4.1,
+    "count": 15800000
+  },
+  "firefox": {
+    "rating": 4.3,
+    "count": 987654
+  },
+  "free-fire": {
+    "rating": 4.2,
+    "count": 45200000
+  },
+  "fruit-ninja": {
+    "rating": 4.1,
+    "count": 42000
+  },
+  "genshin-impact": {
+    "rating": 4.5,
+    "count": 68000
+  },
+  "geometry-dash": {
+    "rating": 4.6,
+    "count": 18900000
+  },
+  "google-chrome": {
+    "rating": 4.3,
+    "count": 95000
+  },
+  "google-drive": {
+    "rating": 4.3,
+    "count": 2345678
+  },
+  "google-maps": {
+    "rating": 4.3,
+    "count": 78000
+  },
+  "google-translate": {
+    "rating": 4.6,
+    "count": 3456789
+  },
+  "hay-day": {
+    "rating": 4.5,
+    "count": 16700000
+  },
+  "hill-climb-racing": {
+    "rating": 4.5,
+    "count": 95000
+  },
+  "instagram": {
+    "rating": 4.3,
+    "count": 52100000
+  },
+  "kaspersky": {
+    "rating": 4.5,
+    "count": 892341
+  },
+  "kinemaster": {
+    "rating": 4.2,
+    "count": 38000
+  },
+  "lightroom": {
+    "rating": 4.4,
+    "count": 1654321
+  },
+  "minecraft": {
+    "rating": 4.6,
+    "count": 110000
+  },
+  "mobile-legends": {
+    "rating": 4.3,
+    "count": 32100000
+  },
+  "need-for-speed": {
+    "rating": 4,
+    "count": 9400000
+  },
+  "nordvpn": {
+    "rating": 4.5,
+    "count": 35000
+  },
+  "notion": {
+    "rating": 4.5,
+    "count": 1234567
+  },
+  "ok": {
+    "rating": 4.2,
+    "count": 8900000
+  },
+  "opera": {
+    "rating": 4.4,
+    "count": 1567890
+  },
+  "ozon": {
+    "rating": 4.7,
+    "count": 11300000
+  },
+  "photoeditor": {
+    "rating": 4.5,
+    "count": 1987654
+  },
+  "pinterest": {
+    "rating": 4.6,
+    "count": 12800000
+  },
+  "plague-inc": {
+    "rating": 4.4,
+    "count": 51000
+  },
+  "plants-vs-zombies-2": {
+    "rating": 4.3,
+    "count": 58000
+  },
+  "protonvpn": {
+    "rating": 4.4,
+    "count": 22000
+  },
+  "pubg-mobile": {
+    "rating": 4.3,
+    "count": 95000
+  },
+  "real-racing-3": {
+    "rating": 4.3,
+    "count": 48000
+  },
+  "roblox": {
+    "rating": 4.5,
+    "count": 28450000
+  },
+  "rustore": {
+    "rating": 4.1,
+    "count": 35000
+  },
+  "sberbank": {
+    "rating": 4.2,
+    "count": 95000
+  },
+  "shadow-fight-3": {
+    "rating": 4.4,
+    "count": 55000
+  },
+  "shazam": {
+    "rating": 4.6,
+    "count": 32000
+  },
+  "signal": {
+    "rating": 4.4,
+    "count": 18000
+  },
+  "skype": {
+    "rating": 4,
+    "count": 9200000
+  },
+  "snapchat": {
+    "rating": 4.1,
+    "count": 31500000
+  },
+  "spotify": {
+    "rating": 4.4,
+    "count": 55000
+  },
+  "standoff-2": {
+    "rating": 4.4,
+    "count": 45000
+  },
+  "stumble-guys": {
+    "rating": 4.1,
+    "count": 22300000
+  },
+  "subway-surfers": {
+    "rating": 4.4,
+    "count": 89000
+  },
+  "telegram": {
+    "rating": 4.5,
+    "count": 48000
+  },
+  "temple-run-2": {
+    "rating": 4.2,
+    "count": 62000
+  },
+  "tiktok": {
+    "rating": 4.5,
+    "count": 48230000
+  },
+  "tinkoff": {
+    "rating": 4.4,
+    "count": 88000
+  },
+  "uber": {
+    "rating": 4.3,
+    "count": 22400000
+  },
+  "viber": {
+    "rating": 4.1,
+    "count": 31000
+  },
+  "vk": {
+    "rating": 4,
+    "count": 65000
+  },
+  "vlc": {
+    "rating": 4.3,
+    "count": 28000
+  },
+  "vpn-master": {
+    "rating": 4,
+    "count": 18000
+  },
+  "waze": {
+    "rating": 4.3,
+    "count": 41000
+  },
+  "whatsapp": {
+    "rating": 4.3,
+    "count": 52000
+  },
+  "wildberries": {
+    "rating": 4.5,
+    "count": 3842567
+  },
+  "windscribe": {
+    "rating": 4.3,
+    "count": 15000
+  },
+  "wps-office": {
+    "rating": 4.3,
+    "count": 45000
+  },
+  "yandex-browser": {
+    "rating": 4.3,
+    "count": 72000
+  },
+  "yandex-market": {
+    "rating": 4.2,
+    "count": 1876543
+  },
+  "yandex-music": {
+    "rating": 4.1,
+    "count": 48000
+  },
+  "yandex-navigator": {
+    "rating": 4.4,
+    "count": 85000
+  },
+  "yandex-taxi": {
+    "rating": 4.5,
+    "count": 6700000
+  },
+  "youtube": {
+    "rating": 4.2,
+    "count": 120000
+  },
+  "yumoney": {
+    "rating": 4,
+    "count": 25000
+  },
+  "zoom": {
+    "rating": 4.4,
+    "count": 15600000
+  }
+}

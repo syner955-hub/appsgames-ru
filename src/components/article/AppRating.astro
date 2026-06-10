@@ -1,15 +1,20 @@
 ---
 interface Props {
-  appName: string;
-  rating: string;
-  count: string;
+  appName?: string;
+  rating: string | number;
+  count?: string | number;
+  votes?: string | number; // алиас count (казино-страницы передают votes)
 }
-const { appName, rating, count } = Astro.props;
+const { rating, count, votes } = Astro.props;
 
-const ratingNum = parseFloat(rating);
+const ratingNum = parseFloat(String(rating));
 const fullStars = Math.floor(ratingNum);
 const hasHalf = ratingNum - fullStars >= 0.3;
 const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+
+const countRaw = count ?? votes;
+const countNum = countRaw != null ? Number(String(countRaw).replace(/\D/g, '')) : null;
+const countDisplay = countNum != null ? countNum.toLocaleString('ru-RU') : null;
 ---
 
 <div class="app-rating">
@@ -23,7 +28,7 @@ const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
     ))}
   </div>
   <span class="app-rating__value">{rating}</span>
-  <span class="app-rating__count">({count} оценок)</span>
+  {countDisplay && <span class="app-rating__count">({countDisplay} оценок)</span>}
 </div>
 
 <style>
